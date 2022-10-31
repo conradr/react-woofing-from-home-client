@@ -1,8 +1,15 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
+  mode: 'jit',
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        sky: '#3F3CBB',
+        teal: '#3AB78F',
+      },
+    },
   },
   plugins: [require('@tailwindcss/forms')],
 }

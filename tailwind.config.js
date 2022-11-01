@@ -4,12 +4,7 @@ module.exports = {
   mode: 'jit',
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {
-      colors: {
-        sky: '#3F3CBB',
-        teal: '#3AB78F',
-      },
-    },
+    extend: {},
   },
   plugins: [require('@tailwindcss/forms')],
 }

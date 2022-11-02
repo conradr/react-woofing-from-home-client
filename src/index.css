@@ -674,7 +674,7 @@ button {
 .profileNameActive {
   all: unset;
   margin: 0.3rem 0;
-  font-weight: 600;
+  font-weight: 400;
   width: 100%;
 }
 .profileNameActive {

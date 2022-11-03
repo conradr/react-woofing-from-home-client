@@ -45,9 +45,8 @@ function SuitabilityForm() {
             const fetchFirebaseId = async () => {
               const docRef = doc(db, 'users', auth.currentUser.uid)
               const docSnap = await getDoc(docRef)
-              console.log(docSnap.data())   
               if (docSnap.exists()) {
-                setFormData({...formData, firebaseId: auth.currentUser.uid })
+                setFormData({...formData, firebaseId: auth.currentUser.uid, longitude: docSnap.data().geolocation.lng, latitude: docSnap.data().geolocation.lat})
               }
             }
             fetchFirebaseId()

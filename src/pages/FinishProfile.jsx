@@ -75,10 +75,11 @@ const FinishProfile = () => {
       }
     }
 
+
     fetchListing()
   }, [navigate])
 
-  const { name, lastName, email, postCode, about } = formData
+  const { name, email,  postCode, about } = formData
 
   const onLogout = () => {
     auth.signOut()
@@ -100,15 +101,13 @@ const FinishProfile = () => {
 
       auth.currentUser.email !== email &&
         (await updateEmail(auth.currentUser, email))
-
+      console.log(auth.currentUser)
       // Update in firestore
       const userRef = doc(db, 'users', auth.currentUser.uid)
+      console.log(auth.currentUser.uid)
       await updateDoc(userRef, {
-        name,
-        email,
         about,
         postCode,
-        lastName,
       })
       toast.success('Profile updated')
 
@@ -379,8 +378,9 @@ const FinishProfile = () => {
               <header className='relative py-10'>
                 <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
                   <h1 className='text-3xl font-bold tracking-tight text-white'>
-                    Finish your profile
+                    Welcome to Woofing From Home {name}! 
                   </h1>
+                  <p className='text-white'> It's time to finish your profile so we can find your perfect match!</p>
                 </div>
               </header>
             </>

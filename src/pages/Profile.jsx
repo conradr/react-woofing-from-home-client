@@ -35,13 +35,10 @@ const user = {
     'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80',
 }
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Jobs', href: '#', current: false },
-  { name: 'Applicants', href: '#', current: false },
-  { name: 'Company', href: '#', current: false },
+  { name: 'Dashboard', href: '/', current: true },
 ]
 const subNavigation = [
-  { name: 'Profile', href: '#', icon: UserCircleIcon, current: true },
+  { name: 'Profile', href: '/profile', icon: UserCircleIcon, current: true },
   { name: 'Images', href: '#', icon: CogIcon, current: false },
   { name: 'Password', href: '#', icon: KeyIcon, current: false },
   { name: 'Messages', href: '#', icon: BellIcon, current: false },
@@ -512,7 +509,7 @@ const Profile = () => {
                                   }}
                                   className='rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2'
                                 >
-                                  {changeDetails ? 'done' : 'update'}
+                                  {changeDetails ? 'Done' : 'Update'}
                                 </button>
                               </span>
                             </dd>
@@ -573,7 +570,6 @@ const Profile = () => {
                                 multiple
                                 required
                               />
-
                               <button
                                 type='button'
                                 className='rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2'
@@ -610,7 +606,7 @@ const Profile = () => {
                                   }}
                                   className='rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2'
                                 >
-                                  {changeDetails ? 'done' : 'update'}
+                                  {changeDetails ? 'Done' : 'Update'}
                                 </button>
                               </span>
                             </dd>
@@ -643,7 +639,7 @@ const Profile = () => {
                                   }}
                                   className='rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2'
                                 >
-                                  {changeDetails ? 'done' : 'update'}
+                                  {changeDetails ? 'Done' : 'Update'}
                                 </button>
                               </span>
                             </dd>
@@ -666,7 +662,7 @@ const Profile = () => {
                                     : '-mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm'
                                 }
                               />
-                              <span className='ml-4 flex-shrink-0'>
+                                <span className='ml-4 flex-shrink-0'>
                                 <button
                                   type='button'
                                   onClick={() => {
@@ -675,12 +671,24 @@ const Profile = () => {
                                   }}
                                   className='rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2'
                                 >
-                                  {changeDetails ? 'done' : 'update'}
+                                  {changeDetails ? 'Done' : 'Update'}
                                 </button>
-                              </span>
+                              </span>                         
                             </dd>
                           </div>
-                        </dl>
+
+                          <div className='py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-b sm:border-gray-200 sm:py-5'>
+                            <dt className='text-sm font-medium text-gray-500'>
+                            </dt>
+                            <dd className='mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0 '>
+                                
+                                <button type='button' className='bg-purple-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-right ' onClick={onLogout}>
+                                  Log Out 
+                                  </button>                                                    
+                            </dd>
+                          </div>
+
+                        </dl>         
                       </div>
                     </div>
                   </div>
@@ -690,57 +698,10 @@ const Profile = () => {
           </div>
         </main>
       </div>
-      <div className='profile'>
-        <header className='profileHeader'>
-          <p className='pageHeader'>My Profile</p>
-          <button type='button' className='logOut' onClick={onLogout}>
-            Logout
-          </button>
-        </header>
-        <main>
-          <div className='profileDetailsHeader'>
-            <p className='profileDetailsText'>Personal Details</p>
-            <p
-              className='changePersonalDetails'
-              onClick={() => {
-                changeDetails && onSubmit()
-                setChangeDetails((prevState) => !prevState)
-              }}
-            >
-              {changeDetails ? 'done' : 'change'}
-            </p>
-          </div>
-          <div className='profileCard'>
-            <form>
-              <input
-                type='text'
-                id='name'
-                className={!changeDetails ? 'profileName' : 'profileNameActive'}
-                disabled={!changeDetails}
-                value={name}
-                onChange={onChange}
-              />
-              <input
-                type='email'
-                id='email'
-                className={
-                  !changeDetails ? 'profileEmail' : 'profileEmailActive'
-                }
-                disabled={!changeDetails}
-                value={email}
-                onChange={onChange}
-              />
-            </form>
-          </div>
-          <Link to='/create-listing' className='createListing'>
-            <img src={homeIcon} alt='home' />
-            <p>Sell or rent your home</p>
-            <img src={arrowRight} alt='arrow right' />
-          </Link>
-        </main>
-      </div>
     </>
   )
 }
 
 export default Profile
+
+

@@ -78,11 +78,6 @@ const UploadImages = () => {
 
   const { images } = formData
 
-  const onLogout = () => {
-    auth.signOut()
-    navigate('/')
-  }
-
   const onSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
@@ -162,7 +157,7 @@ const UploadImages = () => {
 
     setLoading(false)
     toast.success('Photos Saved')
-   // navigate(`/profile`)
+ navigate(`/suitability-form`)
   }
 
   const onChange = (e) => {

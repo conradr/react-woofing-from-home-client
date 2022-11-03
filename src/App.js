@@ -10,6 +10,7 @@ import Profile from './pages/Profile'
 import FinishProfile from './pages/FinishProfile'
 import UploadImages from './pages/UploadImages'
 import UploadProfileImage from './pages/UploadProfileImage'
+import SuitabilityForm from './pages/SuitabilityForm'
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path='/upload-images' element={<PrivateRoute />}>
             <Route path='/upload-images' element={<UploadImages />} />
+          </Route>
+          <Route path='/suitability-form' element={<PrivateRoute />}>
+            <Route path='/suitability-form' element={<SuitabilityForm />} />
           </Route>
         </Routes>
 

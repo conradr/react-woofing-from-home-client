@@ -44,9 +44,10 @@ function SuitabilityForm() {
         useEffect(() => {
             const fetchFirebaseId = async () => {
               const docRef = doc(db, 'users', auth.currentUser.uid)
-              const docSnap = await getDoc(docRef)   
+              const docSnap = await getDoc(docRef)
+              console.log(docSnap.data())   
               if (docSnap.exists()) {
-                setFormData({...formData, firebaseId: auth.currentUser.uid})
+                setFormData({...formData, firebaseId: auth.currentUser.uid })
               }
             }
             fetchFirebaseId()

@@ -42,7 +42,8 @@ const navigation = [
 ]
 const subNavigation = [
   { name: 'Profile', href: '#', icon: UserCircleIcon, current: false },
-  { name: 'Images', href: '#', icon: CogIcon, current: true },
+  { name: 'Profile pic', href: '#', icon: CogIcon, current: true },
+  { name: 'Upload doggy pics', href: '#', icon: CogIcon, current: false },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -50,7 +51,7 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ]
 
-const UploadImages = () => {
+const UploadProfileImage = () => {
   const navigate = useNavigate()
   const params = useParams()
   const auth = getAuth()
@@ -138,7 +139,7 @@ const UploadImages = () => {
     }
     console.log(images)
 
-    const imgUrls = await Promise.all(
+    const photoURL = await Promise.all(
       [...images].map((image) => storeImage(image))
     ).catch(() => {
       setLoading(false)
@@ -148,7 +149,7 @@ const UploadImages = () => {
 
     const formDataCopy = {
       ...formData,
-      imgUrls,
+      photoURL,
     }
   
 
@@ -426,7 +427,7 @@ const UploadImages = () => {
               <header className='relative py-10'>
                 <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
                   <h1 className='text-3xl font-bold tracking-tight text-white'>
-                    Upload some images
+                    Upload your profile image
                   </h1>
                 </div>
               </header>
@@ -476,7 +477,7 @@ const UploadImages = () => {
                   <div className='py-6 px-4 sm:p-6 lg:pb-8'>
                     <div>
                       <h2 className='text-lg font-medium leading-6 text-gray-900'>
-                        Let's see some amazing pics of your dogs
+                        Let's see a profile pic
                       </h2>
                       <p className='mt-1 text-sm text-gray-500'>
                         This information will be displayed publicly so be
@@ -536,4 +537,4 @@ const UploadImages = () => {
   )
 }
 
-export default UploadImages
+export default UploadProfileImage

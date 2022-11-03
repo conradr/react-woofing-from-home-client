@@ -570,7 +570,6 @@ const Profile = () => {
                                 multiple
                                 required
                               />
-
                               <button
                                 type='button'
                                 className='rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2'
@@ -663,20 +662,33 @@ const Profile = () => {
                                     : '-mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm'
                                 }
                               />
-                              <div className='py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5'>
+                                <span className='ml-4 flex-shrink-0'>
+                                <button
+                                  type='button'
+                                  onClick={() => {
+                                    changeDetails && onSubmit()
+                                    setChangeDetails((prevState) => !prevState)
+                                  }}
+                                  className='rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2'
+                                >
+                                  {changeDetails ? 'Done' : 'Update'}
+                                </button>
+                              </span>                         
+                            </dd>
+                          </div>
+
+                          <div className='py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-b sm:border-gray-200 sm:py-5'>
                             <dt className='text-sm font-medium text-gray-500'>
-                            
                             </dt>
-                            <dd className='mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
-                            <button type='button' className='bg-purple-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={onLogout}>
-                          Logout
-                          </button>
+                            <dd className='mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0 '>
+                                
+                                <button type='button' className='bg-purple-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-right ' onClick={onLogout}>
+                                  Log Out 
+                                  </button>                                                    
                             </dd>
                           </div>
-                            </dd>
-                          </div>
-                        </dl>
-          
+
+                        </dl>         
                       </div>
                     </div>
                   </div>
@@ -691,3 +703,5 @@ const Profile = () => {
 }
 
 export default Profile
+
+

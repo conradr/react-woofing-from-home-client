@@ -38,7 +38,7 @@ function App() {
         </Routes>
 
         <ToastContainer />
-        <Navbar />
+        {/* <Navbar /> */}
       </Router>
     </>
   )

@@ -91,7 +91,34 @@ const FinishProfile = () => {
       toast.error('Please enter a postcode')
       setChangeDetails((prevState) => !prevState)
       return 
-    }  
+    }
+    
+    let geolocation = {}
+    let location
+
+    const response = await fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${postCode}&key=AIzaSyCcj_-O1o-muXov_vmnbMZqkQiQiPzgizM`
+    )
+
+    const data = await response.json()
+    
+    geolocation.lat = data.results[0]?.geometry.location.lat ?? 0
+    geolocation.lng = data.results[0]?.geometry.location.lng ?? 0
+    
+    location =
+      data.status === 'ZERO_RESULTS'
+        ? undefined
+        : data.results[0]?.formatted_address
+
+    if (location === undefined || location.includes('undefined')) {
+      setLoading(false)
+      toast.error('Please enter a correct postcode')
+      return
+    }
+
+     // geolocation.lat = latitude
+     // geolocation.lng = longitude
+
     try {
       auth.currentUser.displayName !== name &&
         // Update display name in fb
@@ -108,6 +135,7 @@ const FinishProfile = () => {
       await updateDoc(userRef, {
         about,
         postCode,
+        geolocation,
       })
       toast.success('Profile updated')
 

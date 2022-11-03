@@ -11,6 +11,7 @@ import FinishProfile from './pages/FinishProfile'
 import UploadImages from './pages/UploadImages'
 import UploadProfileImage from './pages/UploadProfileImage'
 import SuitabilityForm from './pages/SuitabilityForm'
+import OtherCriteriaForm from './pages/OtherCriteriaForm'
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route path='/suitability-form' element={<PrivateRoute />}>
             <Route path='/suitability-form' element={<SuitabilityForm />} />
+          </Route>
+          <Route path='/other-criteria' element={<PrivateRoute />}>
+            <Route path='/other-criteria' element={<OtherCriteriaForm />} />
           </Route>
         </Routes>
 

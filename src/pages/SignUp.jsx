@@ -64,7 +64,7 @@ const SignUp = () => {
         timestamp: serverTimestamp(),
       })
 
-      navigate('/')
+      navigate('/finish-profile')
     } catch (error) {
       toast.error('Something went wrong with registration')
     }

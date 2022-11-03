@@ -75,10 +75,11 @@ const FinishProfile = () => {
       }
     }
 
+
     fetchListing()
   }, [navigate])
 
-  const { name, lastName, email, postCode, about } = formData
+  const { name, lastName, email, photoURL, postCode, about } = formData
 
   const onLogout = () => {
     auth.signOut()
@@ -100,15 +101,13 @@ const FinishProfile = () => {
 
       auth.currentUser.email !== email &&
         (await updateEmail(auth.currentUser, email))
-
+      console.log(auth.currentUser)
       // Update in firestore
       const userRef = doc(db, 'users', auth.currentUser.uid)
+      console.log(auth.currentUser.uid)
       await updateDoc(userRef, {
-        name,
-        email,
         about,
         postCode,
-        lastName,
       })
       toast.success('Profile updated')
 

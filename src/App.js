@@ -9,6 +9,7 @@ import SignIn from './pages/SignIn'
 import Profile from './pages/Profile'
 import FinishProfile from './pages/FinishProfile'
 import UploadImages from './pages/UploadImages'
+import UploadProfileImage from './pages/UploadProfileImage'
 import SuitabilityForm from './pages/SuitabilityForm'
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path='/finish-profile' element={<PrivateRoute />}>
             <Route path='/finish-profile' element={<FinishProfile />} />
+          </Route>
+          <Route path='/upload-profile-image' element={<PrivateRoute />}>
+            <Route path='/upload-profile-image' element={<UploadProfileImage />} />
           </Route>
           <Route path='/upload-images' element={<PrivateRoute />}>
             <Route path='/upload-images' element={<UploadImages />} />

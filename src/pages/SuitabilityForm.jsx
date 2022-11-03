@@ -16,6 +16,7 @@ import {
   SquaresPlusIcon,
   UserCircleIcon,
   XMarkIcon,
+  CalendarDaysIcon
 } from '@heroicons/react/24/outline'
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -25,8 +26,9 @@ const navigation = [
 ]
 const subNavigation = [
   { name: 'Profile', href: '#', icon: UserCircleIcon, current: false },
-  { name: 'Profile pic', href: '#', icon: CogIcon, current: true },
+  { name: 'Profile pic', href: '#', icon: CogIcon, current: false },
   { name: 'Upload doggy pics', href: '#', icon: CogIcon, current: false },
+  { name: 'Your needs & availability', href: '#', icon: CalendarDaysIcon, current: true },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -179,7 +181,6 @@ const setDailyStatusInFormWednesday = (selectedDailyStatusWednesday) => {
         )
 }
 
-
 const setDailyStatusInFormThursday = (selectedDailyStatusThursday) => {
 
     setSelectedDailyStatusThursday(selectedDailyStatusThursday)
@@ -198,7 +199,6 @@ const setDailyStatusInFormThursday = (selectedDailyStatusThursday) => {
             requireThursday : false}
         )
 }
-
 
 const setDailyStatusInFormFriday = (selectedDailyStatusFriday) => {
 
@@ -500,7 +500,7 @@ const setDailyStatusInFormSunday = (selectedDailyStatusSunday) => {
               <header className='relative py-10'>
                 <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
                   <h1 className='text-3xl font-bold tracking-tight text-white'>
-                    Upload your profile image
+                    Your Availability and Needs
                   </h1>
                 </div>
               </header>
@@ -545,16 +545,14 @@ const setDailyStatusInFormSunday = (selectedDailyStatusSunday) => {
                   className='divide-y divide-gray-200 lg:col-span-9'
                   
                 >
-                  {/* Profile section */}
 
                   <div className='py-6 px-4 sm:p-6 lg:pb-8'>
                     <div>
                       <h2 className='text-lg font-medium leading-6 text-gray-900'>
-                        Let's see a profile pic
+                        Tell us your availability and dog care needs!
                       </h2>
                       <p className='mt-1 text-sm text-gray-500'>
-                        This information will be displayed publicly so be
-                        careful what you share.
+                        This will be used to find you suitable matches
                       </p>
                     </div>
 
@@ -997,9 +995,6 @@ const setDailyStatusInFormSunday = (selectedDailyStatusSunday) => {
           </div>
         </main>
       </div>
-
-      {/* radio buttons for selecting available/required days */}
-      <h1>Tell us your needs and your availability! </h1>
     </>
   )
 }

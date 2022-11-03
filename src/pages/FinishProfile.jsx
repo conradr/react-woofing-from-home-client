@@ -79,7 +79,7 @@ const FinishProfile = () => {
     fetchListing()
   }, [navigate])
 
-  const { name, lastName, email, photoURL, postCode, about } = formData
+  const { name, email,  postCode, about } = formData
 
   const onLogout = () => {
     auth.signOut()
@@ -378,8 +378,9 @@ const FinishProfile = () => {
               <header className='relative py-10'>
                 <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
                   <h1 className='text-3xl font-bold tracking-tight text-white'>
-                    Finish your profile
+                    Welcome to Woofing From Home {name}! 
                   </h1>
+                  <p className='text-white'> It's time to finish your profile so we can find your perfect match!</p>
                 </div>
               </header>
             </>

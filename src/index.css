@@ -745,7 +745,7 @@ button {
   align-items: center;
 }
 .formButtonActive {
-  background-color: #00cc66;
+  background-color: purple;
   color: #ffffff;
 }
 
@@ -800,7 +800,7 @@ button {
   width: 100%;
 }
 .formInputFile::file-selector-button {
-  background-color: #00cc66;
+  background-color:purple;
   border: none;
   color: #ffffff;
   font-weight: 600;

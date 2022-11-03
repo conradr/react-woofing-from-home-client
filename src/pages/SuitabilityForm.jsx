@@ -1,12 +1,18 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { RadioGroup } from '@headlessui/react'
 import { CheckCircleIcon } from '@heroicons/react/20/solid'
+import { useNavigate } from 'react-router-dom'
+import { getAuth} from 'firebase/auth'
+import { getDoc,doc } from 'firebase/firestore'
+import { db } from '../firebase.config'
 
 
 function SuitabilityForm() {
+    
+    const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
-        firebaseId: "newPerson4",
+        firebaseId: null,
         availableMonday: true,
         availableTuesday: true,
         availableWednesday: true,
@@ -30,11 +36,35 @@ function SuitabilityForm() {
         dogSizeOffer: null,
         longitude: null,
         latitude: null,
+        dogs: []
     })
+
+        //get firebaseID
+        const auth = getAuth()
+        useEffect(() => {
+            const fetchFirebaseId = async () => {
+              const docRef = doc(db, 'users', auth.currentUser.uid)
+              const docSnap = await getDoc(docRef)   
+              if (docSnap.exists()) {
+                setFormData({...formData, firebaseId: auth.currentUser.uid})
+              }
+            }
+            fetchFirebaseId()
+          }, [])
 
     //submit the entire formData to Postgres
     const onSubmit = () => {
-        console.log("Form submit button")
+        fetch('http://localhost:8080/customers', {
+        method: 'POST',
+        cache: 'no-cache',
+        cors: 'no-cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+      body: JSON.stringify(formData),
+    }).then((response) => response.json())
+        .catch((error) => console.log(error))
+        navigate('/other-criteria')
     }
  
 const dailyStatuses = [
@@ -194,7 +224,7 @@ const setDailyStatusInFormSunday = (selectedDailyStatusSunday) => {
 
   return (
     <>
-    <form onSubmit={onSubmit}>
+    
      {/* radio buttons for selecting available/required days */}
     <h1>Tell us your needs and your availability!    </h1>
     <RadioGroup value={selectedDailyStatusMonday} onChange={setDailyStatusInFormMonday} >
@@ -500,19 +530,14 @@ const setDailyStatusInFormSunday = (selectedDailyStatusSunday) => {
 
     <br />
     <br />
-    <br />
-    <br />
 
-    <button type="submit">
+    <button type="submit" onClick={onSubmit}>
         Next
     </button>
 
+    <br />
+    <br />
     
-
-
-
-       
-        </form>
         </>
       )
 }

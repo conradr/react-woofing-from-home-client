@@ -8,14 +8,9 @@ import { db } from '../firebase.config'
 import { Disclosure, Menu, Switch, Transition } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import {
-  Bars3Icon,
-  BellIcon,
-  CogIcon,
-  CreditCardIcon,
-  KeyIcon,
-  SquaresPlusIcon,
+
   UserCircleIcon,
-  XMarkIcon,
+
   CalendarDaysIcon
 } from '@heroicons/react/24/outline'
 const navigation = [
@@ -88,7 +83,7 @@ function AddDog() {
         })
           .then((response) => response.json())
           .catch((error) => console.log(error))
-        navigate('/profile')
+        navigate('/matches')
         // spinner to be entered here for calculating matches
     }
  

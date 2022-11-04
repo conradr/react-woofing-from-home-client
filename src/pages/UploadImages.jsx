@@ -255,7 +255,6 @@ const UploadImages = () => {
                                 max='6'
                                 accept='.jpg,.png,.jpeg'
                                 multiple
-                                required
                                 onChange={onChange}
                                 className={
                                   !changeDetails

@@ -101,7 +101,7 @@ function SuitabilityForm() {
         })
           .then((response) => response.json())
           .catch((error) => console.log(error))
-        navigate('/add-dogs')
+        navigate('/add-dog')
     }
  
 const dailyStatuses = [

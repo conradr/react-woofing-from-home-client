@@ -88,7 +88,7 @@ function AddDog() {
         })
           .then((response) => response.json())
           .catch((error) => console.log(error))
-        navigate('/matches')
+        navigate('/profile')
         // spinner to be entered here for calculating matches
     }
  

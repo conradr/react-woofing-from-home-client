@@ -13,6 +13,7 @@ import SuitabilityForm from './pages/SuitabilityForm'
 import MatchProfile from './pages/MatchProfile'
 import HeaderNav from './components/HeaderNav'
 import HeaderTitle from './components/HeaderTitle'
+import AddDog from './pages/AddDog'
 
 function App() {
   return (
@@ -46,6 +47,12 @@ function App() {
                   <Route
                     path='/suitability-form'
                     element={<SuitabilityForm />}
+                  />
+                </Route>
+                <Route path='/add-dog' element={<PrivateRoute />}>
+                  <Route
+                    path='/add-dog'
+                    element={<AddDog />}
                   />
                 </Route>
                 <Route path='/matches/:matchID' element={<MatchProfile />} />

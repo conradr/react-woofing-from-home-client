@@ -58,7 +58,6 @@ function App() {
                 </Route>
                 <Route path='/matches/:matchID' element={<MatchProfile />} />
               </Routes>
-
               <ToastContainer />
               {/* <Navbar /> */}
             </div>

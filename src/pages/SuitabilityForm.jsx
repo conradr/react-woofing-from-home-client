@@ -110,6 +110,17 @@ const dailyStatuses = [
     { id: 3, title: 'I am good', status: 'neither' },
 ]
 
+const otherInfoStatuses = [
+    { id: 1, title: 'No'},
+    { id: 2, title: 'Yes'}
+]
+
+const dogSizes = [
+    { id: 1, title: 'Small', value : 1},
+    { id: 2, title: 'Medium', value : 2},
+    { id: 3, title: 'Large', value : 3}
+]
+
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
@@ -121,6 +132,11 @@ function classNames(...classes) {
     const [selectedDailyStatusFriday, setSelectedDailyStatusFriday] = useState(dailyStatuses[0].status)
     const [selectedDailyStatusSaturday, setSelectedDailyStatusSaturday] = useState(dailyStatuses[0].status)
     const [selectedDailyStatusSunday, setSelectedDailyStatusSunday] = useState(dailyStatuses[0].status)
+    const [selectedCatStatus, setSelectedCatStatus] = useState(otherInfoStatuses[0].title)
+    const [selectedKidsStatus, setSelectedKidsStatus] = useState(otherInfoStatuses[0].title)
+    const [selectedLeftAloneStatus, setSelectedLeftAloneStatus] = useState(otherInfoStatuses[0].title)
+    const [selectedAllergiesStatus, setSelectedAllergiesStatus] = useState(otherInfoStatuses[0].title)
+    const [selectedDogSize, setSelectedDogSize] = useState(dogSizes[0].value)
 
     const setDailyStatusInFormMonday = (selectedDailyStatusMonday) => {
 
@@ -256,6 +272,65 @@ const setDailyStatusInFormSunday = (selectedDailyStatusSunday) => {
             requireSunday : false}
         )
 }
+
+const setCatStatus = () => {
+    setSelectedCatStatus(selectedCatStatus)
+    if(selectedCatStatus == 'Yes'){
+        setFormData({...formData, 
+            hasCats : true
+    })}
+    else
+        setFormData({...formData, hasCats : false}
+        )
+    }
+
+    const setKidsStatus = () => {
+        setSelectedKidsStatus(selectedKidsStatus)
+        if(selectedKidsStatus == 'Yes'){
+            setFormData({...formData, 
+                hasKids : true
+        })}
+        else
+            setFormData({...formData, hasKids : false}
+            )
+        }
+
+        const setLeftAloneStatus = () => {
+            setSelectedLeftAloneStatus(selectedLeftAloneStatus)
+            if(selectedLeftAloneStatus == 'Yes'){
+                setFormData({...formData, 
+                    dogLeftAlone : true
+            })}
+            else
+                setFormData({...formData, dogLeftAlone : false}
+                )
+            }
+
+            const setAllergiesStatus = () => {
+                setSelectedAllergiesStatus(selectedAllergiesStatus)
+                if(selectedAllergiesStatus == 'Yes'){
+                    setFormData({...formData, 
+                        hasAllergies : true
+                })}
+                else
+                    setFormData({...formData, hasAllergies : false}
+                    )
+                }
+
+                const setDogSize = () => {
+                    setSelectedDogSize(selectedDogSize)
+                    if(selectedDogSize == 1){
+                        setFormData({...formData, 
+                        dogSizeOffer : 1})
+                    }
+                    else if (selectedDogSize == 2){
+                        setFormData({...formData, 
+                            dogSizeOffer : 2})
+                    }
+                    else  setFormData({...formData, 
+                        dogSizeOffer : 3})
+                }
+    
 
   return (
     <>
@@ -976,6 +1051,304 @@ const setDailyStatusInFormSunday = (selectedDailyStatusSunday) => {
                               </RadioGroup.Option>
                             ))}
                           </div>
+                        </RadioGroup>
+
+                        <RadioGroup
+                            value={selectedCatStatus}
+                            onChange={setCatStatus}
+                            >
+                            <RadioGroup.Label className='text-base font-medium text-gray-900'>
+                                Do you have cats?
+                            </RadioGroup.Label>
+                            <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
+                                {otherInfoStatuses.map((otherInfoStatuses) => (
+                                <RadioGroup.Option
+                                    key={otherInfoStatuses.id}
+                                    value={otherInfoStatuses.title}
+                                    className={({ checked, active }) =>
+                                    classNames(
+                                        checked
+                                        ? 'border-transparent'
+                                        : 'border-gray-300',
+                                        active
+                                        ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                        : '',
+                                        'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
+                                    )
+                                    }
+                                >
+                                {({ checked, active }) => (
+                                  <>
+                                    <span className='flex flex-1'>
+                                      <span className='flex flex-col'>
+                                        <RadioGroup.Label
+                                          as='span'
+                                          className='block text-sm font-medium text-gray-900'
+                                        >
+                                          {otherInfoStatuses.title}
+                                        </RadioGroup.Label>
+                                      </span>
+                                    </span>
+                                    <CheckCircleIcon
+                                      className={classNames(
+                                        !checked ? 'invisible' : '',
+                                        'h-5 w-5 text-indigo-600'
+                                      )}
+                                      aria-hidden='true'
+                                    />
+                                    <span
+                                      className={classNames(
+                                        active ? 'border' : 'border-2',
+                                        checked
+                                          ? 'border-indigo-500'
+                                          : 'border-transparent',
+                                        'pointer-events-none absolute -inset-px rounded-lg'
+                                      )}
+                                      aria-hidden='true'
+                                    />
+                                  </>
+                                )}
+                              </RadioGroup.Option>
+                            ))}
+                          </div>
+                        </RadioGroup>
+                        
+                        <RadioGroup
+                            value={selectedKidsStatus}
+                            onChange={setKidsStatus}
+                            >
+                            <RadioGroup.Label className='text-base font-medium text-gray-900 my-2'>
+                                Do you have children?
+                            </RadioGroup.Label>
+                            <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
+                                {otherInfoStatuses.map((otherInfoStatuses) => (
+                                <RadioGroup.Option
+                                    key={otherInfoStatuses.id}
+                                    value={otherInfoStatuses.title}
+                                    className={({ checked, active }) =>
+                                    classNames(
+                                        checked
+                                        ? 'border-transparent'
+                                        : 'border-gray-300',
+                                        active
+                                        ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                        : '',
+                                        'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
+                                    )
+                                    }
+                                >
+                                {({ checked, active }) => (
+                                  <>
+                                    <span className='flex flex-1'>
+                                      <span className='flex flex-col'>
+                                        <RadioGroup.Label
+                                          as='span'
+                                          className='block text-sm font-medium text-gray-900'
+                                        >
+                                          {otherInfoStatuses.title}
+                                        </RadioGroup.Label>
+                                      </span>
+                                    </span>
+                                    <CheckCircleIcon
+                                      className={classNames(
+                                        !checked ? 'invisible' : '',
+                                        'h-5 w-5 text-indigo-600'
+                                      )}
+                                      aria-hidden='true'
+                                    />
+                                    <span
+                                      className={classNames(
+                                        active ? 'border' : 'border-2',
+                                        checked
+                                          ? 'border-indigo-500'
+                                          : 'border-transparent',
+                                        'pointer-events-none absolute -inset-px rounded-lg'
+                                      )}
+                                      aria-hidden='true'
+                                    />
+                                  </>
+                                )}
+                              </RadioGroup.Option>
+                            ))}
+                          </div>
+                        </RadioGroup>
+                        <RadioGroup
+                            value={selectedLeftAloneStatus}
+                            onChange={setLeftAloneStatus}
+                            >
+                            <RadioGroup.Label className='text-base font-medium text-gray-900 my-2'>
+                                Would you need to leave a dog you are sitting alone during your working day?
+                            </RadioGroup.Label>
+                            <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
+                                {otherInfoStatuses.map((otherInfoStatuses) => (
+                                <RadioGroup.Option
+                                    key={otherInfoStatuses.id}
+                                    value={otherInfoStatuses.title}
+                                    className={({ checked, active }) =>
+                                    classNames(
+                                        checked
+                                        ? 'border-transparent'
+                                        : 'border-gray-300',
+                                        active
+                                        ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                        : '',
+                                        'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
+                                    )
+                                    }
+                                >
+                                {({ checked, active }) => (
+                                  <>
+                                    <span className='flex flex-1'>
+                                      <span className='flex flex-col'>
+                                        <RadioGroup.Label
+                                          as='span'
+                                          className='block text-sm font-medium text-gray-900'
+                                        >
+                                          {otherInfoStatuses.title}
+                                        </RadioGroup.Label>
+                                      </span>
+                                    </span>
+                                    <CheckCircleIcon
+                                      className={classNames(
+                                        !checked ? 'invisible' : '',
+                                        'h-5 w-5 text-indigo-600'
+                                      )}
+                                      aria-hidden='true'
+                                    />
+                                    <span
+                                      className={classNames(
+                                        active ? 'border' : 'border-2',
+                                        checked
+                                          ? 'border-indigo-500'
+                                          : 'border-transparent',
+                                        'pointer-events-none absolute -inset-px rounded-lg'
+                                      )}
+                                      aria-hidden='true'
+                                    />
+                                  </>
+                                )}
+                              </RadioGroup.Option>
+                            ))}
+                          </div>
+                        </RadioGroup>
+                        <RadioGroup
+                            value={selectedAllergiesStatus}
+                            onChange={setAllergiesStatus}
+                            >
+                            <RadioGroup.Label className='text-base font-medium text-gray-900 my-2'>
+                                Would you only like to look after dogs that are hypoallergenic?
+                            </RadioGroup.Label>
+                            <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
+                                {otherInfoStatuses.map((otherInfoStatuses) => (
+                                <RadioGroup.Option
+                                    key={otherInfoStatuses.id}
+                                    value={otherInfoStatuses.title}
+                                    className={({ checked, active }) =>
+                                    classNames(
+                                        checked
+                                        ? 'border-transparent'
+                                        : 'border-gray-300',
+                                        active
+                                        ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                        : '',
+                                        'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
+                                    )
+                                    }
+                                >
+                                {({ checked, active }) => (
+                                  <>
+                                    <span className='flex flex-1'>
+                                      <span className='flex flex-col'>
+                                        <RadioGroup.Label
+                                          as='span'
+                                          className='block text-sm font-medium text-gray-900'
+                                        >
+                                          {otherInfoStatuses.title}
+                                        </RadioGroup.Label>
+                                      </span>
+                                    </span>
+                                    <CheckCircleIcon
+                                      className={classNames(
+                                        !checked ? 'invisible' : '',
+                                        'h-5 w-5 text-indigo-600'
+                                      )}
+                                      aria-hidden='true'
+                                    />
+                                    <span
+                                      className={classNames(
+                                        active ? 'border' : 'border-2',
+                                        checked
+                                          ? 'border-indigo-500'
+                                          : 'border-transparent',
+                                        'pointer-events-none absolute -inset-px rounded-lg'
+                                      )}
+                                      aria-hidden='true'
+                                    />
+                                  </>
+                                )}
+                              </RadioGroup.Option>
+                            ))}
+                          </div>
+                        </RadioGroup>
+
+                        <RadioGroup
+                            value={selectedDogSize}
+                            onChange={setDogSize}
+                            >
+                            <RadioGroup.Label className='text-base font-medium text-gray-900 my-2'>
+                                What is the maximum dog size you are able or willing to look after?
+                            </RadioGroup.Label>
+                            <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
+                                {dogSizes.map((dogSize) => (
+                                <RadioGroup.Option
+                                    key={dogSize.id}
+                                    value={dogSize.value}
+                                    className={({ checked, active }) =>
+                                    classNames(
+                                        checked
+                                        ? 'border-transparent'
+                                        : 'border-gray-300',
+                                        active
+                                        ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                        : '',
+                                        'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
+                                    )
+                                    }
+                                >
+                                    {({ checked, active }) => (
+                                    <>
+                                        <span className='flex flex-1'>
+                                        <span className='flex flex-col'>
+                                            <RadioGroup.Label
+                                            as='span'
+                                            className='block text-sm font-medium text-gray-900'
+                                            >
+                                            {dogSize.title}
+                                            </RadioGroup.Label>
+                                        </span>
+                                        </span>
+                                        <CheckCircleIcon
+                                        className={classNames(
+                                            !checked ? 'invisible' : '',
+                                            'h-5 w-5 text-indigo-600'
+                                        )}
+                                        aria-hidden='true'
+                                        />
+                                        <span
+                                        className={classNames(
+                                            active ? 'border' : 'border-2',
+                                            checked
+                                            ? 'border-indigo-500'
+                                            : 'border-transparent',
+                                            'pointer-events-none absolute -inset-px rounded-lg'
+                                        )}
+                                        aria-hidden='true'
+                                        />
+                                    </>
+                                    )}
+                                </RadioGroup.Option>
+                                ))}
+                            </div>
                         </RadioGroup>
                       </div>
                     </div>

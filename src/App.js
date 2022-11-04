@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import Navbar from './components/Navbar'
 import PrivateRoute from './components/PrivateRoute'
 import Homepage from './pages/Homepage'
 import SignUp from './pages/SignUp'
@@ -11,7 +10,6 @@ import FinishProfile from './pages/FinishProfile'
 import UploadImages from './pages/UploadImages'
 import UploadProfileImage from './pages/UploadProfileImage'
 import SuitabilityForm from './pages/SuitabilityForm'
-import OtherCriteriaForm from './pages/OtherCriteriaForm'
 import MatchProfile from './pages/MatchProfile'
 import HeaderNav from './components/HeaderNav'
 import HeaderTitle from './components/HeaderTitle'
@@ -50,16 +48,9 @@ function App() {
                     element={<SuitabilityForm />}
                   />
                 </Route>
-                <Route path='/other-criteria' element={<PrivateRoute />}>
-                  <Route
-                    path='/other-criteria'
-                    element={<OtherCriteriaForm />}
-                  />
-                </Route>
                 <Route path='/matches/:matchID' element={<MatchProfile />} />
               </Routes>
               <ToastContainer />
-              {/* <Navbar /> */}
             </div>
           </div>
         </main>

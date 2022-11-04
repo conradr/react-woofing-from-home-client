@@ -14,6 +14,7 @@ import MatchProfile from './pages/MatchProfile'
 import HeaderNav from './components/HeaderNav'
 import HeaderTitle from './components/HeaderTitle'
 import AddDog from './pages/AddDog'
+import AllMatches from './pages/AllMatches'
 
 function App() {
   return (
@@ -55,6 +56,16 @@ function App() {
                     element={<AddDog />}
                   />
                 </Route>
+                <Route path='/matches' element={<PrivateRoute />}>
+                  <Route
+                    path='/matches'
+                    element={<AllMatches />}
+                  />
+                </Route>
+
+
+
+
                 <Route path='/matches/:matchID' element={<MatchProfile />} />
               </Routes>
               <ToastContainer />

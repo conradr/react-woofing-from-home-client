@@ -1,6 +1,6 @@
 import {Fragment, useState, useEffect} from 'react'
 import { RadioGroup } from '@headlessui/react'
-import { CheckCircleIcon } from '@heroicons/react/20/solid'
+import { CameraIcon, CheckCircleIcon, InformationCircleIcon } from '@heroicons/react/20/solid'
 import { useNavigate } from 'react-router-dom'
 import { getAuth} from 'firebase/auth'
 import { getDoc,doc } from 'firebase/firestore'
@@ -25,10 +25,11 @@ const navigation = [
   { name: 'Company', href: '#', current: false },
 ]
 const subNavigation = [
-  { name: 'Profile', href: '#', icon: UserCircleIcon, current: false },
-  { name: 'Profile pic', href: '#', icon: CogIcon, current: false },
-  { name: 'Upload doggy pics', href: '#', icon: CogIcon, current: false },
-  { name: 'Your needs & availability', href: '#', icon: CalendarDaysIcon, current: true },
+  { name: 'Profile', href: '/finish-profile', icon: UserCircleIcon, current: false },
+  { name: 'Profile pic', href: '/upload-profile-image', icon: CameraIcon, current: false },
+  { name: 'Upload doggy pics', href: '/upload-images', icon: CameraIcon, current: false },
+  { name: 'Your needs & availability', href: '/suitability-form', icon: CalendarDaysIcon, current: false },
+  { name: 'Add your dogs', href: '#', icon: InformationCircleIcon, current: true },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -43,36 +44,22 @@ const user = {
     'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80',
 }
 
-function SuitabilityForm() {
+function AddDog() {
     
     const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
-        firebaseId: null,
-        availableMonday: true,
-        availableTuesday: true,
-        availableWednesday: true,
-        availableThursday: true,
-        availableFriday: true,
-        availableSaturday: true,
-        availableSunday: true,
-        requireMonday: false,
-        requireTuesday: false,
-        requireWednesday: false,
-        requireThursday: false,
-        requireFriday: false,
-        requireSaturday: false,
-        requireSunday: false,
-        hasKids: false,
-        hasOtherDogs: false,
-        hasCats: false,
-        exerciseOffered: false,
-        dogLeftAlone: false,
-        hasAllergies: false,
-        dogSizeOffer: 1,
-        longitude: null,
-        latitude: null,
-        dogs: []
+        name: null,
+        dob: null,
+        breed: null,
+        size: 1,
+        exerciseRequired: 1,
+        hypoallergenic: false, 
+        canBeLeft: false, 
+        okWithKids: false, 
+        okWithCats: false,
+        okWithDogs: false,
+        customer: {firebaseId : null}
     })
 
         //get firebaseID
@@ -82,7 +69,7 @@ function SuitabilityForm() {
               const docRef = doc(db, 'users', auth.currentUser.uid)
               const docSnap = await getDoc(docRef)
               if (docSnap.exists()) {
-                setFormData({...formData, firebaseId: auth.currentUser.uid, longitude: docSnap.data().geolocation.lng, latitude: docSnap.data().geolocation.lat})
+                setFormData({...formData, customer: {firebaseId: auth.currentUser.uid}})
               }
             }
             fetchFirebaseId()
@@ -90,7 +77,7 @@ function SuitabilityForm() {
 
     //submit the entire formData to Postgres
     const onSubmit = async () => {
-        await fetch('https://woofingfromhome.herokuapp.com/customers', {
+        await fetch('https://woofingfromhome.herokuapp.com/dogs', {
           method: 'POST',
           cache: 'no-cache',
           cors: 'no-cors',
@@ -101,15 +88,10 @@ function SuitabilityForm() {
         })
           .then((response) => response.json())
           .catch((error) => console.log(error))
-        navigate('/add-dog')
+        navigate('/profile')
+        // spinner to be entered here for calculating matches
     }
  
-const dailyStatuses = [
-    { id: 1, title: 'I need help', status: 'available'},
-    { id: 2, title: 'I can offer help', status: 'required'},
-    { id: 3, title: 'I am good', status: 'neither' },
-]
-
 const otherInfoStatuses = [
     { id: 1, title: 'No', status: false},
     { id: 2, title: 'Yes', status : true}
@@ -131,198 +113,61 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-    const [selectedDailyStatusMonday, setSelectedDailyStatusMonday] = useState(dailyStatuses[0].status)
-    const [selectedDailyStatusTuesday, setSelectedDailyStatusTuesday] = useState(dailyStatuses[0].status)
-    const [selectedDailyStatusWednesday, setSelectedDailyStatusWednesday] = useState(dailyStatuses[0].status)
-    const [selectedDailyStatusThursday, setSelectedDailyStatusThursday] = useState(dailyStatuses[0].status)
-    const [selectedDailyStatusFriday, setSelectedDailyStatusFriday] = useState(dailyStatuses[0].status)
-    const [selectedDailyStatusSaturday, setSelectedDailyStatusSaturday] = useState(dailyStatuses[0].status)
-    const [selectedDailyStatusSunday, setSelectedDailyStatusSunday] = useState(dailyStatuses[0].status)
-    const [selectedCatStatus, setSelectedCatStatus] = useState(otherInfoStatuses[0].status)
-    const [selectedKidsStatus, setSelectedKidsStatus] = useState(otherInfoStatuses[0].status)
-    const [selectedLeftAloneStatus, setSelectedLeftAloneStatus] = useState(otherInfoStatuses[0].status)
-    const [selectedAllergiesStatus, setSelectedAllergiesStatus] = useState(otherInfoStatuses[0].status)
+    const [selectedName, setSelectedName] = useState()
+    const [selectedDob, setSelectedDob] = useState()
+    const [selectedBreed, setSelectedBreed] = useState()
     const [selectedDogSize, setSelectedDogSize] = useState(dogSizes[0].status)
     const [selectedActivityLevel, setSelectedActivityLevel] = useState(activityLevels[0].status)
+    const [selectedHypoallergenic, setSelectedHypoallergenic] = useState(otherInfoStatuses[0].status)
+    const [selectedCanBeLeftAone, setSelectedCanBeLeftAlone] = useState(otherInfoStatuses[0].status)
+    const [selectedOkayWithCats, setSelectedOkayWithCats] = useState(otherInfoStatuses[0].status)
+    const [selectedOkayWithKids, setSelectedOkayWithKids] = useState(otherInfoStatuses[0].status)
+    const [selectedOkayWithDogs, setSelectedOkayWithDogs] = useState(otherInfoStatuses[0].status)
 
-    const setDailyStatusInFormMonday = (selectedDailyStatusMonday) => {
 
-        setSelectedDailyStatusMonday(selectedDailyStatusMonday)
-
-        if(selectedDailyStatusMonday == 'available'){
-            setFormData({...formData, 
-                availableMonday : true, 
-                requireMonday : false})
-        }
-        else if (selectedDailyStatusMonday == 'required'){
-            setFormData({...formData, availableMonday : false,
-            requireMonday : true}
-            )}
-        else
-            setFormData({...formData, availableMonday : false,
-                requireMonday : false}
-            )
-        
-  }
-
-  const setDailyStatusInFormTuesday = (selectedDailyStatusTuesday) => {
-
-    setSelectedDailyStatusTuesday(selectedDailyStatusTuesday)
-
-    if(selectedDailyStatusTuesday== 'available'){
+const setCatStatus = (selectedOkayWithCats) => {
+  setSelectedOkayWithCats(selectedOkayWithCats)
+    if(selectedOkayWithCats){
         setFormData({...formData, 
-            availableTuesday : true, 
-            requireTuesday : false})
-    }
-    else if (selectedDailyStatusTuesday == 'required'){
-        setFormData({...formData, availableTuesday : false,
-        requireTuesday : true}
-        )}
-    else
-        setFormData({...formData, availableTuesday : false,
-            requireTuesday : false}
-        )
-    
-}
-
-const setDailyStatusInFormWednesday = (selectedDailyStatusWednesday) => {
-
-    setSelectedDailyStatusWednesday(selectedDailyStatusWednesday)
-
-    if(selectedDailyStatusWednesday== 'available'){
-        setFormData({...formData, 
-            availableWednesday : true, 
-            requireWednesday : false})
-    }
-    else if (selectedDailyStatusWednesday == 'required'){
-        setFormData({...formData, availableWednesday : false,
-        requireWednesday : true}
-        )}
-    else
-        setFormData({...formData, availableWednesday : false,
-            requireWednesday : false}
-        )
-}
-
-const setDailyStatusInFormThursday = (selectedDailyStatusThursday) => {
-
-    setSelectedDailyStatusThursday(selectedDailyStatusThursday)
-
-    if(selectedDailyStatusThursday== 'available'){
-        setFormData({...formData, 
-            availableThursday : true, 
-            requireThursday : false})
-    }
-    else if (selectedDailyStatusThursday == 'required'){
-        setFormData({...formData, availableThursday : false,
-        requireThursday : true}
-        )}
-    else
-        setFormData({...formData, availableThursday : false,
-            requireThursday : false}
-        )
-}
-
-const setDailyStatusInFormFriday = (selectedDailyStatusFriday) => {
-
-    setSelectedDailyStatusFriday(selectedDailyStatusFriday)
-
-    if(selectedDailyStatusFriday== 'available'){
-        setFormData({...formData, 
-            availableFriday : true, 
-            requireFriday : false})
-    }
-    else if (selectedDailyStatusFriday == 'required'){
-        setFormData({...formData, availableFriday : false,
-        requireFriday : true}
-        )}
-    else
-        setFormData({...formData, availableFriday : false,
-            requireFriday : false}
-        )
-}
-
-const setDailyStatusInFormSaturday = (selectedDailyStatusSaturday) => {
-
-    setSelectedDailyStatusSaturday(selectedDailyStatusSaturday)
-
-    if(selectedDailyStatusSaturday== 'available'){
-        setFormData({...formData, 
-            availableSaturday : true, 
-            requireSaturday : false})
-    }
-    else if (selectedDailyStatusSaturday == 'required'){
-        setFormData({...formData, availableSaturday : false,
-        requireSaturday : true}
-        )}
-    else
-        setFormData({...formData, availableSaturday : false,
-            requireSaturday : false}
-        )
-}
-
-const setDailyStatusInFormSunday = (selectedDailyStatusSunday) => {
-
-    setSelectedDailyStatusSunday(selectedDailyStatusSunday)
-
-    if(selectedDailyStatusSunday== 'available'){
-        setFormData({...formData, 
-            availableSunday : true, 
-            requireSunday : false})
-    }
-    else if (selectedDailyStatusSunday == 'required'){
-        setFormData({...formData, availableSunday : false,
-        requireSunday : true}
-        )}
-    else
-        setFormData({...formData, availableSunday : false,
-            requireSunday : false}
-        )
-}
-
-const setCatStatus = (selectedCatStatus) => {
-    setSelectedCatStatus(selectedCatStatus)
-    if(selectedCatStatus){
-        setFormData({...formData, 
-            hasCats : true
+            okWithCats : true
     })}
     else
         setFormData({...formData, 
-            hasCats : false}
+            okWithCats : false}
         )
     }
 
-    const setKidsStatus = (selectedKidsStatus) => {
-        setSelectedKidsStatus(selectedKidsStatus)
-        if(selectedKidsStatus){
+    const setKidsStatus = (selectedOkayWithKids) => {
+        setSelectedOkayWithKids(selectedOkayWithKids)
+        if(selectedOkayWithKids){
             setFormData({...formData, 
-                hasKids : true
+                okWithKids : true
         })}
         else
             setFormData({...formData, 
-                hasKids : false}
+                okWithKids : false}
             )
         }
 
-        const setLeftAloneStatus = (selectedLeftAloneStatus) => {
-            setSelectedLeftAloneStatus(selectedLeftAloneStatus)
-            if(selectedLeftAloneStatus){
+        const setLeftAloneStatus = (selectedCanBeLeftAone) => {
+          setSelectedCanBeLeftAlone(selectedCanBeLeftAone)
+            if(selectedCanBeLeftAone){
                 setFormData({...formData, 
-                    dogLeftAlone : true
+                    canBeLeft : true
             })}
             else
-                setFormData({...formData, dogLeftAlone : false}
+                setFormData({...formData, canBeLeft : false}
                 )
             }
 
-            const setAllergiesStatus = (selectedAllergiesStatus) => {
-                setSelectedAllergiesStatus(selectedAllergiesStatus)
-                if(selectedAllergiesStatus){
+            const setAllergiesStatus = (selectedHypoallergenic) => {
+              setSelectedHypoallergenic(selectedHypoallergenic)
+                if(selectedHypoallergenic){
                     setFormData({...formData, 
-                        hasAllergies : true
+                      hypoallergenic : true
                 })}
                 else
-                    setFormData({...formData, hasAllergies : false}
+                    setFormData({...formData, hypoallergenic : false}
                     )
                 }
 
@@ -330,29 +175,48 @@ const setCatStatus = (selectedCatStatus) => {
                     setSelectedDogSize(selectedDogSize)
                     if(selectedDogSize == 1){
                         setFormData({...formData, 
-                        dogSizeOffer : 1})
+                          size : 1})
                     }
                     else if (selectedDogSize == 2){
                         setFormData({...formData, 
-                            dogSizeOffer : 2})
+                          size : 2})
                     }
                     else  setFormData({...formData, 
-                        dogSizeOffer : 3})
+                          size : 3})
                 }
 
                 const setActivityLevel = (selectedActivityLevel) => {
                     setSelectedActivityLevel(selectedActivityLevel)
                     if(selectedActivityLevel == 1){
                         setFormData({...formData, 
-                        exerciseOffered : 1})
+                          exerciseRequired : 1})
                     }
                     else if (selectedActivityLevel == 2){
                         setFormData({...formData, 
-                            exerciseOffered : 2})
+                          exerciseRequired : 2})
                     }
                     else  setFormData({...formData, 
-                        exerciseOffered : 3})
+                      exerciseRequired : 3})
                 }
+
+                const setOkayWithOtherDogs = (selectedOkayWithDogs) => {
+                  setSelectedOkayWithDogs(selectedOkayWithDogs)
+                    if(selectedOkayWithDogs){
+                        setFormData({...formData, 
+                            okWithDogs : true
+                    })}
+                    else
+                        setFormData({...formData, okWithDogs : false}
+                        )
+                    }
+        
+
+                  const onChange = (e) => {
+                    setFormData((prevState) => ({
+                      ...prevState,
+                      [e.target.id]: e.target.value,
+                    }))
+                  }
     
 
   return (
@@ -396,7 +260,7 @@ const setCatStatus = (selectedCatStatus) => {
                     <div className='py-6 px-4 sm:p-6 lg:pb-8'>
                         <div>
                         <h2 className='text-lg font-medium leading-6 text-gray-900'>
-                            Tell us your availability and dog care needs!
+                            Tell us all about you dog!
                         </h2>
                         <p className='mt-1 text-sm text-gray-500'>
                             This will be used to find you suitable matches
@@ -405,18 +269,68 @@ const setCatStatus = (selectedCatStatus) => {
 
                         <div className='mt-10 divide-y divide-gray-200'>
                         <div className='mt-6'>
-                            <RadioGroup
-                            value={selectedDailyStatusMonday}
-                            onChange={setDailyStatusInFormMonday}
+
+                        <div>
+      <label htmlFor="name" className="ml-px block pl-4 text-sm font-medium text-gray-700">
+        Dogs Name
+      </label>
+      <div className="mt-1">
+        <input
+          type="text"
+          name="name"
+          id="name"
+          className="block w-full rounded-full border-gray-300 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          placeholder="Enter your dogs name"
+          onChange={onChange}
+        />
+      </div>
+    </div>
+
+<div>
+    <label htmlFor="dob" className="ml-px block pl-4 text-sm font-medium text-gray-700">
+        Dogs Date of Birth
+      </label>
+      <div className="mt-1">
+        <input
+          type="date"
+          name="dob"
+          id="dob"
+          className="block w-full rounded-full border-gray-300 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          placeholder="01/01/2022"
+          onChange={onChange}
+        />
+      </div>
+    </div>
+
+<div>
+    <label htmlFor="breed" className="ml-px block pl-4 text-sm font-medium text-gray-700">
+        Dogs Breed
+      </label>
+      <div className="mt-1">
+        <input
+          type="text"
+          name="breed"
+          id="breed"
+          className="block w-full rounded-full border-gray-300 px-4 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          placeholder="Enter your dogs breed"
+          onChange={onChange}
+        />
+      </div>
+    </div>
+
+
+    <RadioGroup
+                            value={selectedOkayWithDogs}                           
+                            onChange={setOkayWithOtherDogs}
                             >
                             <RadioGroup.Label className='text-base font-medium text-gray-900'>
-                                Monday
+                                Is your dog good with other dogs?
                             </RadioGroup.Label>
                             <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
-                                {dailyStatuses.map((dailyStatus) => (
+                                {otherInfoStatuses.map((otherInfoStatuses) => (
                                 <RadioGroup.Option
-                                    key={dailyStatus.id}
-                                    value={dailyStatus.status}
+                                    key={otherInfoStatuses.id}
+                                    value={otherInfoStatuses.status}
                                     className={({ checked, active }) =>
                                     classNames(
                                         checked
@@ -429,66 +343,6 @@ const setCatStatus = (selectedCatStatus) => {
                                     )
                                     }
                                 >
-                                    {({ checked, active }) => (
-                                    <>
-                                        <span className='flex flex-1'>
-                                        <span className='flex flex-col'>
-                                            <RadioGroup.Label
-                                            as='span'
-                                            className='block text-sm font-medium text-gray-900'
-                                            >
-                                            {dailyStatus.title}
-                                            </RadioGroup.Label>
-                                        </span>
-                                        </span>
-                                        <CheckCircleIcon
-                                        className={classNames(
-                                            !checked ? 'invisible' : '',
-                                            'h-5 w-5 text-indigo-600'
-                                        )}
-                                        aria-hidden='true'
-                                        />
-                                        <span
-                                        className={classNames(
-                                            active ? 'border' : 'border-2',
-                                            checked
-                                            ? 'border-indigo-500'
-                                            : 'border-transparent',
-                                            'pointer-events-none absolute -inset-px rounded-lg'
-                                        )}
-                                        aria-hidden='true'
-                                        />
-                                    </>
-                                    )}
-                                </RadioGroup.Option>
-                                ))}
-                            </div>
-                        </RadioGroup>
-
-                        <RadioGroup
-                          value={selectedDailyStatusTuesday}
-                          onChange={setDailyStatusInFormTuesday}
-                        >
-                          <RadioGroup.Label className='text-base font-medium text-gray-900'>
-                            Tuesday
-                          </RadioGroup.Label>
-                          <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
-                            {dailyStatuses.map((dailyStatus) => (
-                              <RadioGroup.Option
-                                key={dailyStatus.id}
-                                value={dailyStatus.status}
-                                className={({ checked, active }) =>
-                                  classNames(
-                                    checked
-                                      ? 'border-transparent'
-                                      : 'border-gray-300',
-                                    active
-                                      ? 'border-indigo-500 ring-2 ring-indigo-500'
-                                      : '',
-                                    'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
-                                  )
-                                }
-                              >
                                 {({ checked, active }) => (
                                   <>
                                     <span className='flex flex-1'>
@@ -497,7 +351,7 @@ const setCatStatus = (selectedCatStatus) => {
                                           as='span'
                                           className='block text-sm font-medium text-gray-900'
                                         >
-                                          {dailyStatus.title}
+                                          {otherInfoStatuses.title}
                                         </RadioGroup.Label>
                                       </span>
                                     </span>
@@ -525,312 +379,16 @@ const setCatStatus = (selectedCatStatus) => {
                           </div>
                         </RadioGroup>
 
-                        <RadioGroup
-                          value={selectedDailyStatusWednesday}
-                          onChange={setDailyStatusInFormWednesday}
-                        >
-                          <RadioGroup.Label className='text-base font-medium text-gray-900'>
-                            Wednesday
-                          </RadioGroup.Label>
-                          <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
-                            {dailyStatuses.map((dailyStatus) => (
-                              <RadioGroup.Option
-                                key={dailyStatus.id}
-                                value={dailyStatus.status}
-                                className={({ checked, active }) =>
-                                  classNames(
-                                    checked
-                                      ? 'border-transparent'
-                                      : 'border-gray-300',
-                                    active
-                                      ? 'border-indigo-500 ring-2 ring-indigo-500'
-                                      : '',
-                                    'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
-                                  )
-                                }
-                              >
-                                {({ checked, active }) => (
-                                  <>
-                                    <span className='flex flex-1'>
-                                      <span className='flex flex-col'>
-                                        <RadioGroup.Label
-                                          as='span'
-                                          className='block text-sm font-medium text-gray-900'
-                                        >
-                                          {dailyStatus.title}
-                                        </RadioGroup.Label>
-                                      </span>
-                                    </span>
-                                    <CheckCircleIcon
-                                      className={classNames(
-                                        !checked ? 'invisible' : '',
-                                        'h-5 w-5 text-indigo-600'
-                                      )}
-                                      aria-hidden='true'
-                                    />
-                                    <span
-                                      className={classNames(
-                                        active ? 'border' : 'border-2',
-                                        checked
-                                          ? 'border-indigo-500'
-                                          : 'border-transparent',
-                                        'pointer-events-none absolute -inset-px rounded-lg'
-                                      )}
-                                      aria-hidden='true'
-                                    />
-                                  </>
-                                )}
-                              </RadioGroup.Option>
-                            ))}
-                          </div>
-                        </RadioGroup>
+
+
+                            
 
                         <RadioGroup
-                          value={selectedDailyStatusThursday}
-                          onChange={setDailyStatusInFormThursday}
-                        >
-                          <RadioGroup.Label className='text-base font-medium text-gray-900'>
-                            Thursday
-                          </RadioGroup.Label>
-                          <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
-                            {dailyStatuses.map((dailyStatus) => (
-                              <RadioGroup.Option
-                                key={dailyStatus.id}
-                                value={dailyStatus.status}
-                                className={({ checked, active }) =>
-                                  classNames(
-                                    checked
-                                      ? 'border-transparent'
-                                      : 'border-gray-300',
-                                    active
-                                      ? 'border-indigo-500 ring-2 ring-indigo-500'
-                                      : '',
-                                    'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
-                                  )
-                                }
-                              >
-                                {({ checked, active }) => (
-                                  <>
-                                    <span className='flex flex-1'>
-                                      <span className='flex flex-col'>
-                                        <RadioGroup.Label
-                                          as='span'
-                                          className='block text-sm font-medium text-gray-900'
-                                        >
-                                          {dailyStatus.title}
-                                        </RadioGroup.Label>
-                                      </span>
-                                    </span>
-                                    <CheckCircleIcon
-                                      className={classNames(
-                                        !checked ? 'invisible' : '',
-                                        'h-5 w-5 text-indigo-600'
-                                      )}
-                                      aria-hidden='true'
-                                    />
-                                    <span
-                                      className={classNames(
-                                        active ? 'border' : 'border-2',
-                                        checked
-                                          ? 'border-indigo-500'
-                                          : 'border-transparent',
-                                        'pointer-events-none absolute -inset-px rounded-lg'
-                                      )}
-                                      aria-hidden='true'
-                                    />
-                                  </>
-                                )}
-                              </RadioGroup.Option>
-                            ))}
-                          </div>
-                        </RadioGroup>
-
-                        <RadioGroup
-                          value={selectedDailyStatusFriday}
-                          onChange={setDailyStatusInFormFriday}
-                        >
-                          <RadioGroup.Label className='text-base font-medium text-gray-900'>
-                            Friday
-                          </RadioGroup.Label>
-                          <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
-                            {dailyStatuses.map((dailyStatus) => (
-                              <RadioGroup.Option
-                                key={dailyStatus.id}
-                                value={dailyStatus.status}
-                                className={({ checked, active }) =>
-                                  classNames(
-                                    checked
-                                      ? 'border-transparent'
-                                      : 'border-gray-300',
-                                    active
-                                      ? 'border-indigo-500 ring-2 ring-indigo-500'
-                                      : '',
-                                    'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
-                                  )
-                                }
-                              >
-                                {({ checked, active }) => (
-                                  <>
-                                    <span className='flex flex-1'>
-                                      <span className='flex flex-col'>
-                                        <RadioGroup.Label
-                                          as='span'
-                                          className='block text-sm font-medium text-gray-900'
-                                        >
-                                          {dailyStatus.title}
-                                        </RadioGroup.Label>
-                                      </span>
-                                    </span>
-                                    <CheckCircleIcon
-                                      className={classNames(
-                                        !checked ? 'invisible' : '',
-                                        'h-5 w-5 text-indigo-600'
-                                      )}
-                                      aria-hidden='true'
-                                    />
-                                    <span
-                                      className={classNames(
-                                        active ? 'border' : 'border-2',
-                                        checked
-                                          ? 'border-indigo-500'
-                                          : 'border-transparent',
-                                        'pointer-events-none absolute -inset-px rounded-lg'
-                                      )}
-                                      aria-hidden='true'
-                                    />
-                                  </>
-                                )}
-                              </RadioGroup.Option>
-                            ))}
-                          </div>
-                        </RadioGroup>
-
-                        <RadioGroup
-                          value={selectedDailyStatusSaturday}
-                          onChange={setDailyStatusInFormSaturday}
-                        >
-                          <RadioGroup.Label className='text-base font-medium text-gray-900'>
-                            Saturday
-                          </RadioGroup.Label>
-                          <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
-                            {dailyStatuses.map((dailyStatus) => (
-                              <RadioGroup.Option
-                                key={dailyStatus.id}
-                                value={dailyStatus.status}
-                                className={({ checked, active }) =>
-                                  classNames(
-                                    checked
-                                      ? 'border-transparent'
-                                      : 'border-gray-300',
-                                    active
-                                      ? 'border-indigo-500 ring-2 ring-indigo-500'
-                                      : '',
-                                    'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
-                                  )
-                                }
-                              >
-                                {({ checked, active }) => (
-                                  <>
-                                    <span className='flex flex-1'>
-                                      <span className='flex flex-col'>
-                                        <RadioGroup.Label
-                                          as='span'
-                                          className='block text-sm font-medium text-gray-900'
-                                        >
-                                          {dailyStatus.title}
-                                        </RadioGroup.Label>
-                                      </span>
-                                    </span>
-                                    <CheckCircleIcon
-                                      className={classNames(
-                                        !checked ? 'invisible' : '',
-                                        'h-5 w-5 text-indigo-600'
-                                      )}
-                                      aria-hidden='true'
-                                    />
-                                    <span
-                                      className={classNames(
-                                        active ? 'border' : 'border-2',
-                                        checked
-                                          ? 'border-indigo-500'
-                                          : 'border-transparent',
-                                        'pointer-events-none absolute -inset-px rounded-lg'
-                                      )}
-                                      aria-hidden='true'
-                                    />
-                                  </>
-                                )}
-                              </RadioGroup.Option>
-                            ))}
-                          </div>
-                        </RadioGroup>
-
-                        <RadioGroup
-                          value={selectedDailyStatusSunday}
-                          onChange={setDailyStatusInFormSunday}
-                        >
-                          <RadioGroup.Label className='text-base font-medium text-gray-900'>
-                            Sunday
-                          </RadioGroup.Label>
-                          <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
-                            {dailyStatuses.map((dailyStatus) => (
-                              <RadioGroup.Option
-                                key={dailyStatus.id}
-                                value={dailyStatus.status}
-                                className={({ checked, active }) =>
-                                  classNames(
-                                    checked
-                                      ? 'border-transparent'
-                                      : 'border-gray-300',
-                                    active
-                                      ? 'border-indigo-500 ring-2 ring-indigo-500'
-                                      : '',
-                                    'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
-                                  )
-                                }
-                              >
-                                {({ checked, active }) => (
-                                  <>
-                                    <span className='flex flex-1'>
-                                      <span className='flex flex-col'>
-                                        <RadioGroup.Label
-                                          as='span'
-                                          className='block text-sm font-medium text-gray-900'
-                                        >
-                                          {dailyStatus.title}
-                                        </RadioGroup.Label>
-                                      </span>
-                                    </span>
-                                    <CheckCircleIcon
-                                      className={classNames(
-                                        !checked ? 'invisible' : '',
-                                        'h-5 w-5 text-indigo-600'
-                                      )}
-                                      aria-hidden='true'
-                                    />
-                                    <span
-                                      className={classNames(
-                                        active ? 'border' : 'border-2',
-                                        checked
-                                          ? 'border-indigo-500'
-                                          : 'border-transparent',
-                                        'pointer-events-none absolute -inset-px rounded-lg'
-                                      )}
-                                      aria-hidden='true'
-                                    />
-                                  </>
-                                )}
-                              </RadioGroup.Option>
-                            ))}
-                          </div>
-                        </RadioGroup>
-
-                        <RadioGroup
-                            value={selectedCatStatus}                           
+                            value={selectedOkayWithCats}                           
                             onChange={setCatStatus}
                             >
                             <RadioGroup.Label className='text-base font-medium text-gray-900'>
-                                Do you have cats?
+                                Is your dog good with cats?
                             </RadioGroup.Label>
                             <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
                                 {otherInfoStatuses.map((otherInfoStatuses) => (
@@ -886,11 +444,11 @@ const setCatStatus = (selectedCatStatus) => {
                         </RadioGroup>
 
                         <RadioGroup
-                            value={selectedKidsStatus}
+                            value={selectedOkayWithKids}
                             onChange={setKidsStatus}
                             >
                             <RadioGroup.Label className='text-base font-medium text-gray-900 my-2'>
-                                Do you have children?
+                                Is your dog good with kids?
                             </RadioGroup.Label>
                             <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
                                 {otherInfoStatuses.map((otherInfoStatuses) => (
@@ -946,11 +504,11 @@ const setCatStatus = (selectedCatStatus) => {
                         </RadioGroup>
 
                         <RadioGroup
-                            value={selectedLeftAloneStatus}
+                            value={selectedCanBeLeftAone}
                             onChange={setLeftAloneStatus}
                             >
                             <RadioGroup.Label className='text-base font-medium text-gray-900 my-2'>
-                                Would you need to leave a dog you are sitting alone during your working day?
+                                Can your dog be left alone for short periods of time?
                             </RadioGroup.Label>
                             <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
                                 {otherInfoStatuses.map((otherInfoStatuses) => (
@@ -1006,11 +564,11 @@ const setCatStatus = (selectedCatStatus) => {
                         </RadioGroup>
 
                         <RadioGroup
-                            value={selectedAllergiesStatus}
+                            value={selectedHypoallergenic}
                             onChange={setAllergiesStatus}
                             >
                             <RadioGroup.Label className='text-base font-medium text-gray-900 my-2'>
-                                Would you only like to look after dogs that are hypoallergenic?
+                                Is your dog hypoallergenic?
                             </RadioGroup.Label>
                             <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
                                 {otherInfoStatuses.map((otherInfoStatuses) => (
@@ -1070,7 +628,7 @@ const setCatStatus = (selectedCatStatus) => {
                             onChange={setDogSize}
                             >
                             <RadioGroup.Label className='text-base font-medium text-gray-900 my-2'>
-                                What is the maximum dog size you are able or willing to look after?
+                                What is the size of your dog?
                             </RadioGroup.Label>
                             <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
                                 {dogSizes.map((dogSize) => (
@@ -1130,7 +688,7 @@ const setCatStatus = (selectedCatStatus) => {
                             onChange={setActivityLevel}
                             >
                             <RadioGroup.Label className='text-base font-medium text-gray-900 my-2'>
-                                What level of activity could you offer a dog you are sitting?
+                                What level of activity does your dog require?
                             </RadioGroup.Label>
                             <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
                                 {activityLevels.map((activityLevel) => (
@@ -1204,4 +762,4 @@ const setCatStatus = (selectedCatStatus) => {
   )
 }
 
-export default SuitabilityForm
+export default AddDog

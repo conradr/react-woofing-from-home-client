@@ -15,7 +15,7 @@ import { v4 as uuidv4 } from 'uuid'
 import arrowRight from '../assets/svg/keyboardArrowRightIcon.svg'
 import homeIcon from '../assets/svg/homeIcon.svg'
 import { Disclosure, Menu, Switch, Transition } from '@headlessui/react'
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { CameraIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import {
   Bars3Icon,
   BellIcon,
@@ -42,7 +42,7 @@ const navigation = [
 ]
 const subNavigation = [
   { name: 'Profile', href: '/finish-profile', icon: UserCircleIcon, current: false },
-  { name: 'Profile pic', href: '#', icon: CogIcon, current: true },
+  { name: 'Profile pic', href: '#', icon: CameraIcon, current: true },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },

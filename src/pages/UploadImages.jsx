@@ -15,7 +15,7 @@ import { v4 as uuidv4 } from 'uuid'
 import arrowRight from '../assets/svg/keyboardArrowRightIcon.svg'
 import homeIcon from '../assets/svg/homeIcon.svg'
 import { Disclosure, Menu, Switch, Transition } from '@headlessui/react'
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { CameraIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import {
   Bars3Icon,
   BellIcon,
@@ -53,7 +53,7 @@ const subNavigation = [
     icon: CogIcon,
     current: false,
   },
-  { name: 'Doggy Pictures', href: '#', icon: CogIcon, current: true },
+  { name: 'Doggy Pictures', href: '#', icon: CameraIcon, current: true },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -255,7 +255,6 @@ const UploadImages = () => {
                                 max='6'
                                 accept='.jpg,.png,.jpeg'
                                 multiple
-                                required
                                 onChange={onChange}
                                 className={
                                   !changeDetails

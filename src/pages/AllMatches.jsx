@@ -16,26 +16,27 @@ function AllMatches() {
 
         //get firebaseID
         const auth = getAuth()
+
         useEffect(() => {
-            getAllMatches()}, [])
+            getAllMatches()
+            setCurrentUser(auth.currentUser.uid)}, 
+            [])
+
+
 
         const getAllMatches = async () => {
         await fetch(`https://woofingfromhome.herokuapp.com/matches?firebaseId=${auth.currentUser.uid}`)
         .then(res => res.json())
-        .then(matches => setMatches(matches))  
+        .then(matches => setMatches(matches))
     }
 
     // const matchesToShow() = []
     
-    const sortMatches = () => {
-        matches.filter()
-        // get all match data where uid is customer 1
-        // customer 1 vs customer 2 - customer 2 id
-    }
-
-    const getCustomer2Score = () =>{
-        setMatches.find(if customer2id === new correspendngcustomer1id)
-    }
+    const newFilteredArray = 
+        matches.filter(match =>
+            match.customer1.firebaseId == currentUser && match.score > 0
+        )
+    
 
 
     // map through sortMatches

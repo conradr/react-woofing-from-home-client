@@ -41,8 +41,19 @@ const navigation = [
   { name: 'Company', href: '#', current: false },
 ]
 const subNavigation = [
-  { name: 'Profile', href: '#', icon: UserCircleIcon, current: false },
-  { name: 'Images', href: '#', icon: CogIcon, current: true },
+  {
+    name: 'Profile',
+    href: '/finish-profile',
+    icon: UserCircleIcon,
+    current: false,
+  },
+  {
+    name: 'Profile pic',
+    href: '/upload-profile-image',
+    icon: CogIcon,
+    current: false,
+  },
+  { name: 'Doggy Pictures', href: '#', icon: CogIcon, current: true },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },

@@ -41,9 +41,8 @@ const navigation = [
   { name: 'Company', href: '#', current: false },
 ]
 const subNavigation = [
-  { name: 'Profile', href: '#', icon: UserCircleIcon, current: false },
+  { name: 'Profile', href: '/finish-profile', icon: UserCircleIcon, current: false },
   { name: 'Profile pic', href: '#', icon: CogIcon, current: true },
-  { name: 'Upload doggy pics', href: '#', icon: CogIcon, current: false },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -163,7 +162,7 @@ const UploadProfileImage = () => {
 
     setLoading(false)
     toast.success('Photos Saved')
-   // navigate(`/profile`)
+    navigate(`/upload-images`)
   }
 
   const onChange = (e) => {

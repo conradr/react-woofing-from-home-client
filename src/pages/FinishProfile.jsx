@@ -135,7 +135,7 @@ const FinishProfile = () => {
       })
       toast.success('Profile updated')
 
-      navigate('/upload-images')
+      navigate('/upload-profile-image')
 
     } catch (error) {
       toast.error('Could not update profile details')

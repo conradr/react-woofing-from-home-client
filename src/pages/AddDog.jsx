@@ -86,6 +86,22 @@ function AddDog() {
         navigate('/matches')
         // spinner to be entered here for calculating matches
     }
+
+    const onSubmitandAddAnotherDog =  async () => {
+    await fetch('https://woofingfromhome.herokuapp.com/dogs', {
+      method: 'POST',
+      cache: 'no-cache',
+      cors: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.log(error))
+    window.location.reload()
+   
+}
  
 const otherInfoStatuses = [
     { id: 1, title: 'No', status: false},
@@ -740,16 +756,22 @@ const setCatStatus = (selectedOkayWithCats) => {
                         </RadioGroup>
                       </div>
                     </div>
-                  </div>
-                  <div className='py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 float-right'>
                     <button
                       type='button'
-                      className='inline-flex  rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                      className='inline-flex  float-right rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                       onClick={onSubmit}
                     >
-                      Next
+                      No more dogs to add - create my matches!
+                    </button>
+                    <button
+                      type='button'
+                      className='inline-flex  float-left rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                      onClick={onSubmitandAddAnotherDog}
+                    >
+                      Add another dog
                     </button>
                   </div>
+
                 </form>
               </div>
             </div>

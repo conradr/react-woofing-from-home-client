@@ -5,7 +5,7 @@ import { getAuth} from 'firebase/auth'
 import { getDoc,doc } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { connectStorageEmulator } from 'firebase/storage'
-// import {MapContainer, Marker, TileLayer} from 'leaflet'
+import {MapContainer, Marker, TileLayer} from 'react-leaflet'
 
 function AllMatches() {
 
@@ -123,10 +123,10 @@ function AllMatches() {
                         <br/>
                         <h3>How far are they from you?</h3>
                         <p className="text-indigo-600">{Math.round(match.distance / 1000,0)/10} km away</p>
-                        {/* <div className="leafletContainer">
+                        <div className="leafletContainer">
                         <MapContainer style={{height: '100%', width: '100%'}}
                                     center={[match.customer2.latitude, match.customer2. longitude]}
-                                    zoom={9}
+                                    zoom={12}
                                     scrollWheelZoom={false}>
                         <TileLayer 
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -134,8 +134,8 @@ function AllMatches() {
                             />
                         <Marker position={[match.customer2.latitude, match.customer2. longitude]}>
                         </Marker>
-                    </MapContainer> */}
-                    {/* </div> */}
+                    </MapContainer>
+                    </div>
                       </div>
                       <div className="space-y-1 text-lg font-medium leading-6">
                         <h3>How well do they meet your requirements?</h3>

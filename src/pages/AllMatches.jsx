@@ -1,10 +1,8 @@
 
-import React from 'react'
 import {useEffect, useState} from 'react'
 import { getAuth} from 'firebase/auth'
-import { getDoc,doc } from 'firebase/firestore'
+import { getDoc,doc} from 'firebase/firestore'
 import { db } from '../firebase.config'
-import { connectStorageEmulator } from 'firebase/storage'
 import {MapContainer, Marker, TileLayer} from 'react-leaflet'
 
 function AllMatches() {
@@ -12,15 +10,17 @@ function AllMatches() {
     const [currentUser, setCurrentUser] = useState(null)
     const [matches, setMatches] = useState([]);
     const [selectedMatch, setSelectedMatch] = useState(null);
+    // const [matchesFromCustomer1View, setMatchesFromCustomer1View] = useState([])
 
 
-        //get firebaseID
-        const auth = getAuth()
+            //get firebaseID
+            const auth = getAuth()
 
         useEffect(() => {
-            getAllMatches()
-            setCurrentUser(auth.currentUser.uid)}, 
-            [])
+          getAllMatches()
+          setCurrentUser(auth.currentUser.uid)
+          }, 
+          [])
 
         const getAllMatches = async () => {
         await fetch(`https://woofingfromhome.herokuapp.com/matches?firebaseId=${auth.currentUser.uid}`)
@@ -28,37 +28,25 @@ function AllMatches() {
         .then(matches => setMatches(matches))  
         }
         
-        const matchesFromCustomer1View = matches.filter(match =>
-          match.customer1.firebaseId == currentUser && match.score > 0) 
+          const matchesFromCustomer1View = matches.filter(match =>
+            match.customer1.firebaseId == currentUser && match.score > 0)
 
-        console.log(matchesFromCustomer1View)
-
-            // useEffect(() => {
-            //   const fetchMatch = async () => {
-            //     const docRef = doc(db, 'users', params.matchID)
-            //     const docSnap = await getDoc(docRef)
-          
-            //     if (docSnap.exists()) {
-            //       setMatch(docSnap.data())
-            //       setLoading(false)
-            //     }
-            //   }
-
-    // const addFirebaseFields = () => {
-    //   matchesFromCustomer1View.forEach(match => {
-    //       const docRef = doc(db, 'users', 'kF1hjQIgdKer8CMqMO1jRAQsiGM2')         
-    //       const docSnap = getDoc(docRef)
-    //       console.log(docSnap.data())
-    //       // if (docSnap.exists()) { 
-    //       //   match.customer2.name = docSnap.doc().name
-    //       //   console.log(matchesFromCustomer1View)}
-            
-    //         // match.customer2.image = docSnap.doc().photoUrl,
-    //         // match.customer2.about = docSnap.doc().about}
-    //       })}
-        
-        
+                    
         // for each customer 2 in matchesFromCustomer1View go to firebase and get the name and image and append to customer 2 object in matchesFromCustomer1View
+
+            useEffect(() => {
+              const getFirebaseInfo = () => {
+                matchesFromCustomer1View.forEach(match => {
+                  const docRef = doc(db, 'users', 'kF1hjQIgdKer8CMqMO1jRAQsiGM2')
+                  const docSnap = getDoc(docRef)
+                  .then(docSnap => 
+                    match.customer2.name = docSnap.data().name)                                
+                  }             
+              )}
+              getFirebaseInfo()
+            })
+
+    //access score from other persons perspective
 
     // const newArrayOfOppositeScores = 
     //       matches.filter(match =>
@@ -74,26 +62,9 @@ function AllMatches() {
     // const scoreForBen = newArrayOfOppositeScores.forEach(match => console.log(match.score))
     // console.log(scoreForBen)
 
-    
-
-
-    // map through sortMatches
-    // for customer2 uid make a call from 
-
     // click on the person
     // filter on all matches and put the selected customer into state
     // pass the customer1 match data and customer 2 match data through as seperate props
-
-
-    // 
-
-    //add in the location of the match on leaflet
-
-
-
-
-
-
 
   return (
     
@@ -142,7 +113,7 @@ function AllMatches() {
                         <p className="text-indigo-600">{Math.round(match.score,0)} %</p>
                       </div>
                       <div className="text-lg">
-                        <p className="text-gray-500">Insert the about me from firebase</p>
+                        <p className="text-gray-500">{match.customer2.name}</p>
                       </div>
                       <ul className="flex space-x-5">
                         <li>

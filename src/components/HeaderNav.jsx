@@ -1,16 +1,12 @@
+import {useState, useEffect} from 'react'
 import { Fragment } from 'react'
 import { getAuth } from 'firebase/auth'
 import { useNavigate, Link } from 'react-router-dom'
-
+import { db } from '../firebase.config'
+import { getDoc, updateDoc, doc } from 'firebase/firestore'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
 const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'Matches', href: '/matches', current: false },
@@ -19,20 +15,44 @@ const navigation = [
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '/profile' },
-  { name: 'Sign out', href: '/', onClick: 'onLogout' },
+  { name: 'Sign out', href: '/', onClick: `onLogout` },
 ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-
 const HeaderNav = () => {
+
+const auth = getAuth()
+
+const [user, setUser] = useState({
+  name: '',
+  email: '',
+  photoUrl:'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80' 
+})
+
+//this code isn't working - can't access user ID
+useEffect(() => {
+  const fetchUser = async () => {
+    const docRef = doc(db, 'users', auth.currentUser.uid)
+    const docSnap = await getDoc(docRef).then()
+    if (docSnap.exists()) {
+      setUser({...user, photoUrl : docSnap.data().photoUrl})
+    }
+  }
+  fetchUser()
+}, [])
+
     const navigate = useNavigate()
-    const auth = getAuth()
+  
+
+    const navigateToProfile = () => {
+      navigate('/profile')
+    }
     
      const onLogout = () => {
-        console.log('hiya')
+      console.log('hiya')
        auth.signOut()
        navigate('/')
      }
@@ -80,7 +100,7 @@ const HeaderNav = () => {
                         className='rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
                       >
                         <span className='sr-only'>View notifications</span>
-                        <BellIcon className='h-6 w-6' aria-hidden='true' />
+                        
                       </button>
 
                       {/* Profile dropdown */}
@@ -90,7 +110,7 @@ const HeaderNav = () => {
                             <span className='sr-only'>Open user menu</span>
                             <img
                               className='h-8 w-8 rounded-full'
-                              src={user.imageUrl}
+                              src={user.photoUrl}
                               alt=''
                             />
                           </Menu.Button>
@@ -105,22 +125,33 @@ const HeaderNav = () => {
                           leaveTo='transform opacity-0 scale-95'
                         >
                           <Menu.Items className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                            {userNavigation.map((item) => (
-                              <Menu.Item key={item.name}>
+                              <Menu.Item >
                                 {({ active }) => (
-                                  <Link
-                                    to={item.href}
-                                    onClick={item.onClick}
+                                  <button
+                                    onClick={navigateToProfile}
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',
                                       'block px-4 py-2 text-sm text-gray-700'
                                     )}
                                   >
-                                    {item.name}
-                                  </Link>
+                                    {userNavigation[0].name}
+                                  </button>
                                 )}
                               </Menu.Item>
-                            ))}
+                              <Menu.Item >
+                                {({ active }) => (
+                                  <button
+                                    onClick={onLogout}
+                                    className={classNames(
+                                      active ? 'bg-gray-100' : '',
+                                      'block px-4 py-2 text-sm text-gray-700'
+                                    )}
+                                  >
+                                    {userNavigation[1].name}
+                                  </button>
+                                )}
+                              </Menu.Item>
+                            
                           </Menu.Items>
                         </Transition>
                       </Menu>
@@ -171,7 +202,7 @@ const HeaderNav = () => {
                   <div className='flex-shrink-0'>
                     <img
                       className='h-10 w-10 rounded-full'
-                      src={user.imageUrl}
+                      src={user.photoUrl}
                       alt=''
                     />
                   </div>
@@ -188,7 +219,6 @@ const HeaderNav = () => {
                     className='ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
                   >
                     <span className='sr-only'>View notifications</span>
-                    <BellIcon className='h-6 w-6' aria-hidden='true' />
                   </button>
                 </div>
                 <div className='mt-3 space-y-1 px-2'>

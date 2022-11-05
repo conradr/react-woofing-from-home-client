@@ -32,7 +32,7 @@ function AllMatches() {
             match.customer1.firebaseId == currentUser && match.score > 0)
 
                     
-        // for each customer 2 in matchesFromCustomer1View go to firebase and get the name and image and append to customer 2 object in matchesFromCustomer1View
+        // for each customer 2 in matchesFromCustomer1View go to firebase and get the name, about me and image and add to customer 2 object in matchesFromCustomer1View
 
             useEffect(() => {
               const getFirebaseInfo = () => {
@@ -92,7 +92,7 @@ function AllMatches() {
                       <div className="space-y-1 text-lg font-medium leading-6">
                         <h3>You've matched with {match.customer2.firebaseId}!</h3>
                         <br/>
-                        <h3>How far are they from you?</h3>
+                        <h3>How far are they?</h3>
                         <p className="text-indigo-600">{Math.round(match.distance / 1000,0)/10} km away</p>
                         <div className="leafletContainer">
                         <MapContainer style={{height: '100%', width: '100%'}}

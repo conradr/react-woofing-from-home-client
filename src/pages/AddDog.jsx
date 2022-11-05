@@ -70,6 +70,13 @@ function AddDog() {
             fetchFirebaseId()
           }, [])
 
+    //user has no dogs
+
+    const onClickNoDogs = () => {
+      navigate('/matches')
+    }
+    
+
     //submit the entire formData to Postgres
     const onSubmit = async () => {
         await fetch('https://woofingfromhome.herokuapp.com/dogs', {
@@ -271,11 +278,20 @@ const setCatStatus = (selectedOkayWithCats) => {
                     <div className='py-6 px-4 sm:p-6 lg:pb-8'>
                         <div>
                         <h2 className='text-lg font-medium leading-6 text-gray-900'>
-                            Tell us all about you dog!
+                            Tell us all about your dog!
                         </h2>
                         <p className='mt-1 text-sm text-gray-500'>
                             This will be used to find you suitable matches
                         </p>
+                        <div className='p-2'>
+                        <button
+                        type='button'
+                        className='inline-flex rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm text-white shadow-sm hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                        onClick={onClickNoDogs}
+                        >
+                        I don't have any dogs - take me to my matches!
+                        </button>
+                    </div>
                         </div>
 
                         <div className='mt-10 divide-y divide-gray-200'>
@@ -755,23 +771,25 @@ const setCatStatus = (selectedOkayWithCats) => {
                             </div>
                         </RadioGroup>
                       </div>
-                    </div>
-                    <button
+                      <div className='p-5'>
+                      <button
                       type='button'
-                      className='inline-flex  float-right rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                      className='inline-flex  float-right rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-small text-white shadow-sm hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                       onClick={onSubmit}
                     >
                       No more dogs to add - create my matches!
                     </button>
                     <button
                       type='button'
-                      className='inline-flex  float-left rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                      className='inline-flex  float-left rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-small text-white shadow-sm hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                       onClick={onSubmitandAddAnotherDog}
                     >
                       Add another dog
                     </button>
-                  </div>
+                    </div>
+                    </div>
 
+                  </div>
                 </form>
               </div>
             </div>

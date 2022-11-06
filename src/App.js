@@ -26,7 +26,7 @@ function App() {
           <div className='mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8'>
             <div className='rounded-lg bg-white px-5 py-6 shadow sm:px-6'>
               <Routes>
-                <Route path='/' element={<Homepage />} />
+              <Route path='/' element={<Homepage />} />
                 <Route path='/sign-up' element={<SignUp />} />
                 <Route path='/sign-in' element={<SignIn />} />
                 <Route path='/profile' element={<PrivateRoute />}>
@@ -62,10 +62,6 @@ function App() {
                     element={<AllMatches />}
                   />
                 </Route>
-
-
-
-
                 <Route path='/matches/:matchID' element={<MatchProfile />} />
               </Routes>
               <ToastContainer />

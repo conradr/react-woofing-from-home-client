@@ -15,6 +15,7 @@ import HeaderNav from './components/HeaderNav'
 import HeaderTitle from './components/HeaderTitle'
 import AddDog from './pages/AddDog'
 import AllMatches from './pages/AllMatches'
+import Faq from './pages/Faq'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <div className='rounded-lg bg-white px-5 py-6 shadow sm:px-6'>
               <Routes>
               <Route path='/' element={<Homepage />} />
+              <Route path='/faq' element={<Faq />} />
                 <Route path='/sign-up' element={<SignUp />} />
                 <Route path='/sign-in' element={<SignIn />} />
                 <Route path='/profile' element={<PrivateRoute />}>

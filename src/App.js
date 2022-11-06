@@ -16,6 +16,8 @@ import HeaderTitle from './components/HeaderTitle'
 import AddDog from './pages/AddDog'
 import AllMatches from './pages/AllMatches'
 import Faq from './pages/Faq'
+import AboutUs from './pages/AboutUs'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
               <Routes>
               <Route path='/' element={<Homepage />} />
               <Route path='/faq' element={<Faq />} />
+              <Route path='/about' element={<AboutUs />} />
                 <Route path='/sign-up' element={<SignUp />} />
                 <Route path='/sign-in' element={<SignIn />} />
                 <Route path='/profile' element={<PrivateRoute />}>
@@ -70,6 +73,7 @@ function App() {
             </div>
           </div>
         </main>
+        <Footer />
       </Router>
     </>
   )

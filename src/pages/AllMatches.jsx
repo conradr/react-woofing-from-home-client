@@ -49,7 +49,6 @@ function AllMatches() {
         );
 
         fetchFirebaseMatches(customer2Id).then((doc) => {
-          console.log(doc.docs[0]["_document"]["data"]["value"]["mapValue"]["fields"]["name"])
           const matchCard = (
             <MatchCard
               customer2Id={customer2Id}
@@ -59,6 +58,7 @@ function AllMatches() {
               myScore={myScore}
               theirScore={oppositeMatch.score}
               theirName={doc.docs[0]["_document"]["data"]["value"]["mapValue"]["fields"]["name"]["stringValue"]}
+              theirPhotoURL={doc.docs[0]["_document"]["data"]["value"]["mapValue"]["fields"]["photoURL"]["arrayValue"]["values"][0]["stringValue"]}
             />
           );
           tempMatchCards.push(matchCard);

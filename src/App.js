@@ -23,7 +23,7 @@ function App() {
   return (
     <>
       <Router>
-        {/* <HeaderNav /> */}
+        <HeaderNav />
         <HeaderTitle />
         <main className='-mt-4'>
           <div className='mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8'>

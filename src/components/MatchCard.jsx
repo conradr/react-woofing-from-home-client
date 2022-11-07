@@ -1,5 +1,6 @@
 import React from "react";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import { Link } from "react-router-dom";
 
 
 const MatchCard = ({
@@ -10,7 +11,8 @@ const MatchCard = ({
   myScore,
   theirScore,
   theirName,
-  theirPhotoURL
+  theirPhotoURL,
+  matchID
 }) => {
 
   
@@ -56,9 +58,9 @@ const MatchCard = ({
 
             <ul className="flex space-x-5">
               <li>
-                <a href="/" className="text-gray-400 hover:text-gray-500">
+                <Link to={`/matches/${matchID}/${customer2Id}`} className="text-gray-400 hover:text-gray-500">
                   Take a look at their profile
-                </a>
+                </Link>
               </li>
               <li></li>
             </ul>

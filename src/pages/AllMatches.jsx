@@ -39,6 +39,7 @@ function AllMatches() {
       const customer2Long = match.customer2.longitude;
       const distance = match.distance;
       const myScore = match.score;
+      const matchID= match.id
 
      
       if (match.customer1.firebaseId == currentUser) {
@@ -57,6 +58,7 @@ function AllMatches() {
               distance={distance}
               myScore={myScore}
               theirScore={oppositeMatch.score}
+              matchID={matchID}
               theirName={doc.docs[0]["_document"]["data"]["value"]["mapValue"]["fields"]["name"]["stringValue"]}
               theirPhotoURL={doc.docs[0]["_document"]["data"]["value"]["mapValue"]["fields"]["photoURL"]["arrayValue"]["values"][0]["stringValue"]}
             />

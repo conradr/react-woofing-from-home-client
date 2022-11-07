@@ -175,7 +175,7 @@ const MatchProfile = () => {
 
   useEffect(() => {
     const fetchMatch = async () => {
-      const docRef = doc(db, 'users', params.matchID)
+      const docRef = doc(db, 'users', params.customer2Id)
       const docSnap = await getDoc(docRef)
 
       if (docSnap.exists()) {
@@ -185,12 +185,12 @@ const MatchProfile = () => {
     }
 
     fetchMatch()
-    //getAllMatches()
+    getAllMatches()
   }, [navigate, params.listingId])
 
   const getAllMatches = async () => {
     await fetch(
-      `https://woofingfromhome.herokuapp.com/matches?firebaseId=${auth.currentUser.uid}`
+      `https://woofingfromhome.herokuapp.com/matches/${params.matchID}`
     )
       .then((res) => res.json())
       .then((matches) => setMatches(matches))

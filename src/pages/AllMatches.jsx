@@ -30,8 +30,43 @@ function AllMatches() {
   }, []);
 
   useEffect(() => {
-    const matchesa = createMatchCards();
-    setMatchCards(matchesa);
+
+    const tempMatchCards = []
+    matches.forEach((match) => {
+      
+      const customer2Id = match.customer2.firebaseId;
+      const customer2Lat = match.customer2.latitude;
+      const customer2Long = match.customer2.longitude;
+      const distance = match.distance;
+      const myScore = match.score;
+
+     
+      if (match.customer1.firebaseId == currentUser) {
+        const oppositeMatch = matches.find(
+          (match) =>
+            match.customer2.firebaseId == currentUser &&
+            match.customer1.firebaseId == customer2Id
+        );
+
+        fetchFirebaseMatches(customer2Id).then((doc) => {
+          const matchCard = (
+            <MatchCard
+              customer2Id={customer2Id}
+              customer2Lat={customer2Lat}
+              customer2Long={customer2Long}
+              distance={distance}
+              myScore={myScore}
+              theirScore={oppositeMatch.score}
+              theirName={"hello"}
+            />
+          );
+          tempMatchCards.push(matchCard);
+          setMatchCards(tempMatchCards)
+        });
+      }
+    });
+
+    
   }, [matches]);
 
   const getAllMatches = async () => {
@@ -91,13 +126,16 @@ function AllMatches() {
   // });
 
   const createMatchCards = () => {
+    const tempMatchCards = []
     matches.forEach((match) => {
+      
       const customer2Id = match.customer2.firebaseId;
       const customer2Lat = match.customer2.latitude;
       const customer2Long = match.customer2.longitude;
       const distance = match.distance;
       const myScore = match.score;
 
+     
       if (match.customer1.firebaseId == currentUser) {
         const oppositeMatch = matches.find(
           (match) =>
@@ -106,7 +144,6 @@ function AllMatches() {
         );
 
         fetchFirebaseMatches(customer2Id).then((doc) => {
-          console.log("fetch-output: ",doc)
           const matchCard = (
             <MatchCard
               customer2Id={customer2Id}
@@ -118,11 +155,11 @@ function AllMatches() {
               theirName={"hello"}
             />
           );
-          matchCards.push(matchCard);
+          tempMatchCards.push(matchCard);
         });
       }
     });
-    return matchCards;
+    return tempMatchCards;
   };
 
   return (

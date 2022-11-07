@@ -9,7 +9,10 @@ const MatchCard = ({
   distance,
   myScore,
   theirScore,
+  theirName
 }) => {
+
+  
   return (
     
     <li key={customer2Id} className="sm:py-8">
@@ -20,7 +23,7 @@ const MatchCard = ({
         <div className="sm:col-span-2">
           <div className="space-y-4">
             <div className="space-y-1 text-lg font-medium leading-6">
-              <h3>You've matched with {customer2Id}!</h3>
+              <h3>You've matched with {theirName}!</h3>
               <br />
               <h3>How far are they?</h3>
               <p className="text-indigo-600">

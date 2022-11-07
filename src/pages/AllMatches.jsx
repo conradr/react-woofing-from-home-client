@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
-import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase.config";
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import MatchCard from "../components/MatchCard";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  limit,
+  startAfter,
+  documentId,
+} from "firebase/firestore";
+import { toast } from "react-toastify";
 
 function AllMatches() {
   const [currentUser, setCurrentUser] = useState(null);
   const [matches, setMatches] = useState([]);
-  const [selectedMatch, setSelectedMatch] = useState(null);
-  const [matchCards,setMatchCards] = useState([])
+  // const [selectedMatch, setSelectedMatch] = useState(null);
+  const [matchCards, setMatchCards] = useState([]);
   // const [matchesFromCustomer1View, setMatchesFromCustomer1View] = useState([])
 
   //get firebaseID
   const auth = getAuth();
-  
 
   useEffect(() => {
     getAllMatches();
@@ -22,7 +30,7 @@ function AllMatches() {
   }, []);
 
   useEffect(() => {
-    const matchesa = createMatchCards()
+    const matchesa = createMatchCards();
     setMatchCards(matchesa);
   }, [matches]);
 
@@ -32,6 +40,36 @@ function AllMatches() {
     )
       .then((res) => res.json())
       .then((matches) => setMatches(matches));
+  };
+
+  const fetchFirebaseMatches = async (customer2Id) => {
+    try {
+      // get Reference
+      const firebaseMatchesRef = collection(db, "users");
+
+      // create a query
+      const buildQuery = query(
+        firebaseMatchesRef,
+        where(documentId(), "==", customer2Id)
+        // orderBy('timestamp', 'desc', limit(10))
+      );
+      // execute query
+
+      const querySnap = await getDocs(buildQuery);
+      return querySnap;
+      // const firebaseMatchesTemp = [];
+
+      // querySnap.forEach((doc) => {
+      //   firebaseMatchesTemp.push({
+      //     id: doc.id,
+      //     name: doc.data().name,
+      //     photoURL: doc.data().photoURL,
+      //   });
+      // });
+      // return firebaseMatchesTemp;
+    } catch (error) {
+      toast.error("Could not fetch matches");
+    }
   };
 
   // const matchesFromCustomer1View = matches.filter(
@@ -67,17 +105,21 @@ function AllMatches() {
             match.customer1.firebaseId == customer2Id
         );
 
-        const matchCard = (
-          <MatchCard
-            customer2Id={customer2Id}
-            customer2Lat={customer2Lat}
-            customer2Long={customer2Long}
-            distance={distance}
-            myScore={myScore}
-            theirScore={oppositeMatch.score}
-          />
-        );
-        matchCards.push(matchCard);
+        fetchFirebaseMatches(customer2Id).then((doc) => {
+          console.log("fetch-output: ",doc)
+          const matchCard = (
+            <MatchCard
+              customer2Id={customer2Id}
+              customer2Lat={customer2Lat}
+              customer2Long={customer2Long}
+              distance={distance}
+              myScore={myScore}
+              theirScore={oppositeMatch.score}
+              theirName={"hello"}
+            />
+          );
+          matchCards.push(matchCard);
+        });
       }
     });
     return matchCards;

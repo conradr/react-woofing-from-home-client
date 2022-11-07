@@ -33,24 +33,24 @@ const subNavigation = [
     icon: PhotoIcon,
     current: true,
   },
-  {
-    name: 'Your Dogs',
-    href: '/add-dog',
-    icon: UserPlusIcon,
-    current: false,
-  },
-  {
-    name: 'Doggy Pics',
-    href: '/upload-images',
-    icon: RectangleGroupIcon,
-    current: false,
-  },
-  {
-    name: 'Availability',
-    href: '/suitability-form',
-    icon: CalendarDaysIcon,
-    current: false,
-  },
+  // {
+  //   name: 'Your Dogs',
+  //   href: '/add-dog',
+  //   icon: UserPlusIcon,
+  //   current: false,
+  // },
+  // {
+  //   name: 'Doggy Pics',
+  //   href: '/upload-images',
+  //   icon: RectangleGroupIcon,
+  //   current: false,
+  // },
+  // {
+  //   name: 'Availability',
+  //   href: '/suitability-form',
+  //   icon: CalendarDaysIcon,
+  //   current: false,
+  // },
 ]
 
 

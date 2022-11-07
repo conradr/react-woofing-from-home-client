@@ -11,6 +11,7 @@ const MatchCard = ({
   theirScore,
 }) => {
   return (
+    
     <li key={customer2Id} className="sm:py-8">
       <div className="space-y-4 sm:grid sm:grid-cols-3 sm:items-start sm:gap-6 sm:space-y-0">
         <div className="aspect-w-3 aspect-h-2 sm:aspect-w-3 sm:aspect-h-4">
@@ -45,7 +46,7 @@ const MatchCard = ({
               <p className="text-indigo-600">{Math.round(myScore, 0)} %</p>
             </div>
             <div className="space-y-1 text-lg font-medium leading-6">
-              <h3>How well you they meet their requirements?</h3>
+              <h3>How well do they meet their requirements?</h3>
               <p className="text-indigo-600">{Math.round(theirScore, 0)} %</p>
             </div>
 

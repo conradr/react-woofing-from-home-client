@@ -51,7 +51,7 @@ function AboutUs() {
           <div className="space-y-5 sm:space-y-4">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Team</h2>
             <p className="text-xl text-gray-500">
-            Built by 4 budding software engineers as their capstone project during a 16 week software development course with CodeClan. All of the data contained on this application is ficticious and in no way represents real life persons or animals. The application was built with HTML, React, JavaScript, Tailwind, Spring and Java. 
+            Built by 4 budding software engineers as their capstone project during a 16 week software development course with CodeClan. All of the data contained on this application is ficticious and in no way represents real life persons or animals. The application was built with HTML, React, JavaScript, Tailwind, Spring and Java. Feel free to reach out to us on LinkedIn. 
             </p>
           </div>
           <div className="lg:col-span-2">

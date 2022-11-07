@@ -1,10 +1,13 @@
 import React from 'react'
+import {react} from 'react'
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { UsersIcon } from '@heroicons/react/24/outline'
+import { getAuth} from 'firebase/auth'
 
 const Homepage = () => {
+
   return (
 
     <>
@@ -116,7 +119,7 @@ const Homepage = () => {
           Check out our frequently asked questions page to find out more.
         </p>
         <a
-          href="#"
+          href="/faq"
           className="mt-8 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-indigo-600 hover:bg-indigo-50 sm:w-auto"
         >
           Frequently Asked Questions

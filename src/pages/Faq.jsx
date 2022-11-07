@@ -9,15 +9,15 @@ function Faq() {
       }
 
       const faqs = [
-        {question : "Here is a question", answer : "This is the answer" },
-        {question : "Here is a question", answer : "This is the answer" },
-        {question : "Here is a question", answer : "This is the answer" },
-        {question : "Here is a question", answer : "This is the answer" },
-        {question : "Here is a question", answer : "This is the answer" },
-        {question : "Here is a question", answer : "This is the answer" },
-        {question : "Here is a question", answer : "This is the answer" },
-        {question : "Here is a question", answer : "This is the answer" },
-        {question : "Here is a question", answer : "This is the answer" },
+        {question : "I don't have a dog, can I still sign up?", answer : "This is the answer" },
+        {question : "How much does signing up cost?", answer : "This is the answer" },
+        {question : "Is there a limit to how many people I can connect with?", answer : "This is the answer" },
+        {question : "Will I be matched with other dog owners who I can help?", answer : "This is the answer" },
+        {question : "Can I sign up if I have multiple dogs?", answer : "This is the answer" },
+        {question : "What are the different sizes of dogs?", answer : "This is the answer" },
+        {question : "What are the different levels of exercise?", answer : "This is the answer" },
+        {question : "Do I need insurance to look after another persons dog?", answer : "This is the answer" },
+        {question : "Do I need to pay the person looking after my dog?", answer : "This is the answer" },
 
     ]
 

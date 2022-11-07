@@ -8,36 +8,40 @@ import { db } from '../firebase.config'
 import { Disclosure, Menu, Switch, Transition } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import {
-
   UserCircleIcon,
-
-  CalendarDaysIcon
+  PhotoIcon,
+  RectangleGroupIcon,
+  CalendarDaysIcon,
+  UserPlusIcon,
 } from '@heroicons/react/24/outline'
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Jobs', href: '#', current: false },
-  { name: 'Applicants', href: '#', current: false },
-  { name: 'Company', href: '#', current: false },
-]
+
 const subNavigation = [
-  { name: 'Profile', href: '/finish-profile', icon: UserCircleIcon, current: false },
-  { name: 'Profile pic', href: '/upload-profile-image', icon: CameraIcon, current: false },
-  { name: 'Upload doggy pics', href: '/upload-images', icon: CameraIcon, current: false },
-  { name: 'Your needs & availability', href: '/suitability-form', icon: CalendarDaysIcon, current: false },
-  { name: 'Add your dogs', href: '#', icon: InformationCircleIcon, current: true },
+  { name: 'Profile', href: '/profile', icon: UserCircleIcon, current: false },
+  {
+    name: 'Avatar',
+    href: '/upload-profile-image',
+    icon: PhotoIcon,
+    current: false,
+  },
+  {
+    name: 'Doggy Pics',
+    href: '/upload-images',
+    icon: RectangleGroupIcon,
+    current: false,
+  },
+  {
+    name: 'Availability',
+    href: '/suitability-form',
+    icon: CalendarDaysIcon,
+    current: false,
+  },
+  {
+    name: 'Your Dogs',
+    href: '/add-dog',
+    icon: UserPlusIcon,
+    current: true,
+  },
 ]
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
-const user = {
-  name: 'Debbie Lewis',
-  handle: 'deblewis',
-  email: 'debbielewis@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80',
-}
 
 function AddDog() {
     

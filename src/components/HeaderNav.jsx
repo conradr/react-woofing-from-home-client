@@ -16,6 +16,7 @@ const navigation = [
 const userNavigation = [
   { name: 'Your Profile', href: '/profile' },
   { name: 'Sign out', href: '/', onClick: `onLogout` },
+  { name: 'Log In', href: '/log-in'},
 ]
 
 function classNames(...classes) {

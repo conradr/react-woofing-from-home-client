@@ -17,38 +17,42 @@ import homeIcon from '../assets/svg/homeIcon.svg'
 import { Disclosure, Menu, Switch, Transition } from '@headlessui/react'
 import { CameraIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import {
-  Bars3Icon,
-  BellIcon,
-  CogIcon,
-  CreditCardIcon,
-  KeyIcon,
-  SquaresPlusIcon,
   UserCircleIcon,
-  XMarkIcon,
+  PhotoIcon,
+  RectangleGroupIcon,
+  CalendarDaysIcon,
+  UserPlusIcon,
 } from '@heroicons/react/24/outline'
 
-const user = {
-  name: 'Debbie Lewis',
-  handle: 'deblewis',
-  email: 'debbielewis@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80',
-}
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Jobs', href: '#', current: false },
-  { name: 'Applicants', href: '#', current: false },
-  { name: 'Company', href: '#', current: false },
-]
+
 const subNavigation = [
-  { name: 'Profile', href: '/finish-profile', icon: UserCircleIcon, current: false },
-  { name: 'Profile pic', href: '#', icon: CameraIcon, current: true },
+  { name: 'Profile', href: '/profile', icon: UserCircleIcon, current: false },
+  {
+    name: 'Avatar',
+    href: '/upload-profile-image',
+    icon: PhotoIcon,
+    current: true,
+  },
+  {
+    name: 'Your Dogs',
+    href: '/add-dog',
+    icon: UserPlusIcon,
+    current: false,
+  },
+  {
+    name: 'Doggy Pics',
+    href: '/upload-images',
+    icon: RectangleGroupIcon,
+    current: false,
+  },
+  {
+    name: 'Availability',
+    href: '/suitability-form',
+    icon: CalendarDaysIcon,
+    current: false,
+  },
 ]
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
+
 
 const UploadProfileImage = () => {
   const navigate = useNavigate()

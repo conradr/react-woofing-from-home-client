@@ -23,12 +23,12 @@ const subNavigation = [
     icon: PhotoIcon,
     current: false,
   },
-  {
-    name: 'Your Dogs',
-    href: '/add-dog',
-    icon: UserPlusIcon,
-    current: false,
-  },
+  // {
+  //   name: 'Your Dogs',
+  //   href: '/add-dog',
+  //   icon: UserPlusIcon,
+  //   current: false,
+  // },
   {
     name: 'Doggy Pics',
     href: '/upload-images',

@@ -9,15 +9,15 @@ function Faq() {
       }
 
       const faqs = [
-        {question : "I don't have a dog, can I still sign up?", answer : "This is the answer" },
-        {question : "How much does signing up cost?", answer : "This is the answer" },
-        {question : "Is there a limit to how many people I can connect with?", answer : "This is the answer" },
-        {question : "Will I be matched with other dog owners who I can help?", answer : "This is the answer" },
-        {question : "Can I sign up if I have multiple dogs?", answer : "This is the answer" },
-        {question : "What are the different sizes of dogs?", answer : "This is the answer" },
-        {question : "What are the different levels of exercise?", answer : "This is the answer" },
-        {question : "Do I need insurance to look after another persons dog?", answer : "This is the answer" },
-        {question : "Do I need to pay the person looking after my dog?", answer : "This is the answer" },
+        {question : "I don't have a dog, can I still sign up?", answer : "Woofing From Home aims to put dog owners, fellow dog owners and non dog owners in touch who can help look after each others dogs. Not having a dog will make you very popular with dog owners." },
+        {question : "How much does signing up cost?", answer : "There is no cost for signing up to Woofing From Home" },
+        {question : "Is there a limit to how many people I can connect with?", answer : "Woofing From Home will aim to match you with as many different users as possible. There is no limit on the number of matches you can match and connect with." },
+        {question : "Will I be matched with other dog owners who I can help?", answer : "If you are a dog owner who is Woofing From Home, then we will also match you with other dog owners who you may be able to help." },
+        {question : "Can I sign up if I have multiple dogs?", answer : "You can have 101 Dalmations and still sign up to Woofing From Home. Just make sure you add all of your dogs onto your profile." },
+        {question : "What are the different sizes of dogs?", answer : "Dogs weighing 10 kg or less are generally considered small dogs. Any breed between 10kg and 25kg's are usually considered a medium size dog. Any dog over 25kg is considered a large dog." },
+        {question : "What are the different levels of exercise?", answer : "High - one or more walks over an hour a day. Medium - one or two walks over 30 minutes a day. Low - one or more walks over 15 minutes a day" },
+        {question : "Do I need insurance to look after another persons dog?", answer : "Because Woofing From Home is an agreement between two parties to help other to look after their dog, you don't need insurance. Always check that the dog you are looking after is insured before you sit it. THIS IS NOT LEGAL ADVICE!" },
+        {question : "Do I need to pay the person looking after my dog?", answer : "No. Woofing From Home is not a service for the payment of looking after or walking your, or another persons dog. If anyone breaks these guidelines then please report it to the Woofing From Home admin team." },
 
     ]
 

@@ -3,8 +3,8 @@ import React from 'react'
 const MatchCard = ({customer2Id, customer2Lat, customer2Long, distance, myScore, theirScore}) => {
   return (
 
-    {matchesFromCustomer1View.map((match) => (
-        <li key={match.customer2.firebaseId} className="sm:py-8">
+    
+        <li key={customer2Id} className="sm:py-8">
           <div className="space-y-4 sm:grid sm:grid-cols-3 sm:items-start sm:gap-6 sm:space-y-0">
             <div className="aspect-w-3 aspect-h-2 sm:aspect-w-3 sm:aspect-h-4">
               {/* <img className="rounded-lg object-cover shadow-lg" src={person.imageUrl} alt="" /> */}
@@ -13,7 +13,7 @@ const MatchCard = ({customer2Id, customer2Lat, customer2Long, distance, myScore,
               <div className="space-y-4">
                 <div className="space-y-1 text-lg font-medium leading-6">
                   <h3>
-                    You've matched with {match.customer2.firebaseId}!
+                    You've matched with {customer2Id}!
                   </h3>
                   <br />
                   <h3>How far are they?</h3>
@@ -70,7 +70,6 @@ const MatchCard = ({customer2Id, customer2Lat, customer2Long, distance, myScore,
           </div>
         </li>
       ))}
-    <div>MatchCard</div>
   )
 }
 

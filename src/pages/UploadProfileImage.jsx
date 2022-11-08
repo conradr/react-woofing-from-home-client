@@ -82,7 +82,7 @@ const UploadProfileImage = () => {
             await updateProfile(user, {
               photoURL: downloadURL,
             })
-            navigate(`/add-dog`)
+            navigate(`/suitability-form`)
             toast.success('Photos Saved')
 
             //create empty user chats on firestore

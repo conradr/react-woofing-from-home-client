@@ -7,7 +7,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <ChatNavbar />
-      <Search/>
+      {/* <Search/> */}
       <Chats/>
     </div>
   );

@@ -1,13 +1,24 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext} from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import Spinner from '../components/Spinner'
-import { getDoc, doc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
 import catIcon from '../assets/svg/cat.svg'
 import kidIcon from '../assets/svg/kids.svg'
 import dogIcon from '../assets/svg/dog.svg'
+
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  setDoc,
+  doc,
+  updateDoc,
+  serverTimestamp,
+  getDoc,
+} from "firebase/firestore";
 
 
 import {
@@ -17,7 +28,11 @@ import {
   XCircleIcon,
 } from '@heroicons/react/20/solid'
 
+import { AuthContext } from "../context/authContext";
+
 const profile = { 
+
+
   name: 'Ricardo Cooper',
   email: 'ricardo.cooper@example.com',
   avatar:
@@ -116,6 +131,9 @@ const MatchProfile = () => {
   const [match, setMatch] = useState(null)
   const [matches, setMatches] = useState(null)
 
+  const { currentUser } = useContext(AuthContext);
+
+
   const navigate = useNavigate()
   const params = useParams()
   const auth = getAuth()
@@ -125,14 +143,14 @@ const MatchProfile = () => {
       const docRef = doc(db, 'users', params.customer2Id)
       const docSnap = await getDoc(docRef)
 
-      if (docSnap.exists()) {
+       if (docSnap.exists()) {
         setMatch(docSnap.data())
         setLoading(false)
       }
     }
-
     fetchMatch()
     getAllMatches()
+
   }, [navigate, params.listingId])
 
   
@@ -149,6 +167,68 @@ const MatchProfile = () => {
   if (loading) {
     return <Spinner />
   }
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    // handleSearch()
+    handleSelect()
+    navigate("/chat")
+  }
+
+
+  // const handleSearch = async () => {
+  //   const q = query(
+  //     collection(db, "users"),
+  //     where("name", "==", match.name)
+  //   );
+
+  //   try {
+  //     const querySnapshot = await getDocs(q);
+  //     querySnapshot.forEach((doc) => {
+  //       setUser(doc.data());
+  //     });
+  //   } catch (err) {
+  //   }
+  // };
+
+
+  const handleSelect = async () => {
+
+    //check whether the group(chats in firestore) exists, if not create
+    const combinedId =
+      currentUser.uid > match.uid
+        ? currentUser.uid + match.uid
+        : match.uid + currentUser.uid;
+    try {
+      const res = await getDoc(doc(db, "chats", combinedId));
+
+      if (!res.exists()) {
+        //create a chat in chats collection
+        await setDoc(doc(db, "chats", combinedId), { messages: [] });
+
+        //create user chats
+        await updateDoc(doc(db, "userChats", currentUser.uid), {
+          [combinedId + ".userInfo"]: {
+            uid: match.uid,
+            displayName: match.name,
+            photoURL: match.photoURL,
+          },
+          [combinedId + ".date"]: serverTimestamp(),
+        });
+
+        await updateDoc(doc(db, "userChats", match.uid), {
+          [combinedId + ".userInfo"]: {
+            uid: currentUser.uid,
+            displayName: currentUser.displayName,
+            photoURL: currentUser.photoURL,
+          },
+          [combinedId + ".date"]: serverTimestamp(),
+        });
+      }
+    } catch (err) {console.log(err)}
+  };
+
+
 
   return (
     <>
@@ -179,6 +259,8 @@ const MatchProfile = () => {
                 <button
                   type='button'
                   className='inline-flex justify-center rounded-md border border-gray-800 bg-slate-300 px-4 py-2 text-m font-medium text-gray-700 shadow-sm hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2'
+                onClick={handleClick}
+                value={match.name}
                 >
                   <EnvelopeIcon
                     className='-ml-1 mr-2 h-5 w-5 text-gray-400'

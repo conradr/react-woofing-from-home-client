@@ -73,7 +73,7 @@ function App() {
                   <Route path='/matches' element={<PrivateRoute />}>
                     <Route path='/matches' element={<AllMatches />} />
                   </Route>
-                  <Route path='/matches/:matchID' element={<MatchProfile />} />
+                  <Route path='/matches/:matchID/:customer2Id' element={<MatchProfile />} />
                 </Routes>
                 <ToastContainer />
               </div>

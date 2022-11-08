@@ -32,13 +32,17 @@ function AboutUs() {
       linkedinUrl: '#',
     },
     {
-      name: 'Katie Booth Dorsey',
+      name: 'Katie Booth',
       role: 'Front and Back End Development',
       imageUrl:
+
         'https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/D2040441-CB76-41BB-953F-08FDC075B2AB_1_201_a.jpeg?alt=media&token=7b658e35-6667-4170-a75b-30f0cc1e8eea',
-      bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+
+        
+      bio: 'Katie is a junior software developer and avid dog lover with a background in insurance and finance.',
+
       twitterUrl: '#',
-      linkedinUrl: '#',
+      linkedinUrl: 'https://www.linkedin.com/in/katie-booth-598995159/',
     }]
 
 

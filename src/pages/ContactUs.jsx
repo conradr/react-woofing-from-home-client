@@ -1,6 +1,8 @@
 import React from "react";
 import { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { toast } from 'react-toastify'
+
 
 const ContactUs = () => {
 
@@ -19,11 +21,11 @@ const ContactUs = () => {
       )
       .then(
         () => {
-          alert("Message successfully sent!");
-          window.location.reload();
+          toast.success("Message successfully sent!");
+          window.setTimeout(()=>{window.location.reload()},5000);
         },
         () => {
-          alert("Failed to send the message, please try again");
+          toast.error("Failed to send the message, please try again");
         }
       );
   };

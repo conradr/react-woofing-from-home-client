@@ -1,5 +1,5 @@
 import React from "react";
-import { Circle, MapContainer, Marker, TileLayer } from "react-leaflet";
+import { Circle, MapContainer, TileLayer } from "react-leaflet";
 import { Link } from "react-router-dom";
 
 

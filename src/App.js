@@ -18,6 +18,7 @@ import AllMatches from './pages/AllMatches'
 import Faq from './pages/Faq'
 import AboutUs from './pages/AboutUs'
 import Footer from './components/Footer'
+import ContactUs from './pages/ContactUs'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <div className='rounded-lg bg-white px-5 py-6 shadow sm:px-6'>
               <Routes>
               <Route path='/' element={<Homepage />} />
+              <Route path='/contactus' element={<ContactUs/>}/>
               <Route path='/faq' element={<Faq />} />
               <Route path='/about' element={<AboutUs />} />
                 <Route path='/sign-up' element={<SignUp />} />

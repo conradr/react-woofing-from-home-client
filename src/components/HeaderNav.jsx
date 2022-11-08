@@ -12,6 +12,7 @@ const navigation = [
   { name: 'Matches', href: '/matches', current: false },
   { name: 'About Us', href: '/about', current: false },
   { name: 'FAQ', href: '/faq', current: false },
+  { name: 'Contact Us', href: '/contactus', current: false}
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '/profile' },

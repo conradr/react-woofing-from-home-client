@@ -58,7 +58,7 @@ const MatchCard = ({
 
             <ul className="flex space-x-5">
               <li>
-                <Link to={`/matches/${matchID}/${customer2Id}`} className="text-gray-400 hover:text-gray-500">
+                <Link to={`/matches/${matchID}/${customer2Id}`} className="inline-flex justify-center rounded-md   bg-slate-300 px-4 py-2 text-m font-medium text-gray-700 shadow-sm hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
                   Take a look at their profile
                 </Link>
               </li>

@@ -318,7 +318,7 @@ const setCatStatus = (selectedOkayWithCats) => {
     </div>
 
 <div>
-    <label htmlFor="dob" className="ml-px block pl-4 text-sm font-medium text-gray-700">
+    <label htmlFor="dob" className="ml-px block pl-4 text-sm font-medium text-gray-700 pt-3">
         Dogs Date of Birth
       </label>
       <div className="mt-1">
@@ -334,7 +334,7 @@ const setCatStatus = (selectedOkayWithCats) => {
     </div>
 
 <div>
-    <label htmlFor="breed" className="ml-px block pl-4 text-sm font-medium text-gray-700">
+    <label htmlFor="breed" className="ml-px block pl-4 text-sm font-medium text-gray-700 pt-3">
         Dogs Breed
       </label>
       <div className="mt-1">
@@ -350,7 +350,7 @@ const setCatStatus = (selectedOkayWithCats) => {
     </div>
 
 
-    <RadioGroup
+    <RadioGroup className='pt-3'
                             value={selectedOkayWithDogs}                           
                             onChange={setOkayWithOtherDogs}
                             >
@@ -414,7 +414,7 @@ const setCatStatus = (selectedOkayWithCats) => {
 
                             
 
-                        <RadioGroup
+                        <RadioGroup className='pt-3'
                             value={selectedOkayWithCats}                           
                             onChange={setCatStatus}
                             >
@@ -474,7 +474,7 @@ const setCatStatus = (selectedOkayWithCats) => {
                           </div>
                         </RadioGroup>
 
-                        <RadioGroup
+                        <RadioGroup className='pt-3'
                             value={selectedOkayWithKids}
                             onChange={setKidsStatus}
                             >
@@ -534,7 +534,7 @@ const setCatStatus = (selectedOkayWithCats) => {
                           </div>
                         </RadioGroup>
 
-                        <RadioGroup
+                        <RadioGroup className='pt-3'
                             value={selectedCanBeLeftAone}
                             onChange={setLeftAloneStatus}
                             >
@@ -594,7 +594,7 @@ const setCatStatus = (selectedOkayWithCats) => {
                           </div>
                         </RadioGroup>
 
-                        <RadioGroup
+                        <RadioGroup className='pt-3'
                             value={selectedHypoallergenic}
                             onChange={setAllergiesStatus}
                             >
@@ -654,7 +654,7 @@ const setCatStatus = (selectedOkayWithCats) => {
                             </div>
                         </RadioGroup>
 
-                        <RadioGroup
+                        <RadioGroup className='pt-3'
                             value={selectedDogSize}
                             onChange={setDogSize}
                             >
@@ -714,7 +714,7 @@ const setCatStatus = (selectedOkayWithCats) => {
                             </div>
                         </RadioGroup>
 
-                        <RadioGroup
+                        <RadioGroup className='pt-3'
                             value={selectedActivityLevel}
                             onChange={setActivityLevel}
                             >

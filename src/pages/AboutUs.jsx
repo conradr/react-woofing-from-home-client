@@ -1,4 +1,5 @@
 import React from 'react'
+import BCAHeadshot from '../assets/images/BCAHeadshot.jpg'
 
 function AboutUs() {
 
@@ -7,10 +8,10 @@ function AboutUs() {
       name: 'Ben Cutler-Ames',
       role: 'Front and Back End Development',
       imageUrl:
-        'https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
-      bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+        'https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/BCAHeadshot.jpg?alt=media&token=27ecb47e-7070-4398-9158-5e177add92ee',
+      bio: 'After a decade in Education, Ben decided to retrain as a Software Developer. Disappointed that he couldn\'t find a bootcamp that appealed to him as much as CodeClan he did what any reasonable person would do ... moved 400 miles to Edinburgh.',
       twitterUrl: '#',
-      linkedinUrl: '#',
+      linkedinUrl: 'https://www.linkedin.com/in/bencutlerames/',
     },
     {
       name: 'Callum Donaldson',
@@ -34,8 +35,12 @@ function AboutUs() {
       name: 'Katie Booth',
       role: 'Front and Back End Development',
       imageUrl:
-        'https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+
+        'https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/D2040441-CB76-41BB-953F-08FDC075B2AB_1_201_a.jpeg?alt=media&token=7b658e35-6667-4170-a75b-30f0cc1e8eea',
+
+        
       bio: 'Katie is a junior software developer and avid dog lover with a background in insurance and finance.',
+
       twitterUrl: '#',
       linkedinUrl: 'https://www.linkedin.com/in/katie-booth-598995159/',
     }]

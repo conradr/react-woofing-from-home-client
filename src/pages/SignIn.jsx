@@ -37,7 +37,7 @@ const SignIn = () => {
       )
 
       if (userCredential.user) {
-        navigate('/')
+        navigate('/matches')
       }
     } catch (error) {
       toast.error('User not found')

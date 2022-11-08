@@ -24,7 +24,6 @@ import {
                 ? currentUser.uid + action.payload.uid
                 : action.payload.uid + currentUser.uid,
           };
-  
         default:
           return state;
       }

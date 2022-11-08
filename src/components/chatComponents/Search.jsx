@@ -31,9 +31,7 @@ const Search = () => {
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        console.log(doc.data())
         setUser(doc.data());
-        console.log(doc["_userDataWriter"])
       });
     } catch (err) {
       setErr(true);
@@ -45,7 +43,11 @@ const Search = () => {
   };
 
   const handleSelect = async () => {
-    console.log("The user is", user)
+
+    console.log("the current user is", currentUser)
+    console.log("the user is", user)
+
+
     //check whether the group(chats in firestore) exists, if not create
     const combinedId =
       currentUser.uid > user.uid
@@ -62,7 +64,8 @@ const Search = () => {
         await updateDoc(doc(db, "userChats", currentUser.uid), {
           [combinedId + ".userInfo"]: {
             uid: user.uid,
-            name: user.displayName,
+            name: user.name,
+            photoURL: user.photoURL,
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
@@ -70,12 +73,13 @@ const Search = () => {
         await updateDoc(doc(db, "userChats", user.uid), {
           [combinedId + ".userInfo"]: {
             uid: currentUser.uid,
-            name: currentUser.displayName,
+            name: currentUser.name,
+            photoURL: currentUser.photoURL,
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
       }
-    } catch (err) {}
+    } catch (err) {console.log(err)}
 
     setUser(null);
     setUsername("")

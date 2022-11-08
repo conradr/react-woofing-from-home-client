@@ -7,7 +7,7 @@ const ChatNavbar = () => {
 
   return (
     <div className='chat-navbar'>
-      <span className="logo">Doggy Chat</span>
+      <span className="logo">Woofing Chat</span>
       <div className="user">
         <img src={currentUser.photoURL} alt="" />
         <span>{currentUser.displayName}</span>

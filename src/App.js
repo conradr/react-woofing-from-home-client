@@ -31,7 +31,7 @@ function App() {
     <>
 
       <AuthContextProvider>
-      <ChatContextProvider>
+        <ChatContextProvider>
         <Router>
           <HeaderNav />
           <HeaderTitle />
@@ -91,7 +91,7 @@ function App() {
           </main>
           <Footer />
         </Router>
-        </ChatContextProvider>
+          </ChatContextProvider>
       </AuthContextProvider>
     </>
   )

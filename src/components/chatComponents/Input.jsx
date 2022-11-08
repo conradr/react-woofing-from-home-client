@@ -4,7 +4,7 @@ import Img from "../../assets/images/img.png";
 import Attach from "../../assets/images/attach.png";
 
 import { AuthContext } from "../../context/authContext";
-import {ChatContext} from '../../context/chatContext'
+import { ChatContext } from "../../context/chatContext";
 import {
   arrayUnion,
   doc,

@@ -37,11 +37,11 @@ function AllMatches() {
       const matchID= match.id
 
      
-      if (match.customer1.firebaseId == currentUser) {
+      if (match.customer1.firebaseId === currentUser) {
         const oppositeMatch = matches.find(
           (match) =>
-            match.customer2.firebaseId == currentUser &&
-            match.customer1.firebaseId == customer2Id
+            match.customer2.firebaseId === currentUser &&
+            match.customer1.firebaseId === customer2Id
         );
 
         fetchFirebaseMatches(customer2Id).then((doc) => {
@@ -134,11 +134,11 @@ function AllMatches() {
       const myScore = match.score;
 
      
-      if (match.customer1.firebaseId == currentUser) {
+      if (match.customer1.firebaseId === currentUser) {
         const oppositeMatch = matches.find(
           (match) =>
-            match.customer2.firebaseId == currentUser &&
-            match.customer1.firebaseId == customer2Id
+            match.customer2.firebaseId === currentUser &&
+            match.customer1.firebaseId === customer2Id
         );
 
         fetchFirebaseMatches(customer2Id).then((doc) => {

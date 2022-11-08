@@ -192,7 +192,7 @@ const setCatStatus = (selectedOkayWithCats) => {
                         setFormData({...formData, 
                           size : 1})
                     }
-                    else if (selectedDogSize == 2){
+                    else if (selectedDogSize === 2){
                         setFormData({...formData, 
                           size : 2})
                     }
@@ -202,11 +202,11 @@ const setCatStatus = (selectedOkayWithCats) => {
 
                 const setActivityLevel = (selectedActivityLevel) => {
                     setSelectedActivityLevel(selectedActivityLevel)
-                    if(selectedActivityLevel == 1){
+                    if(selectedActivityLevel === 1){
                         setFormData({...formData, 
                           exerciseRequired : 1})
                     }
-                    else if (selectedActivityLevel == 2){
+                    else if (selectedActivityLevel === 2){
                         setFormData({...formData, 
                           exerciseRequired : 2})
                     }

@@ -1,18 +1,13 @@
-import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
-import { db } from "../firebase.config";
-import MatchCard from "../components/MatchCard";
 import {
-  collection,
-  getDocs,
+  collection, documentId, getDocs,
   query,
-  where,
-  orderBy,
-  limit,
-  startAfter,
-  documentId,
+  where
 } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import MatchCard from "../components/MatchCard";
+import { db } from "../firebase.config";
 
 function AllMatches() {
   const [currentUser, setCurrentUser] = useState(null);

@@ -1,5 +1,4 @@
 import React from "react";
-import BCAHeadshot from "../assets/images/BCAHeadshot.jpg";
 
 function AboutUs() {
   const people = [

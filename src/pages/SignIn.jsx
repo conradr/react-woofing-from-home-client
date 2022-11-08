@@ -1,10 +1,8 @@
-import { useState } from 'react'
-import { toast } from 'react-toastify'
-import { Link, useNavigate } from 'react-router-dom'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
-import { async } from '@firebase/util'
 
 import boneLogo from '../assets/svg/boneLogo.svg'
 

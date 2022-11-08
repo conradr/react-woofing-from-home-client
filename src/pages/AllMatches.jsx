@@ -60,7 +60,7 @@ function AllMatches() {
               theirScore={oppositeMatch.score}
               matchID={matchID}
               theirName={doc.docs[0]["_document"]["data"]["value"]["mapValue"]["fields"]["name"]["stringValue"]}
-              theirPhotoURL={doc.docs[0]["_document"]["data"]["value"]["mapValue"]["fields"]["photoURL"]["arrayValue"]["values"][0]["stringValue"]}
+              theirPhotoURL={doc.docs[0]["_document"]["data"]["value"]["mapValue"]["fields"]["photoURL"]["stringValue"]}
             />
           );
           tempMatchCards.push(matchCard);

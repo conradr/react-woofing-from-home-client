@@ -22,6 +22,8 @@ import Footer from './components/Footer'
 import ContactUs from './pages/ContactUs'
 
 import { AuthContextProvider } from './context/authContext'
+import { ChatContextProvider } from './context/chatContext'
+import Chat from './pages/Chat'
 
 
 function App() {
@@ -29,6 +31,7 @@ function App() {
     <>
 
       <AuthContextProvider>
+        <ChatContextProvider>
         <Router>
           <HeaderNav />
           <HeaderTitle />
@@ -73,7 +76,17 @@ function App() {
                   <Route path='/matches' element={<PrivateRoute />}>
                     <Route path='/matches' element={<AllMatches />} />
                   </Route>
+                  
+                  <Route path='/chat' element={<PrivateRoute />}>
+                    <Route path='/chat' element={<Chat />} />
+                  </Route>
+
+
+
+                  <Route path='/matches/:matchID' element={<MatchProfile />} />
+
                   <Route path='/matches/:matchID/:customer2Id' element={<MatchProfile />} />
+
                 </Routes>
                 <ToastContainer />
               </div>
@@ -81,6 +94,7 @@ function App() {
           </main>
           <Footer />
         </Router>
+          </ChatContextProvider>
       </AuthContextProvider>
     </>
   )

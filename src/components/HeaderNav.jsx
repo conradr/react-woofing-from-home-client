@@ -1,4 +1,4 @@
-import { useContext, } from 'react'
+import { useContext } from 'react'
 import { Fragment } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
@@ -34,9 +34,9 @@ const HeaderNav = () => {
     currentUser.auth.signOut()
     navigate('/')
   }
-   const onSignin = () => {
-     navigate('/sign-in')
-   }
+  const onSignin = () => {
+    navigate('/sign-in')
+  }
 
   return (
     <>
@@ -75,7 +75,6 @@ const HeaderNav = () => {
                     </div>
                   </div>
                   <div className='flex items-center'>
-                    
                     <div className='hidden md:block'>
                       <div className='ml-4 flex items-center md:ml-6'>
                         <button
@@ -96,7 +95,6 @@ const HeaderNav = () => {
                                   src={currentUser.photoURL}
                                   alt=''
                                 />
-                                
                               </Menu.Button>
                             ) : (
                               <button

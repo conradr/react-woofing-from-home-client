@@ -18,63 +18,63 @@ import AllMatches from './pages/AllMatches'
 import Faq from './pages/Faq'
 import AboutUs from './pages/AboutUs'
 import Footer from './components/Footer'
+import { AuthContextProvider } from './context/authContext'
 
 function App() {
   return (
     <>
-      <Router>
-        <HeaderNav />
-        <HeaderTitle />
-        <main className='-mt-4'>
-          <div className='mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8'>
-            <div className='rounded-lg bg-white px-5 py-6 shadow sm:px-6'>
-              <Routes>
-              <Route path='/' element={<Homepage />} />
-              <Route path='/faq' element={<Faq />} />
-              <Route path='/about' element={<AboutUs />} />
-                <Route path='/sign-up' element={<SignUp />} />
-                <Route path='/sign-in' element={<SignIn />} />
-                <Route path='/profile' element={<PrivateRoute />}>
-                  <Route path='/profile' element={<Profile />} />
-                </Route>
-                <Route path='/finish-profile' element={<PrivateRoute />}>
-                  <Route path='/finish-profile' element={<FinishProfile />} />
-                </Route>
-                <Route path='/upload-profile-image' element={<PrivateRoute />}>
+      <AuthContextProvider>
+        <Router>
+          <HeaderNav />
+          <HeaderTitle />
+          <main className='-mt-4'>
+            <div className='mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8'>
+              <div className='rounded-lg bg-white px-5 py-6 shadow sm:px-6'>
+                <Routes>
+                  <Route path='/' element={<Homepage />} />
+                  <Route path='/faq' element={<Faq />} />
+                  <Route path='/about' element={<AboutUs />} />
+                  <Route path='/sign-up' element={<SignUp />} />
+                  <Route path='/sign-in' element={<SignIn />} />
+                  <Route path='/profile' element={<PrivateRoute />}>
+                    <Route path='/profile' element={<Profile />} />
+                  </Route>
+                  <Route path='/finish-profile' element={<PrivateRoute />}>
+                    <Route path='/finish-profile' element={<FinishProfile />} />
+                  </Route>
                   <Route
                     path='/upload-profile-image'
-                    element={<UploadProfileImage />}
-                  />
-                </Route>
-                <Route path='/upload-images' element={<PrivateRoute />}>
-                  <Route path='/upload-images' element={<UploadImages />} />
-                </Route>
-                <Route path='/suitability-form' element={<PrivateRoute />}>
-                  <Route
-                    path='/suitability-form'
-                    element={<SuitabilityForm />}
-                  />
-                </Route>
-                <Route path='/add-dog' element={<PrivateRoute />}>
-                  <Route
-                    path='/add-dog'
-                    element={<AddDog />}
-                  />
-                </Route>
-                <Route path='/matches' element={<PrivateRoute />}>
-                  <Route
-                    path='/matches'
-                    element={<AllMatches />}
-                  />
-                </Route>
-                <Route path='/matches/:matchID' element={<MatchProfile />} />
-              </Routes>
-              <ToastContainer />
+                    element={<PrivateRoute />}
+                  >
+                    <Route
+                      path='/upload-profile-image'
+                      element={<UploadProfileImage />}
+                    />
+                  </Route>
+                  <Route path='/upload-images' element={<PrivateRoute />}>
+                    <Route path='/upload-images' element={<UploadImages />} />
+                  </Route>
+                  <Route path='/suitability-form' element={<PrivateRoute />}>
+                    <Route
+                      path='/suitability-form'
+                      element={<SuitabilityForm />}
+                    />
+                  </Route>
+                  <Route path='/add-dog' element={<PrivateRoute />}>
+                    <Route path='/add-dog' element={<AddDog />} />
+                  </Route>
+                  <Route path='/matches' element={<PrivateRoute />}>
+                    <Route path='/matches' element={<AllMatches />} />
+                  </Route>
+                  <Route path='/matches/:matchID' element={<MatchProfile />} />
+                </Routes>
+                <ToastContainer />
+              </div>
             </div>
-          </div>
-        </main>
-        <Footer />
-      </Router>
+          </main>
+          <Footer />
+        </Router>
+      </AuthContextProvider>
     </>
   )
 }

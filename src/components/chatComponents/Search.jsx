@@ -64,7 +64,7 @@ const Search = () => {
         await updateDoc(doc(db, "userChats", currentUser.uid), {
           [combinedId + ".userInfo"]: {
             uid: user.uid,
-            name: user.name,
+            displayName: user.name,
             photoURL: user.photoURL,
           },
           [combinedId + ".date"]: serverTimestamp(),
@@ -73,13 +73,16 @@ const Search = () => {
         await updateDoc(doc(db, "userChats", user.uid), {
           [combinedId + ".userInfo"]: {
             uid: currentUser.uid,
-            name: currentUser.name,
+            displayName: currentUser.displayName,
             photoURL: currentUser.photoURL,
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
       }
+      console.log("the current user is:", currentUser)
+      console.log("the user is:", user.name)
     } catch (err) {console.log(err)}
+
 
     setUser(null);
     setUsername("")

@@ -402,11 +402,11 @@ function SuitabilityForm() {
 
               <div className='mt-10 divide-y divide-gray-200'>
                 <div className='mt-6'>
-                  <RadioGroup
+                  <RadioGroup className='pt-4'
                     value={selectedDailyStatusMonday}
                     onChange={setDailyStatusInFormMonday}
                   >
-                    <RadioGroup.Label className='text-base font-medium text-gray-900'>
+                    <RadioGroup.Label className='text-base font-medium text-gray-900 py-3'>
                       Monday
                     </RadioGroup.Label>
                     <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
@@ -462,11 +462,11 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup
+                  <RadioGroup className='pt-4'
                     value={selectedDailyStatusTuesday}
                     onChange={setDailyStatusInFormTuesday}
                   >
-                    <RadioGroup.Label className='text-base font-medium text-gray-900'>
+                    <RadioGroup.Label className='text-base font-medium text-gray-900 py-3'>
                       Tuesday
                     </RadioGroup.Label>
                     <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
@@ -522,11 +522,11 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup
+                  <RadioGroup className='pt-4'
                     value={selectedDailyStatusWednesday}
                     onChange={setDailyStatusInFormWednesday}
                   >
-                    <RadioGroup.Label className='text-base font-medium text-gray-900'>
+                    <RadioGroup.Label className='text-base font-medium text-gray-900 py-3'>
                       Wednesday
                     </RadioGroup.Label>
                     <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
@@ -582,11 +582,11 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup
+                  <RadioGroup className='pt-4'
                     value={selectedDailyStatusThursday}
                     onChange={setDailyStatusInFormThursday}
                   >
-                    <RadioGroup.Label className='text-base font-medium text-gray-900'>
+                    <RadioGroup.Label className='text-base font-medium text-gray-900 py-3'>
                       Thursday
                     </RadioGroup.Label>
                     <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
@@ -642,11 +642,11 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup
+                  <RadioGroup className='pt-4'
                     value={selectedDailyStatusFriday}
                     onChange={setDailyStatusInFormFriday}
                   >
-                    <RadioGroup.Label className='text-base font-medium text-gray-900'>
+                    <RadioGroup.Label className='text-base font-medium text-gray-900 py-3'>
                       Friday
                     </RadioGroup.Label>
                     <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
@@ -702,11 +702,11 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup
+                  <RadioGroup className='pt-4'
                     value={selectedDailyStatusSaturday}
                     onChange={setDailyStatusInFormSaturday}
                   >
-                    <RadioGroup.Label className='text-base font-medium text-gray-900'>
+                    <RadioGroup.Label className='text-base font-medium text-gray-900 py-3'>
                       Saturday
                     </RadioGroup.Label>
                     <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
@@ -762,11 +762,11 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup
+                  <RadioGroup className='pt-4'
                     value={selectedDailyStatusSunday}
                     onChange={setDailyStatusInFormSunday}
                   >
-                    <RadioGroup.Label className='text-base font-medium text-gray-900'>
+                    <RadioGroup.Label className='text-base font-medium text-gray-900 py-3'>
                       Sunday
                     </RadioGroup.Label>
                     <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
@@ -822,8 +822,8 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup value={selectedCatStatus} onChange={setCatStatus}>
-                    <RadioGroup.Label className='text-base font-medium text-gray-900'>
+                  <RadioGroup className='pt-4' value={selectedCatStatus} onChange={setCatStatus}>
+                    <RadioGroup.Label className='text-base font-medium text-gray-900 py-3'>
                       Do you have cats?
                     </RadioGroup.Label>
                     <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
@@ -879,11 +879,11 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup
+                  <RadioGroup className='pt-4'
                     value={selectedKidsStatus}
                     onChange={setKidsStatus}
                   >
-                    <RadioGroup.Label className='text-base font-medium text-gray-900 my-2'>
+                    <RadioGroup.Label className='text-base font-medium text-gray-900 my-2 py-3'>
                       Do you have children?
                     </RadioGroup.Label>
                     <div className='mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
@@ -939,11 +939,11 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup
+                  <RadioGroup className='pt-4'
                     value={selectedLeftAloneStatus}
                     onChange={setLeftAloneStatus}
                   >
-                    <RadioGroup.Label className='text-base font-medium text-gray-900 my-2'>
+                    <RadioGroup.Label className='text-base font-medium text-gray-900 my-2 py-3'>
                       Would you need to leave a dog you are sitting alone during
                       your working day?
                     </RadioGroup.Label>
@@ -1000,11 +1000,11 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup
+                  <RadioGroup className='pt-4'
                     value={selectedAllergiesStatus}
                     onChange={setAllergiesStatus}
                   >
-                    <RadioGroup.Label className='text-base font-medium text-gray-900 my-2'>
+                    <RadioGroup.Label className='text-base font-medium text-gray-900 my-2 py-3'>
                       Would you only like to look after dogs that are
                       hypoallergenic?
                     </RadioGroup.Label>
@@ -1061,8 +1061,8 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup value={selectedDogSize} onChange={setDogSize}>
-                    <RadioGroup.Label className='text-base font-medium text-gray-900 my-2'>
+                  <RadioGroup className='pt-4' value={selectedDogSize} onChange={setDogSize}>
+                    <RadioGroup.Label className='text-base font-medium text-gray-900 my-2 py-3'>
                       What is the maximum dog size you are able or willing to
                       look after?
                     </RadioGroup.Label>
@@ -1119,11 +1119,11 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup
+                  <RadioGroup className='pt-4'
                     value={selectedActivityLevel}
                     onChange={setActivityLevel}
                   >
-                    <RadioGroup.Label className='text-base font-medium text-gray-900 my-2'>
+                    <RadioGroup.Label className='text-base font-medium text-gray-900 my-2 py-3'>
                       What level of activity could you offer a dog you are
                       sitting?
                     </RadioGroup.Label>

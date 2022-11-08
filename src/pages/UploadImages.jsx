@@ -117,6 +117,7 @@ const UploadImages = () => {
                 break
               default:
                 break
+                
             }
           },
           (error) => {

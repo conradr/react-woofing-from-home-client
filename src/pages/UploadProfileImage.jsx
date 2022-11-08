@@ -8,7 +8,7 @@ import {
 } from 'firebase/storage'
 import { db } from '../firebase.config'
 import { useNavigate, useParams } from 'react-router-dom'
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, setDoc, updateDoc } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
 import { v4 as uuidv4 } from 'uuid'
@@ -82,6 +82,10 @@ const UploadProfileImage = () => {
             await updateProfile(user, {
               photoURL: downloadURL,
             })
+            const userRef = doc(db, 'users', auth.currentUser.uid)
+            await updateDoc(userRef, 
+              {photoURL: downloadURL,}
+     )
             navigate(`/suitability-form`)
             toast.success('Photos Saved')
 

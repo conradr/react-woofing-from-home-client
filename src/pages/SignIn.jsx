@@ -6,6 +6,8 @@ import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRig
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 import { async } from '@firebase/util'
 
+import boneLogo from '../assets/svg/boneLogo.svg'
+
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
@@ -53,7 +55,7 @@ const SignIn = () => {
               <div>
                 <img
                   className='h-12 w-auto'
-                  src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
+                  src={boneLogo}
                   alt='Your Company'
                 />
                 <h2 className='mt-6 text-3xl font-bold tracking-tight text-gray-900'>

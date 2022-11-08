@@ -10,6 +10,7 @@ import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
+import boneLogo from '../assets/svg/boneLogo.svg'
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -79,7 +80,7 @@ const SignUp = () => {
               <div>
                 <img
                   className='h-12 w-auto'
-                  src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
+                  src={boneLogo}
                   alt='Your Company'
                 />
                 <h2 className='mt-6 text-3xl font-bold tracking-tight text-gray-900'>

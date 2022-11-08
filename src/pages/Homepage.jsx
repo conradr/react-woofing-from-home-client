@@ -1,3 +1,4 @@
+
 import { Fragment, useContext } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { UsersIcon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -122,7 +123,7 @@ const Homepage = () => {
           Check out our frequently asked questions page to find out more.
         </p>
         <a
-          href="#"
+          href="/faq"
           className="mt-8 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-indigo-600 hover:bg-indigo-50 sm:w-auto"
         >
           Frequently Asked Questions
@@ -156,7 +157,7 @@ const Homepage = () => {
             <dl className="-mx-8 -mt-8 flex flex-wrap">
               <div className="flex flex-col px-8 pt-8">
                 <dt className="order-2 text-base font-medium text-gray-500">Current Users</dt>
-                <dd className="order-1 text-2xl font-bold text-indigo-600 sm:text-3xl sm:tracking-tight">250</dd>
+                <dd className="order-1 text-2xl font-bold text-indigo-600 sm:text-3xl sm:tracking-tight">50</dd>
               </div>
               <div className="flex flex-col px-8 pt-8">
                 <dt className="order-2 text-base font-medium text-gray-500">Match Rate</dt>
@@ -164,7 +165,7 @@ const Homepage = () => {
               </div>
               <div className="flex flex-col px-8 pt-8">
                 <dt className="order-2 text-base font-medium text-gray-500">Dog Dates To Date</dt>
-                <dd className="order-1 text-2xl font-bold text-indigo-600 sm:text-3xl sm:tracking-tight">1000+</dd>
+                <dd className="order-1 text-2xl font-bold text-indigo-600 sm:text-3xl sm:tracking-tight">150+</dd>
               </div>
             </dl>
           </div>
@@ -176,9 +177,6 @@ const Homepage = () => {
     <section className="bg-indigo-800">
       <div className="mx-auto max-w-7xl md:grid md:grid-cols-2 md:px-6 lg:px-8">
         <div className="py-12 px-4 sm:px-6 md:flex md:flex-col md:border-r md:border-indigo-900 md:py-16 md:pl-0 md:pr-10 lg:pr-16">
-          <div className="md:flex-shrink-0">
-            <img className="h-12" src="https://tailwindui.com/img/logos/tuple-logo-indigo-300.svg" alt="Tuple" />
-          </div>
           <blockquote className="mt-6 md:flex md:flex-grow md:flex-col">
             <div className="relative text-lg font-medium text-white md:flex-grow">
               <svg
@@ -190,8 +188,7 @@ const Homepage = () => {
                 <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
               </svg>
               <p className="relative">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias
-                molestiae. Numquam corrupti in laborum sed rerum et corporis.
+                Thank's to Woofing From Home I am saving over £300 a month on dog sitting costs. This app has been a lifesaver during the financial crisis. My dog Mable loves her new routine of visting her fellow Woofers. 
               </p>
             </div>
             <footer className="mt-8">
@@ -205,7 +202,7 @@ const Homepage = () => {
                 </div>
                 <div className="ml-4">
                   <div className="text-base font-medium text-white">Judith Black</div>
-                  <div className="text-base font-medium text-indigo-200">CEO, Tuple</div>
+                  <div className="text-base font-medium text-indigo-200">Hybrid Woofer</div>
                 </div>
               </div>
             </footer>
@@ -213,11 +210,6 @@ const Homepage = () => {
         </div>
         <div className="border-t-2 border-indigo-900 py-12 px-4 sm:px-6 md:border-t-0 md:border-l md:py-16 md:pr-0 md:pl-10 lg:pl-16">
           <div className="md:flex-shrink-0">
-            <img
-              className="h-12"
-              src="https://tailwindui.com/img/logos/workcation-logo-indigo-300.svg"
-              alt="Workcation"
-            />
           </div>
           <blockquote className="mt-6 md:flex md:flex-grow md:flex-col">
             <div className="relative text-lg font-medium text-white md:flex-grow">
@@ -229,9 +221,7 @@ const Homepage = () => {
                 <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
               </svg>
               <p className="relative">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias
-                molestiae. Numquam corrupti in laborum sed rerum et corporis. Nemo expedita voluptas culpa sapiente
-                alias molestiae.
+                I Woof from Home 5 days a week but can't commit to owning my own dog. I love being able to help dog owners out and currently have 3 dogs that visit me weekly. 
               </p>
             </div>
             <footer className="mt-8">
@@ -245,7 +235,7 @@ const Homepage = () => {
                 </div>
                 <div className="ml-4">
                   <div className="text-base font-medium text-white">Joseph Rodriguez</div>
-                  <div className="text-base font-medium text-indigo-200">CEO, Workcation</div>
+                  <div className="text-base font-medium text-indigo-200">Woofs From Home</div>
                 </div>
               </div>
             </footer>

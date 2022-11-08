@@ -74,6 +74,7 @@ function App() {
                     element={<MatchProfile />}
                   />
                   <Route
+
                     path='/upload-profile-image-test'
                     element={<PrivateRoute />}
                   >
@@ -85,6 +86,13 @@ function App() {
                 </Routes>
                 <ToastContainer />
               </div>
+                    path='/matches'
+                    element={<AllMatches />}
+                  />
+                </Route>
+                <Route path='/matches/:matchID/:customer2Id' element={<MatchProfile />} />
+              </Routes>
+              <ToastContainer />
             </div>
           </main>
           <Footer />

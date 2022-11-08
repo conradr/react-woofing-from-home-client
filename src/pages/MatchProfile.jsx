@@ -5,15 +5,19 @@ import Spinner from '../components/Spinner'
 import { getDoc, doc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
+import catIcon from '../assets/svg/cat.svg'
+import kidIcon from '../assets/svg/kids.svg'
+import dogIcon from '../assets/svg/dog.svg'
+
 
 import {
   CheckCircleIcon,
-  ChevronRightIcon,
+  CalendarDaysIcon,
   EnvelopeIcon,
   XCircleIcon,
 } from '@heroicons/react/20/solid'
 
-const profile = {
+const profile = { 
   name: 'Ricardo Cooper',
   email: 'ricardo.cooper@example.com',
   avatar:
@@ -32,137 +36,80 @@ const profile = {
   ],
 }
 
-const applications = [
+const homeSetUp = [
   {
-    applicant: {
-      name: 'Good with Cats',
-      email: 'ricardo.cooper@example.com',
-      imageUrl:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    date: '2020-01-07',
-    dateFull: 'January 7, 2020',
-    stage: 'This is a kitty free home',
-    href: '#',
+    name: 'Good with Cats',
+    imageUrl:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    stage: true,
   },
   {
-    applicant: {
-      name: 'Good with kids',
-      email: 'kristen.ramos@example.com',
-      imageUrl:
-        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    date: '2020-01-07',
-    dateFull: 'January 7, 2020',
-    stage: 'No kids around to terrorise Teddy',
-    href: '#',
+    name: 'Good with Kids',
+    imageUrl:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    stage: false,
   },
   {
-    applicant: {
-      name: 'Allergies',
-      email: 'ted.fox@example.com',
-      imageUrl:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    date: '2020-01-07',
-    dateFull: 'January 7, 2020',
-    stage: "Ricardo isn't allergic - wahey",
-    href: '#',
+    name: 'Allergies',
+    imageUrl:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    stage: 'Not allergic',
   },
 ]
+
 
 const schedule = [
   {
-    applicant: {
-      name: 'Monday',
-      imageUrl:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      yourRequirement: true,
-      theirAvailability: true,
-    },
+    name: 'Monday',
+    imageUrl:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    yourRequirement: true,
+    theirAvailability: true,
   },
   {
-    applicant: {
-      name: 'Tuesday',
-      email: 'kristen.ramos@example.com',
-      imageUrl:
-        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      yourRequirement: false,
-      theirAvailability: false,
-    },
+    name: 'Tuesday',
+    imageUrl:
+      'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    yourRequirement: false,
+    theirAvailability: false,
   },
   {
-    applicant: {
-      name: 'Wednesday',
-      email: 'ted.fox@example.com',
-      imageUrl:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      yourRequirement: true,
-      theirAvailability: true,
-    },
+    name: 'Wednesday',
+    imageUrl:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    yourRequirement: true,
+    theirAvailability: true,
   },
   {
-    applicant: {
-      name: 'Thursday',
-      email: 'ted.fox@example.com',
-      imageUrl:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      yourRequirement: false,
-      theirAvailability: false,
-    },
+    name: 'Thursday',
+    imageUrl:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    yourRequirement: false,
+    theirAvailability: false,
   },
   {
-    applicant: {
-      name: 'Friday',
-      email: 'ted.fox@example.com',
-      imageUrl:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      yourRequirement: false,
-      theirAvailability: true,
-    },
+    name: 'Friday',
+    imageUrl:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    yourRequirement: false,
+    theirAvailability: true,
   },
   {
-    applicant: {
-      name: 'Saturday',
-      email: 'ted.fox@example.com',
-      imageUrl:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      yourRequirement: true,
-      theirAvailability: false,
-    },
+    name: 'Saturday',
+    imageUrl:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    yourRequirement: true,
+    theirAvailability: false,
   },
   {
-    applicant: {
-      name: 'Sunday',
-      email: 'ted.fox@example.com',
-      imageUrl:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      yourRequirement: true,
-      theirAvailability: false,
-    },
+    name: 'Sunday',
+    imageUrl:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    yourRequirement: true,
+    theirAvailability: false,
   },
 ]
 
-const product = {
-  images: [
-    {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
-      alt: 'Two each of gray, white, and black shirts laying flat.',
-    },
-    {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
-      alt: 'Model wearing plain black basic tee.',
-    },
-    {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
-      alt: 'Model wearing plain gray basic tee.',
-    },
-    {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
-      alt: 'Model wearing plain white basic tee.',
-    },
-  ],
-}
 
 const MatchProfile = () => {
   const [loading, setLoading] = useState(true)
@@ -188,6 +135,8 @@ const MatchProfile = () => {
     getAllMatches()
   }, [navigate, params.listingId])
 
+  
+
   const getAllMatches = async () => {
     await fetch(
       `https://woofingfromhome.herokuapp.com/matches/${params.matchID}`
@@ -195,6 +144,7 @@ const MatchProfile = () => {
       .then((res) => res.json())
       .then((matches) => setMatches(matches))
   }
+
 
   if (loading) {
     return <Spinner />
@@ -228,7 +178,7 @@ const MatchProfile = () => {
               <div className='justify-stretch mt-6 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4'>
                 <button
                   type='button'
-                  className='inline-flex justify-center rounded-md border border-gray-400 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2'
+                  className='inline-flex justify-center rounded-md border border-gray-800 bg-slate-300 px-4 py-2 text-m font-medium text-gray-700 shadow-sm hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2'
                 >
                   <EnvelopeIcon
                     className='-ml-1 mr-2 h-5 w-5 text-gray-400'
@@ -248,7 +198,7 @@ const MatchProfile = () => {
       </div>
 
       <div className=''>
-        <p className='mx-auto mt-4 max-w-3xl text-center text-m text-gray-500'>
+        <p className='mx-auto mt-4 max-w-3xl text-center text-xl text-gray-500'>
           {match.about}
         </p>
       </div>
@@ -257,7 +207,7 @@ const MatchProfile = () => {
         <div className='aspect-w-3 aspect-h-4 hidden overflow-hidden rounded-lg lg:block'>
           <img
             src={match.imgUrls[0]}
-            alt={product.images[0].alt}
+            alt=''
             className='h-full w-full object-cover object-center'
           />
         </div>
@@ -265,14 +215,14 @@ const MatchProfile = () => {
           <div className='aspect-w-3 aspect-h-2 overflow-hidden rounded-lg'>
             <img
               src={match.imgUrls[1]}
-              alt={product.images[1].alt}
+              alt=''
               className='h-full w-full object-cover object-center'
             />
           </div>
           <div className='aspect-w-3 aspect-h-2 overflow-hidden rounded-lg'>
             <img
               src={match.imgUrls[2]}
-              alt={product.images[2].alt}
+              alt=''
               className='h-full w-full object-cover object-center'
             />
           </div>
@@ -280,7 +230,7 @@ const MatchProfile = () => {
         <div className='aspect-w-4 aspect-h-5 sm:overflow-hidden sm:rounded-lg lg:aspect-w-3 lg:aspect-h-4'>
           <img
             src={match.imgUrls[3]}
-            alt={product.images[3].alt}
+            alt=''
             className='h-full w-full object-cover object-center'
           />
         </div>
@@ -292,45 +242,141 @@ const MatchProfile = () => {
         </div>
         <div className='relative flex justify-center'>
           <span className='bg-white px-2 text-xl text-gray-500 py-8'>
-            How settled Teddy will be
+            How settled your dogs will be
           </span>
         </div>
       </div>
       <div className='overflow-hidden bg-white shadow sm:rounded-md'>
         <ul role='list' className='divide-y divide-gray-200'>
-          {applications.map((application) => (
-            <li key={application.applicant.email}>
-              <div className='flex items-center px-4 py-4 sm:px-6'>
-                <div className='flex min-w-0 flex-1 items-center'>
-                  <div className='flex-shrink-0'>
-                    <img
-                      className='h-12 w-12 rounded-full'
-                      src={application.applicant.imageUrl}
-                      alt=''
-                    />
+          <li>
+            <div className='flex items-center px-4 py-4 sm:px-6'>
+              <div className='flex min-w-0 flex-1 items-center'>
+                <div className='flex-shrink-0'>
+                  <img
+                    className='h-12 w-12 rounded-full'
+                    src={catIcon}
+                    alt=''
+                  />
+                </div>
+                <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4'>
+                  <div>
+                    <p className='truncate text-m font-medium text-indigo-600'>
+                      Do cats live here?
+                    </p>
                   </div>
-                  <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4'>
+                  <div className='md:block'>
                     <div>
-                      <p className='truncate text-sm font-medium text-indigo-600'>
-                        {application.applicant.name}
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer2.hasCats ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />
+                            There's a cat
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            There's no cat
+                          </>
+                        )}
                       </p>
-                    </div>
-                    <div className='md:block'>
-                      <div>
-                        <p className='mt-2 flex items-center text-sm text-gray-500'>
-                          <CheckCircleIcon
-                            className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
-                            aria-hidden='true'
-                          />
-                          {application.stage}
-                        </p>
-                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </li>
-          ))}
+            </div>
+          </li>
+          <li>
+            <div className='flex items-center px-4 py-4 sm:px-6'>
+              <div className='flex min-w-0 flex-1 items-center'>
+                <div className='flex-shrink-0'>
+                  <img
+                    className='h-12 w-12 rounded-full'
+                    src={kidIcon}
+                    alt=''
+                  />
+                </div>
+                <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4'>
+                  <div>
+                    <p className='truncate text-m font-medium text-indigo-600'>
+                      Are there kids in the home?
+                    </p>
+                  </div>
+                  <div className='md:block'>
+                    <div>
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer2.hasKids ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />
+                            Kids live here
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            There are no kids here
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className='flex items-center px-4 py-4 sm:px-6'>
+              <div className='flex min-w-0 flex-1 items-center'>
+                <div className='flex-shrink-0'>
+                  <img
+                    className='h-12 w-12 rounded-full'
+                    src={dogIcon}
+                    alt=''
+                  />
+                </div>
+                <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4'>
+                  <div>
+                    <p className='truncate text-m font-medium text-indigo-600'>
+                      Are there other dogs?
+                    </p>
+                  </div>
+                  <div className='md:block'>
+                    <div>
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer2.hasOtherDogs ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />
+                            There are other dogs in this home
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            There are no other dogs
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
       <div className='relative py-2'>
@@ -345,75 +391,442 @@ const MatchProfile = () => {
       </div>
       <div className='overflow-hidden bg-white shadow sm:rounded-md'>
         <ul role='list' className='divide-y divide-gray-200'>
-          {schedule.map((dayOfTheWeek) => (
-            <li key={dayOfTheWeek.applicant.email}>
-              <div className='flex items-center px-4 py-4 sm:px-6'>
-                <div className='flex min-w-0 flex-1 items-center'>
-                  <div className='flex-shrink-0'>
-                    <img
-                      className='h-12 w-12 rounded-full'
-                      src={dayOfTheWeek.applicant.imageUrl}
-                      alt=''
-                    />
+          <li>
+            <div className='flex items-center px-4 py-4 sm:px-6'>
+              <div className='flex min-w-0 flex-1 items-center'>
+                <div className='flex-shrink-0'>
+                  <CalendarDaysIcon className='text-slate-700 h-12 w-12 rounded-full' />
+                </div>
+                <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4'>
+                  <div>
+                    <p className='truncate text-m font-medium text-indigo-600'>
+                      Monday
+                    </p>
                   </div>
-                  <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4'>
+                  <div className='md:block'>
                     <div>
-                      <p className='truncate text-sm font-medium text-indigo-600'>
-                        {dayOfTheWeek.applicant.name}
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer1.requireMonday ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />
+                            You need help
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            You're good
+                          </>
+                        )}
                       </p>
                     </div>
-                    <div className='md:block'>
-                      <div>
-                        <p className='mt-2 flex items-center text-sm text-gray-500'>
-                          {dayOfTheWeek.applicant.yourRequirement ? (
-                            <>
-                              <CheckCircleIcon
-                                className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
-                                aria-hidden='true'
-                              />
-                              You need help
-                            </>
-                          ) : (
-                            <>
-                              <XCircleIcon
-                                className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
-                                aria-hidden='true'
-                              />{' '}
-                              you're good
-                            </>
-                          )}
-                        </p>
-                      </div>
-                    </div>
-                    <div className='md:block'>
-                      <div>
-                        <p className='mt-2 flex items-center text-sm text-gray-500'>
-                          {dayOfTheWeek.applicant.theirAvailability ? (
-                            <>
-                              <CheckCircleIcon
-                                className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
-                                aria-hidden='true'
-                              />{' '}
-                              they can help
-                            </>
-                          ) : (
-                            <>
-                              <XCircleIcon
-                                className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
-                                aria-hidden='true'
-                              />{' '}
-                              they cant help
-                            </>
-                          )}
-                        </p>
-                      </div>
+                  </div>
+                  <div className='md:block'>
+                    <div>
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer2.availableMonday ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />{' '}
+                            They can help
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            They can't help
+                          </>
+                        )}
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
-            </li>
-          ))}
+            </div>
+          </li>
+          <li>
+            <div className='flex items-center px-4 py-4 sm:px-6'>
+              <div className='flex min-w-0 flex-1 items-center'>
+                <div className='flex-shrink-0'>
+                  <CalendarDaysIcon className='text-slate-700 h-12 w-12 rounded-full' />
+                </div>
+                <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4'>
+                  <div>
+                    <p className='truncate text-m font-medium text-indigo-600'>
+                      Tuesday
+                    </p>
+                  </div>
+                  <div className='md:block'>
+                    <div>
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer1.requireTuesday ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />
+                            You need help
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            You're good
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                  <div className='md:block'>
+                    <div>
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer2.availableTuesday ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />{' '}
+                            They can help
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            They can't help
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className='flex items-center px-4 py-4 sm:px-6'>
+              <div className='flex min-w-0 flex-1 items-center'>
+                <div className='flex-shrink-0'>
+                  <CalendarDaysIcon className='text-slate-700 h-12 w-12 rounded-full' />
+                </div>
+                <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4'>
+                  <div>
+                    <p className='truncate text-m font-medium text-indigo-600'>
+                      Wednesday
+                    </p>
+                  </div>
+                  <div className='md:block'>
+                    <div>
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer1.requireWednesday ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />
+                            You need help
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            You're good
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                  <div className='md:block'>
+                    <div>
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer2.availableWednesday ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />{' '}
+                            They can help
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            They can't help
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className='flex items-center px-4 py-4 sm:px-6'>
+              <div className='flex min-w-0 flex-1 items-center'>
+                <div className='flex-shrink-0'>
+                  <CalendarDaysIcon className='text-slate-700 h-12 w-12 rounded-full' />
+                </div>
+                <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4'>
+                  <div>
+                    <p className='truncate text-m font-medium text-indigo-600'>
+                      Thursday
+                    </p>
+                  </div>
+                  <div className='md:block'>
+                    <div>
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer1.requireThursday ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />
+                            You need help
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            You're good
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                  <div className='md:block'>
+                    <div>
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer2.availableThursday ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />{' '}
+                            They can help
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            They can't help
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className='flex items-center px-4 py-4 sm:px-6'>
+              <div className='flex min-w-0 flex-1 items-center'>
+                <div className='flex-shrink-0'>
+                  <CalendarDaysIcon className='text-slate-700 h-12 w-12 rounded-full' />
+                </div>
+                <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4'>
+                  <div>
+                    <p className='truncate text-m font-medium text-indigo-600'>
+                      Friday
+                    </p>
+                  </div>
+                  <div className='md:block'>
+                    <div>
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer1.requireFriday ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />
+                            You need help
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            You're good
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                  <div className='md:block'>
+                    <div>
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer2.availableFriday ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />{' '}
+                            They can help
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            They can't help
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className='flex items-center px-4 py-4 sm:px-6'>
+              <div className='flex min-w-0 flex-1 items-center'>
+                <div className='flex-shrink-0'>
+                  <CalendarDaysIcon className='text-slate-700 h-12 w-12 rounded-full' />
+                </div>
+                <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4'>
+                  <div>
+                    <p className='truncate text-m font-medium text-indigo-600'>
+                      Saturday
+                    </p>
+                  </div>
+                  <div className='md:block'>
+                    <div>
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer1.requireSaturday ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />
+                            You need help
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            You're good
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                  <div className='md:block'>
+                    <div>
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer2.availableSaturday ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />{' '}
+                            They can help
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            They can't help
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div className='flex items-center px-4 py-4 sm:px-6'>
+              <div className='flex min-w-0 flex-1 items-center'>
+                <div className='flex-shrink-0'>
+                  <CalendarDaysIcon className='text-slate-700 h-12 w-12 rounded-full' />
+                </div>
+                <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4'>
+                  <div>
+                    <p className='truncate text-m font-medium text-indigo-600'>
+                      Sunday
+                    </p>
+                  </div>
+                  <div className='md:block'>
+                    <div>
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer1.requireSunday ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />
+                            You need help
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            You're good
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                  <div className='md:block'>
+                    <div>
+                      <p className='mt-2 flex items-center text-m text-gray-500'>
+                        {matches.customer2.availableSunday ? (
+                          <>
+                            <CheckCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-green-400'
+                              aria-hidden='true'
+                            />{' '}
+                            They can help
+                          </>
+                        ) : (
+                          <>
+                            <XCircleIcon
+                              className='mr-1.5 h-5 w-5 flex-shrink-0 text-gray-500'
+                              aria-hidden='true'
+                            />{' '}
+                            They can't help
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
         </ul>
+        
       </div>
     </>
   )

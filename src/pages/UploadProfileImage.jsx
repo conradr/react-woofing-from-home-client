@@ -1,5 +1,5 @@
-import { Fragment, useState, useEffect } from 'react'
-import { getAuth, updateEmail, updateProfile } from 'firebase/auth'
+import { useState } from 'react'
+import { getAuth, updateProfile } from 'firebase/auth'
 import {
   getStorage,
   ref,
@@ -7,8 +7,8 @@ import {
   getDownloadURL,
 } from 'firebase/storage'
 import { db } from '../firebase.config'
-import { useNavigate, Link, useParams } from 'react-router-dom'
-import { getDoc, collection, updateDoc, doc } from 'firebase/firestore'
+import { useNavigate, useParams } from 'react-router-dom'
+import { doc, setDoc } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
 import { v4 as uuidv4 } from 'uuid'
@@ -53,136 +53,49 @@ const UploadProfileImage = () => {
   const params = useParams()
   const auth = getAuth()
   const user = auth.currentUser
+  const storage = getStorage()
 
   const [changeDetails, setChangeDetails] = useState(true)
-
+  const [err, setErr] = useState(false)
   const [downloadURL, setDownloadUrl] = useState('')
   const [formData, setFormData] = useState({
     images: {},
   })
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    const fetchListing = async () => {
-      const docRef = doc(db, 'users', auth.currentUser.uid)
-      const docSnap = await getDoc(docRef)
-
-      if (docSnap.exists()) {
-        setFormData(docSnap.data())
-        setLoading(false)
-      }
-    }
-
-    fetchListing()
-  }, [navigate])
-
-  const { images } = formData
-
-  const onLogout = () => {
-    auth.signOut()
-    navigate('/')
-  }
-
-  const onSubmit = async (e) => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
     setLoading(true)
+    e.preventDefault()
+    const displayName = e.target[0].value
+    const file = e.target[0].files[0]
 
-    if (images.length > 6) {
-      setLoading(false)
-      toast.error('Max 6 images')
-      return
-    }
+    try {
+      //Create a unique image name
+      const date = new Date().getTime()
+      const storageRef = ref(storage, `${displayName + date}`)
 
-    // store image in firebase
-    const storeImage = async (image) => {
-      return new Promise((resolve, reject) => {
-        const storage = getStorage()
-        const fileName = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`
-
-        const storageRef = ref(storage, 'images/' + fileName)
-        const uploadTask = uploadBytesResumable(storageRef, image)
-
-        uploadTask.on(
-          'state_changed',
-          (snapshot) => {
-            const progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            console.log('Upload is ' + progress + '% done')
-            switch (snapshot.state) {
-              case 'paused':
-                console.log('Upload is paused')
-                break
-              case 'running':
-                console.log('Upload is running')
-                break
-              default:
-                break
-            }
-          },
-          (error) => {
-            reject(error)
-          },
-          () => {
-            // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              resolve(downloadURL)
+      await uploadBytesResumable(storageRef, file).then(() => {
+        getDownloadURL(storageRef).then(async (downloadURL) => {
+          try {
+            //Update profile
+            await updateProfile(user, {
+              photoURL: downloadURL,
             })
+            navigate(`/add-dog`)
+            toast.success('Photos Saved')
+
+            //create empty user chats on firestore
+            //await setDoc(doc(db, 'userChats', user.uid), {})
+          } catch (err) {
+            setErr(true)
+            setLoading(false)
           }
-        )
+        })
       })
-    }
-
-    const photoURL = await Promise.all(
-      [...images]
-        .map((image) => storeImage(image))
-    ).catch(() => {
+    } catch (err) {
+      setErr(true)
       setLoading(false)
-      toast.error('Images not uploaded')
-      return
-    })
-
-    const formDataCopy = {
-      ...formData,
-      photoURL,
-    }
-
-    delete formDataCopy.images
-
-    const userRef = doc(db, 'users', auth.currentUser.uid)
-
-    await updateDoc(userRef, formDataCopy)
-
-    // await updateProfile(auth.currentUser, {
-    //   photoURL: 'https://example.com/jane-q-user/profile.jpg',
-    // })
-    //fetchUser()
-    setLoading(false)
-    toast.success('Photos Saved')
-    navigate(`/upload-images`)
-  }
-
-  // const fetchUser = async () => {
-  //   const docRef = doc(db, 'users', auth.currentUser.uid)
-  //   const docSnap = await getDoc(docRef)
-
-  //   if (docSnap.exists()) {
-  //     console.log(docSnap.data().photoURL)
-  //     setDownloadUrl(docSnap.data().photoURL)
-  //     updateProfile(auth.currentUser, {
-  //       photoURL: downloadURL,
-  //     })
-  //   }
-  // }
-
-  const onChange = (e) => {
-    // Files
-    if (e.target.files) {
-      setFormData((prevState) => ({
-        ...prevState,
-        images: e.target.files,
-      }))
     }
   }
 
@@ -228,7 +141,7 @@ const UploadProfileImage = () => {
 
           <form
             className='divide-y divide-gray-200 lg:col-span-9'
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit}
           >
             {/* Profile section */}
 
@@ -253,13 +166,12 @@ const UploadProfileImage = () => {
                       <dd className='mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
                         <input
                           type='file'
-                          name='images'
-                          id='images'
-                          max='6'
+                          name='file'
+                          id='file'
+                          max='1'
                           accept='.jpg,.png,.jpeg'
                           multiple
                           required
-                          onChange={onChange}
                           className={
                             !changeDetails
                               ? 'profileName'

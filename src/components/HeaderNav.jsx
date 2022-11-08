@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Fragment } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
@@ -22,7 +22,7 @@ function classNames(...classes) {
 }
 
 const HeaderNav = () => {
-  const { currentUser } = useContext(AuthContext)
+  const { currentUser, profileImage } = useContext(AuthContext)
 
   const navigate = useNavigate()
 
@@ -79,7 +79,7 @@ const HeaderNav = () => {
                       <div className='ml-4 flex items-center md:ml-6'>
                         <button
                           type='button'
-                          className='rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
+                          className='rounded-full bg-gray-800 p-1 text-gray-400 focus:ring-offset-gray-800'
                         >
                           <span className='sr-only'>View notifications</span>
                         </button>
@@ -92,7 +92,7 @@ const HeaderNav = () => {
                                 <span className='sr-only'>Open user menu</span>
                                 <img
                                   className='h-12 w-12 rounded-full'
-                                  src={currentUser.photoURL}
+                                  src={profileImage}
                                   alt=''
                                 />
                               </Menu.Button>
@@ -149,7 +149,7 @@ const HeaderNav = () => {
                     </div>
                     <div className='-mr-2 flex md:hidden'>
                       {/* Mobile menu button */}
-                      <Disclosure.Button className='inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
+                      <Disclosure.Button className='inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 focus:ring-offset-gray-800'>
                         <span className='sr-only'>Open main menu</span>
                         {open ? (
                           <XMarkIcon

@@ -48,17 +48,17 @@ const HeaderNav = () => {
             <div className='mx-auto max-w-7xl sm:px-8 lg:px-12'>
               <div className='border-b border-gray-700'>
                 <div className='flex h-16 items-center justify-between px-4 sm:px-0'>
-                  <div className='flex items-center'>
-                    <div className='flex-shrink-0'>
+                  <div className='flex items-center flex-shrink-0'>
+                    <a href='/' className='flex items-center flex-shrink-0'>
                       <img
-                        className='h-12 w-12'
+                        className='h-12 w-12  px-2'
                         src={boneLogo}
                         alt='woofing from home logo'
                       />
-                    </div>
+                      <span className='text-gray-300'>Woofing from home</span>
+                    </a>
                     <div className='hidden md:block'>
                       <div className='ml-10 flex items-baseline space-x-4'>
-                        <span className='text-gray-300'>Woofing from home</span>
                         {navigation.map((item) => (
                           <a
                             key={item.name}

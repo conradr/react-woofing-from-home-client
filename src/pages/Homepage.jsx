@@ -1,17 +1,43 @@
-import React from 'react'
-import {react} from 'react'
-import { Fragment } from 'react'
+
+import { Fragment, useContext } from 'react'
 import { Popover, Transition } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { UsersIcon } from '@heroicons/react/24/outline'
-import { getAuth} from 'firebase/auth'
+import { UsersIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { AuthContext } from '../context/authContext'
+
+import { MegaphoneIcon } from '@heroicons/react/24/outline'
 
 const Homepage = () => {
-
+    const { currentUser } = useContext(AuthContext)
 
   return (
 
     <>
+
+<div className="bg-white">
+      <div className="mx-auto max-w-7xl py-12 px-4 text-center sm:px-6 lg:py-16 lg:px-8">
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-1xl">
+          <span className="block">Please note that this website is a capstone project currently in development by 4 CodeClan students. All profiles and dogs are ficticious. </span>
+        </h2>
+        <div className="mt-8 flex justify-center">
+          <div className="inline-flex rounded-md shadow">
+            <a
+              href="/about"
+              className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-indigo-700"
+            >
+              Find out more
+            </a>
+          </div>
+          <div className="ml-3 inline-flex">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
     <div className="relative overflow-hidden bg-white">
       <div className="mx-auto max-w-7xl">
         <div className="relative z-10 bg-white pb-8 sm:pb-16 md:pb-20 lg:w-full lg:max-w-2xl lg:pb-28 xl:pb-32">
@@ -80,6 +106,8 @@ const Homepage = () => {
               <p className="mt-3 text-base text-gray-500 sm:mx-auto sm:mt-5 sm:max-w-xl sm:text-lg md:mt-5 md:text-xl lg:mx-0">
                 Helping connect dog owners who are office or hybrid working with woofers who can look after their dog
               </p>
+               {!currentUser ? (
+              
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
                   <a
@@ -87,8 +115,10 @@ const Homepage = () => {
                     className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg"
                   >
                     Sign Up
-                  </a>
+                  </a> 
+                  
                 </div>
+                
                 <div className="mt-3 sm:mt-0 sm:ml-3">
                   <a
                     href="/sign-in"
@@ -97,7 +127,8 @@ const Homepage = () => {
                     Sign In 
                   </a>
                 </div>
-              </div>
+               
+              </div> ):''}
             </div>
           </main>
         </div>

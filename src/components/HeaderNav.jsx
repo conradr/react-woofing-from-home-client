@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { AuthContext } from '../context/authContext'
+import boneLogo from '../assets/svg/boneLogo.svg'
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
@@ -47,14 +48,15 @@ const HeaderNav = () => {
             <div className='mx-auto max-w-7xl sm:px-8 lg:px-12'>
               <div className='border-b border-gray-700'>
                 <div className='flex h-16 items-center justify-between px-4 sm:px-0'>
-                  <div className='flex items-center'>
-                    <div className='flex-shrink-0'>
+                  <div className='flex items-center flex-shrink-0'>
+                    <a href='/' className='flex items-center flex-shrink-0'>
                       <img
-                        className='h-12 w-12'
-                        src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500'
-                        alt='Your Company'
+                        className='h-12 w-12  px-2'
+                        src={boneLogo}
+                        alt='woofing from home logo'
                       />
-                    </div>
+                      <span className='text-gray-300'>Woofing from home</span>
+                    </a>
                     <div className='hidden md:block'>
                       <div className='ml-10 flex items-baseline space-x-4'>
                         {navigation.map((item) => (

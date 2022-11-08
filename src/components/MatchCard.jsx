@@ -1,5 +1,5 @@
 import React from "react";
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import { Circle, MapContainer, TileLayer } from "react-leaflet";
 import { Link } from "react-router-dom";
 
 
@@ -43,7 +43,7 @@ const MatchCard = ({
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png"
                   />
-                  <Marker position={[customer2Lat, customer2Long]}></Marker>
+                  <Circle center={[customer2Lat-0.004, customer2Long]} radius={1200}></Circle>
                 </MapContainer>
               </div>
             </div>

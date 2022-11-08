@@ -1,24 +1,19 @@
-import { useState } from 'react'
-import { getAuth, updateProfile } from 'firebase/auth'
 import {
-  getStorage,
+  CalendarDaysIcon, PhotoIcon,
+  RectangleGroupIcon, UserCircleIcon, UserPlusIcon
+} from '@heroicons/react/24/outline'
+import { getAuth, updateProfile } from 'firebase/auth'
+import { doc, updateDoc } from 'firebase/firestore'
+import {
+  getDownloadURL, getStorage,
   ref,
-  uploadBytesResumable,
-  getDownloadURL,
+  uploadBytesResumable
 } from 'firebase/storage'
-import { db } from '../firebase.config'
+import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { doc, setDoc } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
-import { v4 as uuidv4 } from 'uuid'
-import {
-  UserCircleIcon,
-  PhotoIcon,
-  RectangleGroupIcon,
-  CalendarDaysIcon,
-  UserPlusIcon,
-} from '@heroicons/react/24/outline'
+import { db } from '../firebase.config'
 
 const subNavigation = [
   { name: 'Profile', href: '/profile', icon: UserCircleIcon, current: false },
@@ -82,7 +77,11 @@ const UploadProfileImage = () => {
             await updateProfile(user, {
               photoURL: downloadURL,
             })
-            navigate(`/add-dog`)
+            const userRef = doc(db, 'users', auth.currentUser.uid)
+            await updateDoc(userRef, 
+              {photoURL: downloadURL,}
+     )
+            navigate(`/suitability-form`)
             toast.success('Photos Saved')
 
             //create empty user chats on firestore

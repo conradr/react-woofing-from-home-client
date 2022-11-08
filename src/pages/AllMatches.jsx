@@ -1,18 +1,13 @@
-import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
-import { db } from "../firebase.config";
-import MatchCard from "../components/MatchCard";
 import {
-  collection,
-  getDocs,
+  collection, documentId, getDocs,
   query,
-  where,
-  orderBy,
-  limit,
-  startAfter,
-  documentId,
+  where
 } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import MatchCard from "../components/MatchCard";
+import { db } from "../firebase.config";
 
 function AllMatches() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -42,11 +37,11 @@ function AllMatches() {
       const matchID= match.id
 
      
-      if (match.customer1.firebaseId == currentUser) {
+      if (match.customer1.firebaseId === currentUser) {
         const oppositeMatch = matches.find(
           (match) =>
-            match.customer2.firebaseId == currentUser &&
-            match.customer1.firebaseId == customer2Id
+            match.customer2.firebaseId === currentUser &&
+            match.customer1.firebaseId === customer2Id
         );
 
         fetchFirebaseMatches(customer2Id).then((doc) => {
@@ -60,7 +55,7 @@ function AllMatches() {
               theirScore={oppositeMatch.score}
               matchID={matchID}
               theirName={doc.docs[0]["_document"]["data"]["value"]["mapValue"]["fields"]["name"]["stringValue"]}
-              theirPhotoURL={doc.docs[0]["_document"]["data"]["value"]["mapValue"]["fields"]["photoURL"]["arrayValue"]["values"][0]["stringValue"]}
+              theirPhotoURL={doc.docs[0]["_document"]["data"]["value"]["mapValue"]["fields"]["photoURL"]["stringValue"]}
             />
           );
           tempMatchCards.push(matchCard);
@@ -139,11 +134,11 @@ function AllMatches() {
       const myScore = match.score;
 
      
-      if (match.customer1.firebaseId == currentUser) {
+      if (match.customer1.firebaseId === currentUser) {
         const oppositeMatch = matches.find(
           (match) =>
-            match.customer2.firebaseId == currentUser &&
-            match.customer1.firebaseId == customer2Id
+            match.customer2.firebaseId === currentUser &&
+            match.customer1.firebaseId === customer2Id
         );
 
         fetchFirebaseMatches(customer2Id).then((doc) => {

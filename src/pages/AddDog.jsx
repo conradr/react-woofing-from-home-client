@@ -1,19 +1,14 @@
-import {Fragment, useState, useEffect} from 'react'
 import { RadioGroup } from '@headlessui/react'
-import { CameraIcon, CheckCircleIcon, InformationCircleIcon } from '@heroicons/react/20/solid'
-import { useNavigate } from 'react-router-dom'
-import { getAuth} from 'firebase/auth'
-import { getDoc,doc } from 'firebase/firestore'
-import { db } from '../firebase.config'
-import { Disclosure, Menu, Switch, Transition } from '@headlessui/react'
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { CheckCircleIcon } from '@heroicons/react/20/solid'
 import {
-  UserCircleIcon,
-  PhotoIcon,
-  RectangleGroupIcon,
-  CalendarDaysIcon,
-  UserPlusIcon,
+  CalendarDaysIcon, PhotoIcon,
+  RectangleGroupIcon, UserCircleIcon, UserPlusIcon
 } from '@heroicons/react/24/outline'
+import { getAuth } from 'firebase/auth'
+import { doc, getDoc } from 'firebase/firestore'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { db } from '../firebase.config'
 
 const subNavigation = [
   { name: 'Profile', href: '/profile', icon: UserCircleIcon, current: false },
@@ -135,9 +130,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-    const [selectedName, setSelectedName] = useState()
-    const [selectedDob, setSelectedDob] = useState()
-    const [selectedBreed, setSelectedBreed] = useState()
+    
     const [selectedDogSize, setSelectedDogSize] = useState(dogSizes[0].status)
     const [selectedActivityLevel, setSelectedActivityLevel] = useState(activityLevels[0].status)
     const [selectedHypoallergenic, setSelectedHypoallergenic] = useState(otherInfoStatuses[0].status)
@@ -195,11 +188,11 @@ const setCatStatus = (selectedOkayWithCats) => {
 
                 const setDogSize = (selectedDogSize) => {
                     setSelectedDogSize(selectedDogSize)
-                    if(selectedDogSize == 1){
+                    if(selectedDogSize === 1){
                         setFormData({...formData, 
                           size : 1})
                     }
-                    else if (selectedDogSize == 2){
+                    else if (selectedDogSize === 2){
                         setFormData({...formData, 
                           size : 2})
                     }
@@ -209,11 +202,11 @@ const setCatStatus = (selectedOkayWithCats) => {
 
                 const setActivityLevel = (selectedActivityLevel) => {
                     setSelectedActivityLevel(selectedActivityLevel)
-                    if(selectedActivityLevel == 1){
+                    if(selectedActivityLevel === 1){
                         setFormData({...formData, 
                           exerciseRequired : 1})
                     }
-                    else if (selectedActivityLevel == 2){
+                    else if (selectedActivityLevel === 2){
                         setFormData({...formData, 
                           exerciseRequired : 2})
                     }
@@ -318,7 +311,7 @@ const setCatStatus = (selectedOkayWithCats) => {
     </div>
 
 <div>
-    <label htmlFor="dob" className="ml-px block pl-4 text-sm font-medium text-gray-700">
+    <label htmlFor="dob" className="ml-px block pl-4 text-sm font-medium text-gray-700 pt-3">
         Dogs Date of Birth
       </label>
       <div className="mt-1">
@@ -334,7 +327,7 @@ const setCatStatus = (selectedOkayWithCats) => {
     </div>
 
 <div>
-    <label htmlFor="breed" className="ml-px block pl-4 text-sm font-medium text-gray-700">
+    <label htmlFor="breed" className="ml-px block pl-4 text-sm font-medium text-gray-700 pt-3">
         Dogs Breed
       </label>
       <div className="mt-1">
@@ -350,7 +343,7 @@ const setCatStatus = (selectedOkayWithCats) => {
     </div>
 
 
-    <RadioGroup
+    <RadioGroup className='pt-3'
                             value={selectedOkayWithDogs}                           
                             onChange={setOkayWithOtherDogs}
                             >
@@ -414,7 +407,7 @@ const setCatStatus = (selectedOkayWithCats) => {
 
                             
 
-                        <RadioGroup
+                        <RadioGroup className='pt-3'
                             value={selectedOkayWithCats}                           
                             onChange={setCatStatus}
                             >
@@ -474,7 +467,7 @@ const setCatStatus = (selectedOkayWithCats) => {
                           </div>
                         </RadioGroup>
 
-                        <RadioGroup
+                        <RadioGroup className='pt-3'
                             value={selectedOkayWithKids}
                             onChange={setKidsStatus}
                             >
@@ -534,7 +527,7 @@ const setCatStatus = (selectedOkayWithCats) => {
                           </div>
                         </RadioGroup>
 
-                        <RadioGroup
+                        <RadioGroup className='pt-3'
                             value={selectedCanBeLeftAone}
                             onChange={setLeftAloneStatus}
                             >
@@ -594,7 +587,7 @@ const setCatStatus = (selectedOkayWithCats) => {
                           </div>
                         </RadioGroup>
 
-                        <RadioGroup
+                        <RadioGroup className='pt-3'
                             value={selectedHypoallergenic}
                             onChange={setAllergiesStatus}
                             >
@@ -654,7 +647,7 @@ const setCatStatus = (selectedOkayWithCats) => {
                             </div>
                         </RadioGroup>
 
-                        <RadioGroup
+                        <RadioGroup className='pt-3'
                             value={selectedDogSize}
                             onChange={setDogSize}
                             >
@@ -714,7 +707,7 @@ const setCatStatus = (selectedOkayWithCats) => {
                             </div>
                         </RadioGroup>
 
-                        <RadioGroup
+                        <RadioGroup className='pt-3'
                             value={selectedActivityLevel}
                             onChange={setActivityLevel}
                             >

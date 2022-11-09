@@ -7,15 +7,11 @@ import {
   getDownloadURL,
 } from 'firebase/storage'
 import { db } from '../firebase.config'
-import { useNavigate, Link, useParams } from 'react-router-dom'
-import { getDoc, collection, updateDoc, doc } from 'firebase/firestore'
+import { useNavigate, useParams } from 'react-router-dom'
+import { getDoc, updateDoc, doc } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
 import { v4 as uuidv4 } from 'uuid'
-import arrowRight from '../assets/svg/keyboardArrowRightIcon.svg'
-import homeIcon from '../assets/svg/homeIcon.svg'
-import { Disclosure, Menu, Switch, Transition } from '@headlessui/react'
-import { CameraIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import {
   UserCircleIcon,
   PhotoIcon,

@@ -23,7 +23,7 @@ function classNames(...classes) {
 }
 
 const HeaderNav = () => {
-  const { currentUser, profileImage } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext)
 
   const navigate = useNavigate();
 
@@ -93,9 +93,9 @@ const HeaderNav = () => {
                               <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm">
                                 <span className="sr-only">Open user menu</span>
                                 <img
-                                  className="h-12 w-12 rounded-full"
-                                  src={profileImage}
-                                  alt=""
+                                  className='h-12 w-12 rounded-full'
+                                  src={currentUser.photoURL}
+                                  alt=''
                                 />
                               </Menu.Button>
                             ) : (

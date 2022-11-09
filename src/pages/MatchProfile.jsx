@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext} from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-
+import {useNavigate, useParams } from 'react-router-dom'
 import Spinner from '../components/Spinner'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
@@ -9,10 +8,6 @@ import kidIcon from '../assets/svg/kids.svg'
 import dogIcon from '../assets/svg/dog.svg'
 
 import {
-  collection,
-  query,
-  where,
-  getDocs,
   setDoc,
   doc,
   updateDoc,
@@ -31,102 +26,6 @@ import {
 import { AuthContext } from "../context/authContext";
 import {ChatContext} from '../context/chatContext';
 
-
-
-const profile = { 
-
-
-  name: 'Ricardo Cooper',
-  email: 'ricardo.cooper@example.com',
-  avatar:
-    'https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
-  backgroundImage:
-    'https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
-  fields: [
-    ['Phone', '(555) 123-4567'],
-    ['Email', 'ricardocooper@example.com'],
-    ['Title', 'Senior Front-End Developer'],
-    ['Team', 'Product Development'],
-    ['Location', 'San Francisco'],
-    ['Sits', 'Oasis, 4th floor'],
-    ['Salary', '$145,000'],
-    ['Birthday', 'June 8, 1990'],
-  ],
-}
-
-const homeSetUp = [
-  {
-    name: 'Good with Cats',
-    imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    stage: true,
-  },
-  {
-    name: 'Good with Kids',
-    imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    stage: false,
-  },
-  {
-    name: 'Allergies',
-    imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    stage: 'Not allergic',
-  },
-]
-
-
-const schedule = [
-  {
-    name: 'Monday',
-    imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    yourRequirement: true,
-    theirAvailability: true,
-  },
-  {
-    name: 'Tuesday',
-    imageUrl:
-      'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    yourRequirement: false,
-    theirAvailability: false,
-  },
-  {
-    name: 'Wednesday',
-    imageUrl:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    yourRequirement: true,
-    theirAvailability: true,
-  },
-  {
-    name: 'Thursday',
-    imageUrl:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    yourRequirement: false,
-    theirAvailability: false,
-  },
-  {
-    name: 'Friday',
-    imageUrl:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    yourRequirement: false,
-    theirAvailability: true,
-  },
-  {
-    name: 'Saturday',
-    imageUrl:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    yourRequirement: true,
-    theirAvailability: false,
-  },
-  {
-    name: 'Sunday',
-    imageUrl:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    yourRequirement: true,
-    theirAvailability: false,
-  },
-]
 
 
 const MatchProfile = () => {
@@ -246,7 +145,7 @@ const MatchProfile = () => {
         <div>
           <img
             className='h-32 w-full object-cover lg:h-48'
-            src={profile.backgroundImage}
+            src="https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fcover-image.png?alt=media&token=5fd70878-8af7-4288-909c-3341127a11de"
             alt=''
           />
         </div>

@@ -7,8 +7,9 @@ import { AuthContext } from "../context/authContext";
 import boneLogo from "../assets/svg/boneLogo.svg";
 
 const navigation = [
-  { name: "Home", href: "/", current: true },
+  { name: "Home", href: "/", current: false },
   { name: "Matches", href: "/matches", current: false },
+  { name: "Messages", href:"/messages", current: false},
   { name: "About Us", href: "/about", current: false },
   { name: "FAQ", href: "/faq", current: false },
   { name: "Contact Us", href: "/contactus", current: false },

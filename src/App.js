@@ -77,8 +77,8 @@ function App() {
                     <Route path='/matches' element={<AllMatches />} />
                   </Route>
                   
-                  <Route path='/chat' element={<PrivateRoute />}>
-                    <Route path='/chat' element={<Chat />} />
+                  <Route path='/messages' element={<PrivateRoute />}>
+                    <Route path='/messages' element={<Chat />} />
                   </Route>
 
 

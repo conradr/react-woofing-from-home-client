@@ -17,6 +17,7 @@ const SignUp = () => {
     name: '',
     email: '',
     password: '',
+    photoUrl: ''
   })
 
   const { name, email, password } = formData
@@ -45,6 +46,7 @@ const SignUp = () => {
 
       updateProfile(auth.currentUser, {
         displayName: name,
+        photoURL: "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile-default.png?alt=media&token=b393541c-8ad8-4b57-a70f-f2b4d236fa1f"
       })
 
       //create a copy of the form in state
@@ -61,6 +63,7 @@ const SignUp = () => {
       await setDoc(doc(db, 'users', user.uid), {
         name,
         email,
+        photoURL : "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile-default.png?alt=media&token=b393541c-8ad8-4b57-a70f-f2b4d236fa1f",
         timestamp: serverTimestamp(),
         uid: user.uid,
       });

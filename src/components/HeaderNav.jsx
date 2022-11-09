@@ -59,7 +59,7 @@ const HeaderNav = () => {
                         src={boneLogo}
                         alt="woofing from home logo"
                       />
-                      <span className="text-gray-300">Woofing from home</span>
+                      <span className="text-gray-300">Woofing From Home</span>
                     </a>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">

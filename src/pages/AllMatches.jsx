@@ -12,9 +12,8 @@ import { db } from "../firebase.config";
 function AllMatches() {
   const [currentUser, setCurrentUser] = useState(null);
   const [matches, setMatches] = useState([]);
-  // const [selectedMatch, setSelectedMatch] = useState(null);
   const [matchCards, setMatchCards] = useState([]);
-  // const [matchesFromCustomer1View, setMatchesFromCustomer1View] = useState([])
+
 
   //get firebaseID
   const auth = getAuth();
@@ -161,26 +160,46 @@ function AllMatches() {
   };
 
   return (
-    <div className="bg-white">
-      <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8 lg:py-24">
-        <div className="space-y-12 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0">
-          <div className="space-y-5 sm:space-y-4">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+    <>
+      <div className='bg-white'>
+        {/* Header */}
+        <div className='relative pb-20'>
+          <div className='absolute inset-0'>
+            <img
+              className='h-full w-full object-cover'
+              src='https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fmatches-cover.png?alt=media&token=0f8c8f87-f156-45aa-a00a-d4a291cd6247'
+              alt=''
+            />
+            <div
+              className='absolute inset-0 bg-gray-600 mix-blend-multiply'
+              aria-hidden='true'
+            />
+          </div>
+          <div className='relative mx-auto max-w-7xl py-24 px-4 sm:py-32 sm:px-6 lg:px-8'>
+            <h1 className='text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl'>
               Your Matches
-            </h2>
-            <p className="text-xl text-gray-500">
-              Here are some of the matches we think meet your requirements:
+            </h1>
+            <p className='mt-6 max-w-3xl text-xl text-gray-300'>
+              We think these people and their dogs <br /> will be great to speak to
             </p>
           </div>
-          <div className="lg:col-span-2">
-            <ul className="space-y-12 sm:-mt-8 sm:space-y-0 sm:divide-y sm:divide-gray-200 lg:gap-x-8 lg:space-y-0">
-              {matchCards}
-            </ul>
-          </div>
         </div>
+
+        {/* Overlapping cards */}
+        <section
+          className='relative z-10 mx-auto -mt-32 max-w-7xl px-4 pb-32 sm:px-6 lg:px-8'
+          aria-labelledby='contact-heading'
+        >
+          <h2 className='sr-only' id='contact-heading'>
+            Contact us
+          </h2>
+          <div className='grid grid-cols-1 gap-y-20 lg:grid-cols-3 lg:gap-y-0 lg:gap-x-8'>
+            {matchCards}
+          </div>
+        </section>
       </div>
-    </div>
-  );
+    </>
+  )
 }
 
 export default AllMatches;

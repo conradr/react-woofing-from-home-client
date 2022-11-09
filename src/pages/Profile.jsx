@@ -29,6 +29,12 @@ const subNavigation = [
     current: false,
   },
   {
+    name: 'Availability',
+    href: '/suitability-form',
+    icon: CalendarDaysIcon,
+    current: false,
+  },
+  {
     name: 'Your Dogs',
     href: '/add-dog',
     icon: UserPlusIcon,
@@ -40,7 +46,6 @@ const subNavigation = [
     icon: RectangleGroupIcon,
     current: false,
   },
-  { name: 'Availability', href: '/suitability-form', icon: CalendarDaysIcon, current: false },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -185,7 +190,7 @@ const Profile = () => {
                   href={item.href}
                   className={classNames(
                     item.current
-                      ? 'bg-teal-50 border-teal-500 text-teal-700 hover:bg-teal-50 hover:text-teal-700'
+                      ? 'bg-cyan-50 border-cyan-500 text-cyan-700 hover:bg-cyan-50 hover:text-cyan-700'
                       : 'border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900',
                     'group border-l-4 px-3 py-2 flex items-center text-sm font-medium'
                   )}
@@ -194,7 +199,7 @@ const Profile = () => {
                   <item.icon
                     className={classNames(
                       item.current
-                        ? 'text-teal-500 group-hover:text-teal-500'
+                        ? 'text-cyan-500 group-hover:text-cyan-500'
                         : 'text-gray-400 group-hover:text-gray-500',
                       'flex-shrink-0 -ml-1 mr-3 h-6 w-6'
                     )}
@@ -249,7 +254,7 @@ const Profile = () => {
                               changeDetails && onSubmit()
                               setChangeDetails((prevState) => !prevState)
                             }}
-                            className='rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2'
+                            className='rounded-md bg-white font-medium text-cyan-600 hover:text-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2'
                           >
                             {changeDetails ? 'Done' : 'Update'}
                           </button>
@@ -283,7 +288,7 @@ const Profile = () => {
                               changeDetails && onSubmit()
                               setChangeDetails((prevState) => !prevState)
                             }}
-                            className='rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2'
+                            className='rounded-md bg-white font-medium text-cyan-600 hover:text-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2'
                           >
                             {changeDetails ? 'Done' : 'Update'}
                           </button>
@@ -316,7 +321,7 @@ const Profile = () => {
                               changeDetails && onSubmit()
                               setChangeDetails((prevState) => !prevState)
                             }}
-                            className='rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2'
+                            className='rounded-md bg-white font-medium text-cyan-600 hover:text-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2'
                           >
                             {changeDetails ? 'Done' : 'Update'}
                           </button>
@@ -349,7 +354,7 @@ const Profile = () => {
                               changeDetails && onSubmit()
                               setChangeDetails((prevState) => !prevState)
                             }}
-                            className='rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2'
+                            className='rounded-md bg-white font-medium text-cyan-600 hover:text-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2'
                           >
                             {changeDetails ? 'Done' : 'Update'}
                           </button>
@@ -362,7 +367,7 @@ const Profile = () => {
                       <dd className='mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0 '>
                         <button
                           type='button'
-                          className='bg-purple-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded float-right '
+                          className='bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded float-right '
                           onClick={onLogout}
                         >
                           Log Out

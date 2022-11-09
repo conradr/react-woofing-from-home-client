@@ -1,5 +1,7 @@
 import {
-  createUserWithEmailAndPassword, getAuth, updateProfile
+  createUserWithEmailAndPassword,
+  getAuth,
+  updateProfile,
 } from 'firebase/auth'
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
 import { useState } from 'react'
@@ -18,7 +20,7 @@ const SignUp = () => {
     email: '',
     password: '',
     photoUrl: '',
-    imgUrls: ''
+    imgUrls: '',
   })
 
   const { name, email, password } = formData
@@ -47,7 +49,8 @@ const SignUp = () => {
 
       updateProfile(auth.currentUser, {
         displayName: name,
-        photoURL: "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile-default.png?alt=media&token=b393541c-8ad8-4b57-a70f-f2b4d236fa1f"
+        photoURL:
+          'https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile-default.png?alt=media&token=b393541c-8ad8-4b57-a70f-f2b4d236fa1f',
       })
 
       //create a copy of the form in state
@@ -64,16 +67,18 @@ const SignUp = () => {
       await setDoc(doc(db, 'users', user.uid), {
         name,
         email,
-        photoURL : "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile-default.png?alt=media&token=b393541c-8ad8-4b57-a70f-f2b4d236fa1f",
+        photoURL:
+          'https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile-default.png?alt=media&token=b393541c-8ad8-4b57-a70f-f2b4d236fa1f',
         imgUrls: [
-          "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile4.png?alt=media&token=92d4ad56-f366-4624-9ee5-d06e60b12899]",
-          "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile3.png?alt=media&token=6c4b4516-7a15-4756-8212-7df6d6ba13cf",
-          "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile2.png?alt=media&token=24e3cbb7-5052-45a6-ad0b-c4d10400aa65",
-          "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile1.png?alt=media&token=b16abbae-37f5-4fb5-a558-b9c21bcdcec3"],
+          'https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile4.png?alt=media&token=92d4ad56-f366-4624-9ee5-d06e60b12899]',
+          'https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile3.png?alt=media&token=6c4b4516-7a15-4756-8212-7df6d6ba13cf',
+          'https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile2.png?alt=media&token=24e3cbb7-5052-45a6-ad0b-c4d10400aa65',
+          'https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile1.png?alt=media&token=b16abbae-37f5-4fb5-a558-b9c21bcdcec3',
+        ],
         timestamp: serverTimestamp(),
         uid: user.uid,
-      });
-      await setDoc(doc(db, "userChats", user.uid), {});
+      })
+      await setDoc(doc(db, 'userChats', user.uid), {})
       navigate('/finish-profile')
     } catch (error) {
       toast.error('Something went wrong with registration')
@@ -99,7 +104,7 @@ const SignUp = () => {
                   Already have an account?
                   <Link
                     to='/sign-in'
-                    className='font-medium text-indigo-600 hover:text-indigo-500'
+                    className='font-medium text-cyan-600 hover:text-cyan-500'
                   >
                     Sign In
                   </Link>
@@ -107,7 +112,7 @@ const SignUp = () => {
               </div>
 
               <div className='mt-8'>
-                <OAuth/>
+                <OAuth />
 
                 <div className='mt-6'>
                   <form onSubmit={onSubmit} className='space-y-6'>
@@ -127,7 +132,7 @@ const SignUp = () => {
                           value={name}
                           onChange={onChange}
                           required
-                          className='block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
+                          className='block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500 sm:text-sm'
                         />
                       </div>
                     </div>
@@ -148,7 +153,7 @@ const SignUp = () => {
                           value={email}
                           onChange={onChange}
                           required
-                          className='block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
+                          className='block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500 sm:text-sm'
                         />
                       </div>
                     </div>
@@ -169,7 +174,7 @@ const SignUp = () => {
                           value={password}
                           onChange={onChange}
                           required
-                          className='block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm'
+                          className='block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-cyan-500 focus:outline-none focus:ring-cyan-500 sm:text-sm'
                         />
                         <div className='absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5'>
                           <img
@@ -187,12 +192,11 @@ const SignUp = () => {
                     <div>
                       <button
                         type='submit'
-                        className='flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                        className='flex w-full justify-center rounded-md border border-transparent bg-cyan-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2'
                       >
                         Sign up
                       </button>
                     </div>
-                   
                   </form>
                 </div>
               </div>
@@ -207,9 +211,9 @@ const SignUp = () => {
           </div>
         </div>
       </main>
-    {/* todo - remove breaks */}
-    <br/>
-    <br/>
+      {/* todo - remove breaks */}
+      <br />
+      <br />
     </>
   )
 }

@@ -32,7 +32,7 @@ function Footer() {
             <div className='mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0'>
               <button
                 type='submit'
-                className='flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-500 py-2 px-4 text-base font-medium text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-800'
+                className='flex w-full items-center justify-center rounded-md border border-transparent bg-cyan-500 py-2 px-4 text-base font-medium text-white hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-gray-800'
               >
                 Subscribe
               </button>

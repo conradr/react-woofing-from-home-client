@@ -402,7 +402,8 @@ function SuitabilityForm() {
 
               <div className='mt-10 divide-y divide-gray-200'>
                 <div className='mt-6'>
-                  <RadioGroup className='pt-4'
+                  <RadioGroup
+                    className='pt-4'
                     value={selectedDailyStatusMonday}
                     onChange={setDailyStatusInFormMonday}
                   >
@@ -420,7 +421,7 @@ function SuitabilityForm() {
                                 ? 'border-transparent'
                                 : 'border-gray-300',
                               active
-                                ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                ? 'border-cyan-500 ring-2 ring-cyan-500'
                                 : '',
                               'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                             )
@@ -441,7 +442,7 @@ function SuitabilityForm() {
                               <CheckCircleIcon
                                 className={classNames(
                                   !checked ? 'invisible' : '',
-                                  'h-5 w-5 text-indigo-600'
+                                  'h-5 w-5 text-cyan-600'
                                 )}
                                 aria-hidden='true'
                               />
@@ -449,7 +450,7 @@ function SuitabilityForm() {
                                 className={classNames(
                                   active ? 'border' : 'border-2',
                                   checked
-                                    ? 'border-indigo-500'
+                                    ? 'border-cyan-500'
                                     : 'border-transparent',
                                   'pointer-events-none absolute -inset-px rounded-lg'
                                 )}
@@ -462,7 +463,8 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup className='pt-4'
+                  <RadioGroup
+                    className='pt-4'
                     value={selectedDailyStatusTuesday}
                     onChange={setDailyStatusInFormTuesday}
                   >
@@ -480,7 +482,7 @@ function SuitabilityForm() {
                                 ? 'border-transparent'
                                 : 'border-gray-300',
                               active
-                                ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                ? 'border-cyan-500 ring-2 ring-cyan-500'
                                 : '',
                               'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                             )
@@ -501,7 +503,7 @@ function SuitabilityForm() {
                               <CheckCircleIcon
                                 className={classNames(
                                   !checked ? 'invisible' : '',
-                                  'h-5 w-5 text-indigo-600'
+                                  'h-5 w-5 text-cyan-600'
                                 )}
                                 aria-hidden='true'
                               />
@@ -509,7 +511,7 @@ function SuitabilityForm() {
                                 className={classNames(
                                   active ? 'border' : 'border-2',
                                   checked
-                                    ? 'border-indigo-500'
+                                    ? 'border-cyan-500'
                                     : 'border-transparent',
                                   'pointer-events-none absolute -inset-px rounded-lg'
                                 )}
@@ -522,7 +524,8 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup className='pt-4'
+                  <RadioGroup
+                    className='pt-4'
                     value={selectedDailyStatusWednesday}
                     onChange={setDailyStatusInFormWednesday}
                   >
@@ -540,7 +543,7 @@ function SuitabilityForm() {
                                 ? 'border-transparent'
                                 : 'border-gray-300',
                               active
-                                ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                ? 'border-cyan-500 ring-2 ring-cyan-500'
                                 : '',
                               'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                             )
@@ -561,7 +564,7 @@ function SuitabilityForm() {
                               <CheckCircleIcon
                                 className={classNames(
                                   !checked ? 'invisible' : '',
-                                  'h-5 w-5 text-indigo-600'
+                                  'h-5 w-5 text-cyan-600'
                                 )}
                                 aria-hidden='true'
                               />
@@ -569,7 +572,7 @@ function SuitabilityForm() {
                                 className={classNames(
                                   active ? 'border' : 'border-2',
                                   checked
-                                    ? 'border-indigo-500'
+                                    ? 'border-cyan-500'
                                     : 'border-transparent',
                                   'pointer-events-none absolute -inset-px rounded-lg'
                                 )}
@@ -582,7 +585,8 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup className='pt-4'
+                  <RadioGroup
+                    className='pt-4'
                     value={selectedDailyStatusThursday}
                     onChange={setDailyStatusInFormThursday}
                   >
@@ -600,7 +604,7 @@ function SuitabilityForm() {
                                 ? 'border-transparent'
                                 : 'border-gray-300',
                               active
-                                ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                ? 'border-cyan-500 ring-2 ring-cyan-500'
                                 : '',
                               'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                             )
@@ -621,7 +625,7 @@ function SuitabilityForm() {
                               <CheckCircleIcon
                                 className={classNames(
                                   !checked ? 'invisible' : '',
-                                  'h-5 w-5 text-indigo-600'
+                                  'h-5 w-5 text-cyan-600'
                                 )}
                                 aria-hidden='true'
                               />
@@ -629,7 +633,7 @@ function SuitabilityForm() {
                                 className={classNames(
                                   active ? 'border' : 'border-2',
                                   checked
-                                    ? 'border-indigo-500'
+                                    ? 'border-cyan-500'
                                     : 'border-transparent',
                                   'pointer-events-none absolute -inset-px rounded-lg'
                                 )}
@@ -642,7 +646,8 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup className='pt-4'
+                  <RadioGroup
+                    className='pt-4'
                     value={selectedDailyStatusFriday}
                     onChange={setDailyStatusInFormFriday}
                   >
@@ -660,7 +665,7 @@ function SuitabilityForm() {
                                 ? 'border-transparent'
                                 : 'border-gray-300',
                               active
-                                ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                ? 'border-cyan-500 ring-2 ring-cyan-500'
                                 : '',
                               'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                             )
@@ -681,7 +686,7 @@ function SuitabilityForm() {
                               <CheckCircleIcon
                                 className={classNames(
                                   !checked ? 'invisible' : '',
-                                  'h-5 w-5 text-indigo-600'
+                                  'h-5 w-5 text-cyan-600'
                                 )}
                                 aria-hidden='true'
                               />
@@ -689,7 +694,7 @@ function SuitabilityForm() {
                                 className={classNames(
                                   active ? 'border' : 'border-2',
                                   checked
-                                    ? 'border-indigo-500'
+                                    ? 'border-cyan-500'
                                     : 'border-transparent',
                                   'pointer-events-none absolute -inset-px rounded-lg'
                                 )}
@@ -702,7 +707,8 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup className='pt-4'
+                  <RadioGroup
+                    className='pt-4'
                     value={selectedDailyStatusSaturday}
                     onChange={setDailyStatusInFormSaturday}
                   >
@@ -720,7 +726,7 @@ function SuitabilityForm() {
                                 ? 'border-transparent'
                                 : 'border-gray-300',
                               active
-                                ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                ? 'border-cyan-500 ring-2 ring-cyan-500'
                                 : '',
                               'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                             )
@@ -741,7 +747,7 @@ function SuitabilityForm() {
                               <CheckCircleIcon
                                 className={classNames(
                                   !checked ? 'invisible' : '',
-                                  'h-5 w-5 text-indigo-600'
+                                  'h-5 w-5 text-cyan-600'
                                 )}
                                 aria-hidden='true'
                               />
@@ -749,7 +755,7 @@ function SuitabilityForm() {
                                 className={classNames(
                                   active ? 'border' : 'border-2',
                                   checked
-                                    ? 'border-indigo-500'
+                                    ? 'border-cyan-500'
                                     : 'border-transparent',
                                   'pointer-events-none absolute -inset-px rounded-lg'
                                 )}
@@ -762,7 +768,8 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup className='pt-4'
+                  <RadioGroup
+                    className='pt-4'
                     value={selectedDailyStatusSunday}
                     onChange={setDailyStatusInFormSunday}
                   >
@@ -780,7 +787,7 @@ function SuitabilityForm() {
                                 ? 'border-transparent'
                                 : 'border-gray-300',
                               active
-                                ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                ? 'border-cyan-500 ring-2 ring-cyan-500'
                                 : '',
                               'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                             )
@@ -801,7 +808,7 @@ function SuitabilityForm() {
                               <CheckCircleIcon
                                 className={classNames(
                                   !checked ? 'invisible' : '',
-                                  'h-5 w-5 text-indigo-600'
+                                  'h-5 w-5 text-cyan-600'
                                 )}
                                 aria-hidden='true'
                               />
@@ -809,7 +816,7 @@ function SuitabilityForm() {
                                 className={classNames(
                                   active ? 'border' : 'border-2',
                                   checked
-                                    ? 'border-indigo-500'
+                                    ? 'border-cyan-500'
                                     : 'border-transparent',
                                   'pointer-events-none absolute -inset-px rounded-lg'
                                 )}
@@ -822,7 +829,11 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup className='pt-4' value={selectedCatStatus} onChange={setCatStatus}>
+                  <RadioGroup
+                    className='pt-4'
+                    value={selectedCatStatus}
+                    onChange={setCatStatus}
+                  >
                     <RadioGroup.Label className='text-base font-medium text-gray-900 py-3'>
                       Do you have cats?
                     </RadioGroup.Label>
@@ -837,7 +848,7 @@ function SuitabilityForm() {
                                 ? 'border-transparent'
                                 : 'border-gray-300',
                               active
-                                ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                ? 'border-cyan-500 ring-2 ring-cyan-500'
                                 : '',
                               'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                             )
@@ -858,7 +869,7 @@ function SuitabilityForm() {
                               <CheckCircleIcon
                                 className={classNames(
                                   !checked ? 'invisible' : '',
-                                  'h-5 w-5 text-indigo-600'
+                                  'h-5 w-5 text-cyan-600'
                                 )}
                                 aria-hidden='true'
                               />
@@ -866,7 +877,7 @@ function SuitabilityForm() {
                                 className={classNames(
                                   active ? 'border' : 'border-2',
                                   checked
-                                    ? 'border-indigo-500'
+                                    ? 'border-cyan-500'
                                     : 'border-transparent',
                                   'pointer-events-none absolute -inset-px rounded-lg'
                                 )}
@@ -879,7 +890,8 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup className='pt-4'
+                  <RadioGroup
+                    className='pt-4'
                     value={selectedKidsStatus}
                     onChange={setKidsStatus}
                   >
@@ -897,7 +909,7 @@ function SuitabilityForm() {
                                 ? 'border-transparent'
                                 : 'border-gray-300',
                               active
-                                ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                ? 'border-cyan-500 ring-2 ring-cyan-500'
                                 : '',
                               'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                             )
@@ -918,7 +930,7 @@ function SuitabilityForm() {
                               <CheckCircleIcon
                                 className={classNames(
                                   !checked ? 'invisible' : '',
-                                  'h-5 w-5 text-indigo-600'
+                                  'h-5 w-5 text-cyan-600'
                                 )}
                                 aria-hidden='true'
                               />
@@ -926,7 +938,7 @@ function SuitabilityForm() {
                                 className={classNames(
                                   active ? 'border' : 'border-2',
                                   checked
-                                    ? 'border-indigo-500'
+                                    ? 'border-cyan-500'
                                     : 'border-transparent',
                                   'pointer-events-none absolute -inset-px rounded-lg'
                                 )}
@@ -939,7 +951,8 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup className='pt-4'
+                  <RadioGroup
+                    className='pt-4'
                     value={selectedLeftAloneStatus}
                     onChange={setLeftAloneStatus}
                   >
@@ -958,7 +971,7 @@ function SuitabilityForm() {
                                 ? 'border-transparent'
                                 : 'border-gray-300',
                               active
-                                ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                ? 'border-cyan-500 ring-2 ring-cyan-500'
                                 : '',
                               'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                             )
@@ -979,7 +992,7 @@ function SuitabilityForm() {
                               <CheckCircleIcon
                                 className={classNames(
                                   !checked ? 'invisible' : '',
-                                  'h-5 w-5 text-indigo-600'
+                                  'h-5 w-5 text-cyan-600'
                                 )}
                                 aria-hidden='true'
                               />
@@ -987,7 +1000,7 @@ function SuitabilityForm() {
                                 className={classNames(
                                   active ? 'border' : 'border-2',
                                   checked
-                                    ? 'border-indigo-500'
+                                    ? 'border-cyan-500'
                                     : 'border-transparent',
                                   'pointer-events-none absolute -inset-px rounded-lg'
                                 )}
@@ -1000,7 +1013,8 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup className='pt-4'
+                  <RadioGroup
+                    className='pt-4'
                     value={selectedAllergiesStatus}
                     onChange={setAllergiesStatus}
                   >
@@ -1019,7 +1033,7 @@ function SuitabilityForm() {
                                 ? 'border-transparent'
                                 : 'border-gray-300',
                               active
-                                ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                ? 'border-cyan-500 ring-2 ring-cyan-500'
                                 : '',
                               'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                             )
@@ -1040,7 +1054,7 @@ function SuitabilityForm() {
                               <CheckCircleIcon
                                 className={classNames(
                                   !checked ? 'invisible' : '',
-                                  'h-5 w-5 text-indigo-600'
+                                  'h-5 w-5 text-cyan-600'
                                 )}
                                 aria-hidden='true'
                               />
@@ -1048,7 +1062,7 @@ function SuitabilityForm() {
                                 className={classNames(
                                   active ? 'border' : 'border-2',
                                   checked
-                                    ? 'border-indigo-500'
+                                    ? 'border-cyan-500'
                                     : 'border-transparent',
                                   'pointer-events-none absolute -inset-px rounded-lg'
                                 )}
@@ -1061,7 +1075,11 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup className='pt-4' value={selectedDogSize} onChange={setDogSize}>
+                  <RadioGroup
+                    className='pt-4'
+                    value={selectedDogSize}
+                    onChange={setDogSize}
+                  >
                     <RadioGroup.Label className='text-base font-medium text-gray-900 my-2 py-3'>
                       What is the maximum dog size you are able or willing to
                       look after?
@@ -1077,7 +1095,7 @@ function SuitabilityForm() {
                                 ? 'border-transparent'
                                 : 'border-gray-300',
                               active
-                                ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                ? 'border-cyan-500 ring-2 ring-cyan-500'
                                 : '',
                               'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                             )
@@ -1098,7 +1116,7 @@ function SuitabilityForm() {
                               <CheckCircleIcon
                                 className={classNames(
                                   !checked ? 'invisible' : '',
-                                  'h-5 w-5 text-indigo-600'
+                                  'h-5 w-5 text-cyan-600'
                                 )}
                                 aria-hidden='true'
                               />
@@ -1106,7 +1124,7 @@ function SuitabilityForm() {
                                 className={classNames(
                                   active ? 'border' : 'border-2',
                                   checked
-                                    ? 'border-indigo-500'
+                                    ? 'border-cyan-500'
                                     : 'border-transparent',
                                   'pointer-events-none absolute -inset-px rounded-lg'
                                 )}
@@ -1119,7 +1137,8 @@ function SuitabilityForm() {
                     </div>
                   </RadioGroup>
 
-                  <RadioGroup className='pt-4'
+                  <RadioGroup
+                    className='pt-4'
                     value={selectedActivityLevel}
                     onChange={setActivityLevel}
                   >
@@ -1138,7 +1157,7 @@ function SuitabilityForm() {
                                 ? 'border-transparent'
                                 : 'border-gray-300',
                               active
-                                ? 'border-indigo-500 ring-2 ring-indigo-500'
+                                ? 'border-cyan-500 ring-2 ring-cyan-500'
                                 : '',
                               'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                             )
@@ -1161,7 +1180,7 @@ function SuitabilityForm() {
                               <CheckCircleIcon
                                 className={classNames(
                                   !checked ? 'invisible' : '',
-                                  'h-5 w-5 text-indigo-600'
+                                  'h-5 w-5 text-cyan-600'
                                 )}
                                 aria-hidden='true'
                               />
@@ -1169,7 +1188,7 @@ function SuitabilityForm() {
                                 className={classNames(
                                   active ? 'border' : 'border-2',
                                   checked
-                                    ? 'border-indigo-500'
+                                    ? 'border-cyan-500'
                                     : 'border-transparent',
                                   'pointer-events-none absolute -inset-px rounded-lg'
                                 )}
@@ -1187,7 +1206,7 @@ function SuitabilityForm() {
             <div className='py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 float-right'>
               <button
                 type='button'
-                className='inline-flex  rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                className='inline-flex  rounded-md border border-transparent bg-cyan-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2'
                 onClick={onSubmit}
               >
                 Submit

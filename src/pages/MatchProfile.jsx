@@ -1,5 +1,5 @@
-import { useEffect, useState, useContext} from 'react'
-import {useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useState, useContext } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import Spinner from '../components/Spinner'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
@@ -13,8 +13,7 @@ import {
   updateDoc,
   serverTimestamp,
   getDoc,
-} from "firebase/firestore";
-
+} from 'firebase/firestore'
 
 import {
   CheckCircleIcon,
@@ -23,18 +22,16 @@ import {
   XCircleIcon,
 } from '@heroicons/react/20/solid'
 
-import { AuthContext } from "../context/authContext";
-import {ChatContext} from '../context/chatContext';
-
-
+import { AuthContext } from '../context/authContext'
+import { ChatContext } from '../context/chatContext'
 
 const MatchProfile = () => {
   const [loading, setLoading] = useState(true)
   const [match, setMatch] = useState(null)
   const [matches, setMatches] = useState(null)
 
-  const { currentUser } = useContext(AuthContext);
-  const { dispatch } = useContext(ChatContext);
+  const { currentUser } = useContext(AuthContext)
+  const { dispatch } = useContext(ChatContext)
 
   const navigate = useNavigate()
   const params = useParams()
@@ -45,17 +42,14 @@ const MatchProfile = () => {
       const docRef = doc(db, 'users', params.customer2Id)
       const docSnap = await getDoc(docRef)
 
-       if (docSnap.exists()) {
+      if (docSnap.exists()) {
         setMatch(docSnap.data())
         setLoading(false)
       }
     }
     fetchMatch()
     getAllMatches()
-
   }, [navigate, params.listingId])
-
-  
 
   const getAllMatches = async () => {
     await fetch(
@@ -64,7 +58,6 @@ const MatchProfile = () => {
       .then((res) => res.json())
       .then((matches) => setMatches(matches))
   }
-
 
   if (loading) {
     return <Spinner />
@@ -75,9 +68,8 @@ const MatchProfile = () => {
     // handleSearch()
     handleSelect()
     handleChangeUser()
-    navigate("/chat")
+    navigate('/messages')
   }
-
 
   // const handleSearch = async () => {
   //   const q = query(
@@ -94,50 +86,48 @@ const MatchProfile = () => {
   //   }
   // };
 
-
   const handleSelect = async () => {
-
     //check whether the group(chats in firestore) exists, if not create
     const combinedId =
       currentUser.uid > match.uid
         ? currentUser.uid + match.uid
-        : match.uid + currentUser.uid;
+        : match.uid + currentUser.uid
     try {
-      const res = await getDoc(doc(db, "chats", combinedId));
+      const res = await getDoc(doc(db, 'chats', combinedId))
 
       if (!res.exists()) {
         //create a chat in chats collection
-        await setDoc(doc(db, "chats", combinedId), { messages: [] });
+        await setDoc(doc(db, 'chats', combinedId), { messages: [] })
 
         //create user chats
-        await updateDoc(doc(db, "userChats", currentUser.uid), {
-          [combinedId + ".userInfo"]: {
+        await updateDoc(doc(db, 'userChats', currentUser.uid), {
+          [combinedId + '.userInfo']: {
             uid: match.uid,
             displayName: match.name,
             photoURL: match.photoURL,
           },
-          [combinedId + ".date"]: serverTimestamp(),
-        });
+          [combinedId + '.date']: serverTimestamp(),
+        })
 
-        await updateDoc(doc(db, "userChats", match.uid), {
-          [combinedId + ".userInfo"]: {
+        await updateDoc(doc(db, 'userChats', match.uid), {
+          [combinedId + '.userInfo']: {
             uid: currentUser.uid,
             displayName: currentUser.displayName,
             photoURL: currentUser.photoURL,
           },
-          [combinedId + ".date"]: serverTimestamp(),
-        });
+          [combinedId + '.date']: serverTimestamp(),
+        })
       }
-    } catch (err) {console.log(err)}
-  };
+    } catch (err) {
+      console.log(err)
+    }
+  }
   const handleChangeUser = () => {
-    dispatch({ type: "CHANGE_USER", payload: 
-  {name: match.name,
-    uid: match.uid,
-    photoURL : match.photoURL 
-  }});
-  };
-
+    dispatch({
+      type: 'CHANGE_USER',
+      payload: { name: match.name, uid: match.uid, photoURL: match.photoURL },
+    })
+  }
 
   return (
     <>
@@ -145,7 +135,7 @@ const MatchProfile = () => {
         <div>
           <img
             className='h-32 w-full object-cover lg:h-48'
-            src="https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fcover-image.png?alt=media&token=5fd70878-8af7-4288-909c-3341127a11de"
+            src='https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fcover-image.png?alt=media&token=5fd70878-8af7-4288-909c-3341127a11de'
             alt=''
           />
         </div>
@@ -167,12 +157,12 @@ const MatchProfile = () => {
               <div className='justify-stretch mt-6 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4'>
                 <button
                   type='button'
-                  className='inline-flex justify-center rounded-md border border-gray-800 bg-slate-300 px-4 py-2 text-m font-medium text-gray-700 shadow-sm hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2'
-                onClick={handleClick}
-                value={match.name}
+                  className='inline-flex justify-center rounded-md  bg-rose-500 px-4 py-2 text-m font-medium text-white shadow-sm hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2'
+                  onClick={handleClick}
+                  value={match.name}
                 >
                   <EnvelopeIcon
-                    className='-ml-1 mr-2 h-5 w-5 text-gray-400'
+                    className='-ml-1 mr-2 h-5 w-5 text-white'
                     aria-hidden='true'
                   />
                   <span>Message</span>
@@ -251,7 +241,7 @@ const MatchProfile = () => {
                 </div>
                 <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4'>
                   <div>
-                    <p className='truncate text-m font-medium text-indigo-600'>
+                    <p className='truncate text-m font-medium text-cyan-600'>
                       Do cats live here?
                     </p>
                   </div>
@@ -294,7 +284,7 @@ const MatchProfile = () => {
                 </div>
                 <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4'>
                   <div>
-                    <p className='truncate text-m font-medium text-indigo-600'>
+                    <p className='truncate text-m font-medium text-cyan-600'>
                       Are there kids in the home?
                     </p>
                   </div>
@@ -337,7 +327,7 @@ const MatchProfile = () => {
                 </div>
                 <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4'>
                   <div>
-                    <p className='truncate text-m font-medium text-indigo-600'>
+                    <p className='truncate text-m font-medium text-cyan-600'>
                       Are there other dogs?
                     </p>
                   </div>
@@ -390,7 +380,7 @@ const MatchProfile = () => {
                 </div>
                 <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4'>
                   <div>
-                    <p className='truncate text-m font-medium text-indigo-600'>
+                    <p className='truncate text-m font-medium text-cyan-600'>
                       Monday
                     </p>
                   </div>
@@ -452,7 +442,7 @@ const MatchProfile = () => {
                 </div>
                 <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4'>
                   <div>
-                    <p className='truncate text-m font-medium text-indigo-600'>
+                    <p className='truncate text-m font-medium text-cyan-600'>
                       Tuesday
                     </p>
                   </div>
@@ -514,7 +504,7 @@ const MatchProfile = () => {
                 </div>
                 <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4'>
                   <div>
-                    <p className='truncate text-m font-medium text-indigo-600'>
+                    <p className='truncate text-m font-medium text-cyan-600'>
                       Wednesday
                     </p>
                   </div>
@@ -576,7 +566,7 @@ const MatchProfile = () => {
                 </div>
                 <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4'>
                   <div>
-                    <p className='truncate text-m font-medium text-indigo-600'>
+                    <p className='truncate text-m font-medium text-cyan-600'>
                       Thursday
                     </p>
                   </div>
@@ -638,7 +628,7 @@ const MatchProfile = () => {
                 </div>
                 <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4'>
                   <div>
-                    <p className='truncate text-m font-medium text-indigo-600'>
+                    <p className='truncate text-m font-medium text-cyan-600'>
                       Friday
                     </p>
                   </div>
@@ -700,7 +690,7 @@ const MatchProfile = () => {
                 </div>
                 <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4'>
                   <div>
-                    <p className='truncate text-m font-medium text-indigo-600'>
+                    <p className='truncate text-m font-medium text-cyan-600'>
                       Saturday
                     </p>
                   </div>
@@ -762,7 +752,7 @@ const MatchProfile = () => {
                 </div>
                 <div className='min-w-0 flex-1 px-4 md:grid md:grid-cols-3 md:gap-4'>
                   <div>
-                    <p className='truncate text-m font-medium text-indigo-600'>
+                    <p className='truncate text-m font-medium text-cyan-600'>
                       Sunday
                     </p>
                   </div>
@@ -817,7 +807,6 @@ const MatchProfile = () => {
             </div>
           </li>
         </ul>
-        
       </div>
     </>
   )

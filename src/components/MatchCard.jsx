@@ -27,14 +27,12 @@ const MatchCard = ({
         <div className='flex flex-col pt-6'>
           <h3>
             They meet{' '}
-            <span className='text-indigo-600 '>
-              {Math.round(myScore, 0)} %{' '}
-            </span>
+            <span className='text-cyan-600 '>{Math.round(myScore, 0)} % </span>
             of your needs
           </h3>
           <h3>
             You meet{' '}
-            <span className='text-indigo-600'>
+            <span className='text-cyan-600'>
               {Math.round(theirScore, 0)} %{' '}
             </span>
             of their needs
@@ -65,7 +63,7 @@ const MatchCard = ({
       <div className='rounded-bl-2xl rounded-br-2xl bg-gray-50 p-6 md:px-8'>
         <Link
           to={`/matches/${matchID}/${customer2Id}`}
-          className='text-base font-medium text-indigo-700 hover:text-indigo-600'
+          className='text-base font-medium text-cyan-700 hover:text-cyan-600'
         >
           See this match<span aria-hidden='true'> &rarr;</span>
         </Link>

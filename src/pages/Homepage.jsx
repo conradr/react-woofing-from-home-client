@@ -1,4 +1,3 @@
-
 import { Fragment, useContext } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import {
@@ -11,13 +10,12 @@ import { AuthContext } from '../context/authContext'
 import { MegaphoneIcon } from '@heroicons/react/24/outline'
 
 const Homepage = () => {
-    const { currentUser } = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext)
 
   return (
     <>
       <div className='bg-white'>
         <div className='mx-auto max-w-1xl py-2 px-2 text-center sm:px-6 lg:py-4 lg:px-4'>
-          
           <div className='border-l-4 border-yellow-400 bg-yellow-50 p-4'>
             <div className='flex'>
               <div className='flex-shrink-0'>
@@ -41,7 +39,6 @@ const Homepage = () => {
               </div>
             </div>
           </div>
-          
         </div>
       </div>
 
@@ -79,12 +76,12 @@ const Homepage = () => {
                       <div>
                         <img
                           className='h-8 w-auto'
-                          src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
+                          src='https://tailwindui.com/img/logos/mark.svg?color=cyan&shade=600'
                           alt=''
                         />
                       </div>
                       <div className='-mr-2'>
-                        <Popover.Button className='inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'>
+                        <Popover.Button className='inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500'>
                           <span className='sr-only'>Close main menu</span>
                           <XMarkIcon className='h-6 w-6' aria-hidden='true' />
                         </Popover.Button>
@@ -93,7 +90,7 @@ const Homepage = () => {
 
                     <a
                       href='#'
-                      className='block w-full bg-gray-50 px-5 py-3 text-center font-medium text-indigo-600 hover:bg-gray-100'
+                      className='block w-full bg-gray-50 px-5 py-3 text-center font-medium text-cyan-600 hover:bg-gray-100'
                     >
                       Log in
                     </a>
@@ -108,7 +105,7 @@ const Homepage = () => {
                   <span className='block xl:inline'>
                     Find your next dog sitter with{' '}
                   </span>
-                  <span className='block text-indigo-600 xl:inline'>
+                  <span className='block text-cyan-600 xl:inline'>
                     Woofing From Home
                   </span>
                 </h1>
@@ -121,7 +118,7 @@ const Homepage = () => {
                     <div className='rounded-md shadow'>
                       <a
                         href='/sign-up'
-                        className='flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 md:py-4 md:px-10 md:text-lg'
+                        className='flex w-full items-center justify-center rounded-md border border-transparent bg-cyan-600 px-8 py-3 text-base font-medium text-white hover:bg-cyan-700 md:py-4 md:px-10 md:text-lg'
                       >
                         Sign Up
                       </a>
@@ -130,7 +127,7 @@ const Homepage = () => {
                     <div className='mt-3 sm:mt-0 sm:ml-3'>
                       <a
                         href='/sign-in'
-                        className='flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-100 px-8 py-3 text-base font-medium text-indigo-700 hover:bg-indigo-200 md:py-4 md:px-10 md:text-lg'
+                        className='flex w-full items-center justify-center rounded-md border border-transparent bg-rose-500 px-8 py-3 text-base font-medium text-white hover:bg-rose-600 md:py-4 md:px-10 md:text-lg'
                       >
                         Sign In
                       </a>
@@ -152,17 +149,17 @@ const Homepage = () => {
         </div>
       </div>
 
-      <div className='bg-indigo-700'>
+      <div className='bg-cyan-900'>
         <div className='mx-auto max-w-2xl py-16 px-4 text-center sm:py-20 sm:px-6 lg:px-8'>
           <h2 className='text-3xl font-bold tracking-tight text-white sm:text-4xl'>
             <span className='block'>Whats Woofing From Home All About?</span>
           </h2>
-          <p className='mt-4 text-lg leading-6 text-indigo-200'>
+          <p className='mt-4 text-lg leading-6 text-cyan-200'>
             Check out our frequently asked questions page to find out more.
           </p>
           <a
             href='/faq'
-            className='mt-8 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-white px-5 py-3 text-base font-medium text-indigo-600 hover:bg-indigo-50 sm:w-auto'
+            className='mt-8 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-rose-500 px-5 py-3 text-base font-medium text-white hover:bg-rose-600 sm:w-auto'
           >
             Frequently Asked Questions
           </a>
@@ -170,7 +167,7 @@ const Homepage = () => {
       </div>
 
       <div className='relative bg-white'>
-        <div className='h-56 bg-indigo-600 sm:h-72 lg:absolute lg:left-0 lg:h-full lg:w-1/2'>
+        <div className='h-56 bg-cyan-600 sm:h-72 lg:absolute lg:left-0 lg:h-full lg:w-1/2'>
           <img
             className='h-full w-full object-cover'
             src='https://a-z-animals.com/media/2021/01/set-of-dogs.jpg'
@@ -179,11 +176,6 @@ const Homepage = () => {
         </div>
         <div className='relative mx-auto max-w-7xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16'>
           <div className='mx-auto max-w-2xl lg:mr-0 lg:ml-auto lg:w-1/2 lg:max-w-none lg:pl-10'>
-            <div>
-              <div className='flex h-12 w-12 items-center justify-center rounded-md bg-indigo-500 text-white'>
-                <UsersIcon className='h-6 w-6' aria-hidden='true' />
-              </div>
-            </div>
             <h2 className='mt-6 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
               Register and find users who can satisfy your dog sitting needs
             </h2>
@@ -199,7 +191,7 @@ const Homepage = () => {
                   <dt className='order-2 text-base font-medium text-gray-500'>
                     Current Users
                   </dt>
-                  <dd className='order-1 text-2xl font-bold text-indigo-600 sm:text-3xl sm:tracking-tight'>
+                  <dd className='order-1 text-2xl font-bold text-rose-500 sm:text-3xl sm:tracking-tight'>
                     50
                   </dd>
                 </div>
@@ -207,7 +199,7 @@ const Homepage = () => {
                   <dt className='order-2 text-base font-medium text-gray-500'>
                     Match Rate
                   </dt>
-                  <dd className='order-1 text-2xl font-bold text-indigo-600 sm:text-3xl sm:tracking-tight'>
+                  <dd className='order-1 text-2xl font-bold text-rose-500 sm:text-3xl sm:tracking-tight'>
                     90%
                   </dd>
                 </div>
@@ -215,7 +207,7 @@ const Homepage = () => {
                   <dt className='order-2 text-base font-medium text-gray-500'>
                     Dog Dates To Date
                   </dt>
-                  <dd className='order-1 text-2xl font-bold text-indigo-600 sm:text-3xl sm:tracking-tight'>
+                  <dd className='order-1 text-2xl font-bold text-rose-600 sm:text-3xl sm:tracking-tight'>
                     150+
                   </dd>
                 </div>
@@ -225,13 +217,13 @@ const Homepage = () => {
         </div>
       </div>
 
-      <section className='bg-indigo-800'>
+      <section className='bg-cyan-800'>
         <div className='mx-auto max-w-7xl md:grid md:grid-cols-2 md:px-6 lg:px-8'>
-          <div className='py-12 px-4 sm:px-6 md:flex md:flex-col md:border-r md:border-indigo-900 md:py-16 md:pl-0 md:pr-10 lg:pr-16'>
+          <div className='py-12 px-4 sm:px-6 md:flex md:flex-col md:border-r md:border-cyan-900 md:py-16 md:pl-0 md:pr-10 lg:pr-16'>
             <blockquote className='mt-6 md:flex md:flex-grow md:flex-col'>
               <div className='relative text-lg font-medium text-white md:flex-grow'>
                 <svg
-                  className='absolute top-0 left-0 h-8 w-8 -translate-x-3 -translate-y-2 transform text-indigo-600'
+                  className='absolute top-0 left-0 h-8 w-8 -translate-x-3 -translate-y-2 transform text-cyan-600'
                   fill='currentColor'
                   viewBox='0 0 32 32'
                   aria-hidden='true'
@@ -258,7 +250,7 @@ const Homepage = () => {
                     <div className='text-base font-medium text-white'>
                       Judith Black
                     </div>
-                    <div className='text-base font-medium text-indigo-200'>
+                    <div className='text-base font-medium text-rose-300'>
                       Hybrid Woofer
                     </div>
                   </div>
@@ -266,12 +258,12 @@ const Homepage = () => {
               </footer>
             </blockquote>
           </div>
-          <div className='border-t-2 border-indigo-900 py-12 px-4 sm:px-6 md:border-t-0 md:border-l md:py-16 md:pr-0 md:pl-10 lg:pl-16'>
+          <div className='border-t-2 border-cyan-900 py-12 px-4 sm:px-6 md:border-t-0 md:border-l md:py-16 md:pr-0 md:pl-10 lg:pl-16'>
             <div className='md:flex-shrink-0'></div>
             <blockquote className='mt-6 md:flex md:flex-grow md:flex-col'>
               <div className='relative text-lg font-medium text-white md:flex-grow'>
                 <svg
-                  className='absolute top-0 left-0 h-8 w-8 -translate-x-3 -translate-y-2 transform text-indigo-600'
+                  className='absolute top-0 left-0 h-8 w-8 -translate-x-3 -translate-y-2 transform text-cyan-600'
                   fill='currentColor'
                   viewBox='0 0 32 32'
                 >
@@ -296,7 +288,7 @@ const Homepage = () => {
                     <div className='text-base font-medium text-white'>
                       Joseph Rodriguez
                     </div>
-                    <div className='text-base font-medium text-indigo-200'>
+                    <div className='text-base font-medium text-rose-300'>
                       Woofs From Home
                     </div>
                   </div>
@@ -308,7 +300,6 @@ const Homepage = () => {
       </section>
     </>
   )
-
 }
 
 export default Homepage

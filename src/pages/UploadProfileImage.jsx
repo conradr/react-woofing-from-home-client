@@ -1,13 +1,17 @@
 import {
-  CalendarDaysIcon, PhotoIcon,
-  RectangleGroupIcon, UserCircleIcon, UserPlusIcon
+  CalendarDaysIcon,
+  PhotoIcon,
+  RectangleGroupIcon,
+  UserCircleIcon,
+  UserPlusIcon,
 } from '@heroicons/react/24/outline'
 import { getAuth, updateProfile } from 'firebase/auth'
 import { doc, updateDoc } from 'firebase/firestore'
 import {
-  getDownloadURL, getStorage,
+  getDownloadURL,
+  getStorage,
   ref,
-  uploadBytesResumable
+  uploadBytesResumable,
 } from 'firebase/storage'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -78,9 +82,7 @@ const UploadProfileImage = () => {
               photoURL: downloadURL,
             })
             const userRef = doc(db, 'users', auth.currentUser.uid)
-            await updateDoc(userRef, 
-              {photoURL: downloadURL,}
-     )
+            await updateDoc(userRef, { photoURL: downloadURL })
             navigate(`/suitability-form`)
             toast.success('Photos Saved')
 
@@ -185,7 +187,7 @@ const UploadProfileImage = () => {
                       <dd className='mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0'>
                         <button
                           type='submit'
-                          className='inline-flex  rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                          className='inline-flex  rounded-md border border-transparent bg-cyan-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2'
                         >
                           Submit
                         </button>

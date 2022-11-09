@@ -89,9 +89,11 @@ function AddDog() {
         })
           .then((response) => response.json())
           .catch((error) => console.log(error))
-        navigate('/matches')
+        navigate('/upload-images')
         // spinner to be entered here for calculating matches
     }
+
+
 
     const onSubmitandAddAnotherDog =  async () => {
     await fetch('https://woofingfromhome.herokuapp.com/dogs', {
@@ -774,14 +776,14 @@ const setCatStatus = (selectedOkayWithCats) => {
                       className='inline-flex  float-right rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-small text-white shadow-sm hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                       onClick={onSubmit}
                     >
-                      No more dogs to add - create my matches!
+                      Save my dog and continue to next step
                     </button>
                     <button
                       type='button'
                       className='inline-flex  float-left rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-small text-white shadow-sm hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                       onClick={onSubmitandAddAnotherDog}
                     >
-                      Add another dog
+                      Save and add another dog
                     </button>
                     </div>
                     </div>

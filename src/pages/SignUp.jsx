@@ -17,7 +17,8 @@ const SignUp = () => {
     name: '',
     email: '',
     password: '',
-    photoUrl: ''
+    photoUrl: '',
+    imgUrls: ''
   })
 
   const { name, email, password } = formData
@@ -64,6 +65,11 @@ const SignUp = () => {
         name,
         email,
         photoURL : "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile-default.png?alt=media&token=b393541c-8ad8-4b57-a70f-f2b4d236fa1f",
+        imgUrls: [
+          "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile4.png?alt=media&token=92d4ad56-f366-4624-9ee5-d06e60b12899]",
+          "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile3.png?alt=media&token=6c4b4516-7a15-4756-8212-7df6d6ba13cf",
+          "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile2.png?alt=media&token=24e3cbb7-5052-45a6-ad0b-c4d10400aa65",
+          "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fprofile1.png?alt=media&token=b16abbae-37f5-4fb5-a558-b9c21bcdcec3"],
         timestamp: serverTimestamp(),
         uid: user.uid,
       });

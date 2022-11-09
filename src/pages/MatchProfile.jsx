@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext} from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-
+import {useNavigate, useParams } from 'react-router-dom'
 import Spinner from '../components/Spinner'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
@@ -9,10 +8,6 @@ import kidIcon from '../assets/svg/kids.svg'
 import dogIcon from '../assets/svg/dog.svg'
 
 import {
-  collection,
-  query,
-  where,
-  getDocs,
   setDoc,
   doc,
   updateDoc,
@@ -29,82 +24,6 @@ import {
 } from '@heroicons/react/20/solid'
 
 import { AuthContext } from "../context/authContext";
-
-
-const homeSetUp = [
-  {
-    name: 'Good with Cats',
-    imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    stage: true,
-  },
-  {
-    name: 'Good with Kids',
-    imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    stage: false,
-  },
-  {
-    name: 'Allergies',
-    imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    stage: 'Not allergic',
-  },
-]
-
-
-const schedule = [
-  {
-    name: 'Monday',
-    imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    yourRequirement: true,
-    theirAvailability: true,
-  },
-  {
-    name: 'Tuesday',
-    imageUrl:
-      'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    yourRequirement: false,
-    theirAvailability: false,
-  },
-  {
-    name: 'Wednesday',
-    imageUrl:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    yourRequirement: true,
-    theirAvailability: true,
-  },
-  {
-    name: 'Thursday',
-    imageUrl:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    yourRequirement: false,
-    theirAvailability: false,
-  },
-  {
-    name: 'Friday',
-    imageUrl:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    yourRequirement: false,
-    theirAvailability: true,
-  },
-  {
-    name: 'Saturday',
-    imageUrl:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    yourRequirement: true,
-    theirAvailability: false,
-  },
-  {
-    name: 'Sunday',
-    imageUrl:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    yourRequirement: true,
-    theirAvailability: false,
-  },
-]
-
 
 const MatchProfile = () => {
   const [loading, setLoading] = useState(true)

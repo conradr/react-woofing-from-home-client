@@ -2,6 +2,18 @@ import React from "react";
 
 function AboutUs() {
   const people = [
+
+    {
+      name: "Katie Booth",
+      role: "Front and Back End Development",
+      imageUrl:
+        "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/D2040441-CB76-41BB-953F-08FDC075B2AB_1_201_a.jpeg?alt=media&token=7b658e35-6667-4170-a75b-30f0cc1e8eea",
+
+      bio: "Katie is a junior software developer and avid dog lover with a background in insurance and finance.",
+
+      twitterUrl: "#",
+      linkedinUrl: "https://www.linkedin.com/in/katie-booth-598995159/",
+    },
     {
       name: "Ben Cutler-Ames",
       role: "Front and Back End Development",
@@ -16,29 +28,18 @@ function AboutUs() {
       role: "Front and Back End Development",
       imageUrl:
         "https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80",
-      bio: "Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.",
+      bio: "A former Police Officer with Police Scotland with over six years experience in front line and detective roles.",
       twitterUrl: "#",
-      linkedinUrl: "www.linkedin.com/in/calgdon",
+      linkedinUrl: "https://www.linkedin.com/in/calgdon",
     },
     {
-      name: "Conrad Rousso ",
+      name: "Conrad Roussouw",
       role: "Front and Back End Development",
       imageUrl:
-        "https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80",
-      bio: "Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.",
+        "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2FeV53u9iw6bVABwdURK26Wi09i5r2-conrad-flo.jpeg-037b9927-c4c5-4469-b26d-0e0451f654a2?alt=media&token=481c7b5e-3045-4bfd-9a1f-ef6797dab29e",
+      bio: "Bio to be inserted here. ",
       twitterUrl: "#",
-      linkedinUrl: "#",
-    },
-    {
-      name: "Katie Booth",
-      role: "Front and Back End Development",
-      imageUrl:
-        "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/D2040441-CB76-41BB-953F-08FDC075B2AB_1_201_a.jpeg?alt=media&token=7b658e35-6667-4170-a75b-30f0cc1e8eea",
-
-      bio: "Katie is a junior software developer and avid dog lover with a background in insurance and finance.",
-
-      twitterUrl: "#",
-      linkedinUrl: "https://www.linkedin.com/in/katie-booth-598995159/",
+      linkedinUrl: "https://www.linkedin.com/in/conradr/",
     },
   ];
 
@@ -85,7 +86,7 @@ function AboutUs() {
                       <ul className="flex space-x-5">
                         <li>
                           <a
-                            href={person.linkedinUrl}
+                            href={person.linkedinUrl} target="_blank" rel="noreferrer"
                             className="text-gray-400 hover:text-gray-500"
                           >
                             <span className="sr-only">LinkedIn</span>

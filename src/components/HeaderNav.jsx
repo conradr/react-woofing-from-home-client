@@ -39,6 +39,10 @@ const HeaderNav = () => {
     navigate("/sign-in");
   };
 
+  const onSignup = () => {
+    navigate("/sign-up");
+  };
+
   return (
     <>
       <Disclosure as="nav" className="bg-gray-800">
@@ -90,7 +94,7 @@ const HeaderNav = () => {
                         <Menu as="div" className="relative ml-3">
                           <div>
                             {currentUser ? (
-                              <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm">
+                              <Menu.Button className="flexmax-w-xs items-center rounded-full bg-gray-800 text-sm">
                                 <span className="sr-only">Open user menu</span>
                                 <img
                                   className='h-12 w-12 rounded-full'
@@ -98,14 +102,21 @@ const HeaderNav = () => {
                                   alt=''
                                 />
                               </Menu.Button>
-                            ) : (
+                            ) : (<>
                               <button
                                 type="button"
-                                className="inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                className="inline-flex mx-2 items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                 onClick={onSignin}
                               >
                                 Sign in
                               </button>
+                              <button
+                                type="button"
+                                className="inline-flex items-center rounded border border-transparent bg-indigo-600 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                onClick={onSignup}
+                              >
+                                Sign up
+                              </button></>
                             )}
                           </div>
                           <Transition

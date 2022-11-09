@@ -61,12 +61,12 @@ const MatchCard = ({
         </div>
       </div>
       <div className='rounded-bl-2xl rounded-br-2xl bg-gray-50 p-6 md:px-8'>
-        <Link
-          to={`/matches/${matchID}/${customer2Id}`}
+        <a
+          href={`/matches/${matchID}/${customer2Id}`}
           className='text-base font-medium text-cyan-700 hover:text-cyan-600'
         >
           See this match<span aria-hidden='true'> &rarr;</span>
-        </Link>
+        </a>
       </div>
     </div>
   )

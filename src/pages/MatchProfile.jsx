@@ -29,6 +29,9 @@ import {
 } from '@heroicons/react/20/solid'
 
 import { AuthContext } from "../context/authContext";
+import {ChatContext} from '../context/chatContext';
+
+
 
 const profile = { 
 
@@ -132,7 +135,7 @@ const MatchProfile = () => {
   const [matches, setMatches] = useState(null)
 
   const { currentUser } = useContext(AuthContext);
-
+  const { dispatch } = useContext(ChatContext);
 
   const navigate = useNavigate()
   const params = useParams()
@@ -172,6 +175,7 @@ const MatchProfile = () => {
     e.preventDefault()
     // handleSearch()
     handleSelect()
+    handleChangeUser()
     navigate("/chat")
   }
 
@@ -227,7 +231,13 @@ const MatchProfile = () => {
       }
     } catch (err) {console.log(err)}
   };
-
+  const handleChangeUser = () => {
+    dispatch({ type: "CHANGE_USER", payload: 
+  {name: match.name,
+    uid: match.uid,
+    photoURL : match.photoURL 
+  }});
+  };
 
 
   return (

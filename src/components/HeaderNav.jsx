@@ -14,10 +14,7 @@ const navigation = [
   { name: "FAQ", href: "/faq", current: false },
   { name: "Contact Us", href: "/contactus", current: false },
 ];
-const userNavigation = [
-  { name: "Your Profile", href: "/profile" },
-  { name: "Sign out", href: "/", onClick: `onLogout` },
-];
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -31,11 +28,15 @@ const HeaderNav = () => {
   const navigateToProfile = () => {
     navigate("/profile");
   };
-
   const onLogout = () => {
     currentUser.auth.signOut();
     navigate("/");
   };
+const userNavigation = [
+  { name: "Your Profile", href: "/profile" },
+  { name: "Sign out", href: "/", onClick: {onLogout} },
+];
+  
   const onSignin = () => {
     navigate("/sign-in");
   };

@@ -148,7 +148,7 @@ const UploadImages = () => {
 
     setLoading(false)
     toast.success('Photos Saved')
-    navigate(`/suitability-form`)
+    navigate(`/matches`)
   }
 
   const onChange = (e) => {

@@ -24,6 +24,12 @@ const subNavigation = [
     current: false,
   },
   {
+    name: 'Availability',
+    href: '/suitability-form',
+    icon: CalendarDaysIcon,
+    current: true,
+  },
+  {
     name: 'Your Dogs',
     href: '/add-dog',
     icon: UserPlusIcon,
@@ -34,12 +40,6 @@ const subNavigation = [
     href: '/upload-images',
     icon: RectangleGroupIcon,
     current: false,
-  },
-  {
-    name: 'Availability',
-    href: '/suitability-form',
-    icon: CalendarDaysIcon,
-    current: true,
   },
 ]
 

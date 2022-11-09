@@ -7,9 +7,9 @@ function AboutUs() {
       name: "Katie Booth",
       role: "Front and Back End Development",
       imageUrl:
-        "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/D2040441-CB76-41BB-953F-08FDC075B2AB_1_201_a.jpeg?alt=media&token=7b658e35-6667-4170-a75b-30f0cc1e8eea",
+        "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fkatie-web.jpeg?alt=media&token=e72c4ba0-06bf-47e8-8ab6-0ac219dee9a2",
 
-      bio: "Katie is a junior software developer and avid dog lover with a background in insurance and finance.",
+      bio: "Katie is a junior software developer and avid dog lover. Her background is in insurance and finance and she has recently returned from three years in Hong Kong.",
 
       twitterUrl: "#",
       linkedinUrl: "https://www.linkedin.com/in/katie-booth-598995159/",
@@ -27,8 +27,8 @@ function AboutUs() {
       name: "Callum Donaldson",
       role: "Front and Back End Development",
       imageUrl:
-        "https://images.unsplash.com/photo-1505840717430-882ce147ef2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80",
-      bio: "A former Police Officer with Police Scotland with over six years experience in front line and detective roles.",
+        "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2Fcallum-web.jpeg?alt=media&token=995c440d-afdf-47ce-9879-48fb2a6e684c",
+      bio: "A former Police Officer with over six years experience in front line and detective roles. Callum likes to combine the investigatory skill set he developed as a detective with his passion for software development.",
       twitterUrl: "#",
       linkedinUrl: "https://www.linkedin.com/in/calgdon",
     },
@@ -37,7 +37,7 @@ function AboutUs() {
       role: "Front and Back End Development",
       imageUrl:
         "https://firebasestorage.googleapis.com/v0/b/woofing-from-home.appspot.com/o/images%2FeV53u9iw6bVABwdURK26Wi09i5r2-conrad-flo.jpeg-037b9927-c4c5-4469-b26d-0e0451f654a2?alt=media&token=481c7b5e-3045-4bfd-9a1f-ef6797dab29e",
-      bio: "Bio to be inserted here. ",
+      bio: "A junior software developer with over 10 years experience in digital product management, both as a product owner and agile coach. Prior to that, Conrad spent 5 years as a web developer. He changed careers, because the more he worked with developers the more he wanted to be involved in building software.",
       twitterUrl: "#",
       linkedinUrl: "https://www.linkedin.com/in/conradr/",
     },

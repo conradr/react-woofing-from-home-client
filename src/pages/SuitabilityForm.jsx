@@ -109,8 +109,8 @@ function SuitabilityForm() {
   }
 
   const dailyStatuses = [
-    { id: 1, title: 'I need help', status: 'available' },
-    { id: 2, title: 'I can offer help', status: 'required' },
+    { id: 1, title: 'I need help', status: 'required' },
+    { id: 2, title: 'I can offer help', status: 'available' },
     { id: 3, title: 'I am good', status: 'neither' },
   ]
 
